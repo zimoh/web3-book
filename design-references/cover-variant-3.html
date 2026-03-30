@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Cover - Variant 3: Dynamic Gradient</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sora:wght@200;300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0f0f1a;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+    font-family: 'Sora', sans-serif;
+    min-height: 100vh;
+  }
+
+  .cover-container {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .label {
+    color: #E8C547;
+    font-family: 'Sora', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  /* === FRONT COVER === */
+  .front-cover {
+    width: 440px;
+    height: 660px;
+    background: #1E293B;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.6);
+  }
+
+  /* Large gradient orbs */
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+  }
+
+  .orb.violet {
+    width: 350px; height: 350px;
+    background: radial-gradient(circle, rgba(139, 111, 160, 0.4), transparent 70%);
+    top: -80px; right: -100px;
+  }
+
+  .orb.gold {
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(232, 197, 71, 0.25), transparent 70%);
+    bottom: 60px; left: -80px;
+  }
+
+  .orb.coral {
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(255, 107, 107, 0.2), transparent 70%);
+    top: 200px; right: -40px;
+  }
+
+  .orb.blue {
+    width: 250px; height: 250px;
+    background: radial-gradient(circle, rgba(67, 80, 112, 0.5), transparent 70%);
+    bottom: -60px; right: 60px;
+  }
+
+  /* Grid overlay */
+  .grid-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      linear-gradient(rgba(240, 238, 233, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(240, 238, 233, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Diagonal accent line */
+  .diag-line {
+    position: absolute;
+    width: 200%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(232, 197, 71, 0.15), rgba(255, 107, 107, 0.1), transparent);
+    transform: rotate(-35deg);
+    transform-origin: top left;
+  }
+
+  .diag-line.d1 { top: 300px; left: -50px; }
+  .diag-line.d2 { top: 340px; left: -50px; }
+
+  /* Side accent bar */
+  .side-bar {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 5px;
+    background: linear-gradient(180deg, #E8C547, #FF6B6B, #8B6FA0, #435070);
+  }
+
+  .front-content {
+    position: relative;
+    z-index: 2;
+    padding: 45px 40px 35px 50px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Mono code tag */
+  .code-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    color: #E8C547;
+    letter-spacing: 1px;
+    margin-bottom: 40px;
+    opacity: 0.8;
+  }
+
+  .code-tag span { color: #8B6FA0; }
+
+  .front-title {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 1.05;
+    color: #F0EEE9;
+    margin-bottom: 8px;
+    letter-spacing: -1px;
+  }
+
+  .front-title .line2 {
+    font-family: 'Sora', sans-serif;
+    font-weight: 200;
+    font-size: 28px;
+    color: rgba(240, 238, 233, 0.6);
+    display: block;
+    margin-top: 4px;
+    letter-spacing: 1px;
+  }
+
+  .front-title .accent-text {
+    background: linear-gradient(135deg, #E8C547, #FF6B6B);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 56px;
+    font-weight: 400;
+  }
+
+  .front-subtitle {
+    font-family: 'Sora', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: rgba(240, 238, 233, 0.5);
+    margin-top: 20px;
+    max-width: 300px;
+    letter-spacing: 0.5px;
+  }
+
+  .front-subtitle strong {
+    color: rgba(240, 238, 233, 0.8);
+    font-weight: 500;
+  }
+
+  /* Floating tag pills */
+  .tag-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 28px;
+  }
+
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 400;
+    padding: 5px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  .tag.t1 { background: rgba(232, 197, 71, 0.12); color: #E8C547; }
+  .tag.t2 { background: rgba(139, 111, 160, 0.12); color: #8B6FA0; }
+  .tag.t3 { background: rgba(255, 107, 107, 0.12); color: #FF6B6B; }
+  .tag.t4 { background: rgba(67, 80, 112, 0.15); color: rgba(240,238,233,0.6); }
+
+  .front-bottom {
+    margin-top: auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  .author-block {
+    border-left: 2px solid #E8C547;
+    padding-left: 14px;
+  }
+
+  .author-block .name {
+    font-family: 'Sora', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #F0EEE9;
+    letter-spacing: 0.5px;
+  }
+
+  .author-block .role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: rgba(240, 238, 233, 0.4);
+    margin-top: 4px;
+    letter-spacing: 1px;
+  }
+
+  .edition-mark {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    color: rgba(240, 238, 233, 0.25);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+
+  /* === BACK COVER === */
+  .back-cover {
+    width: 440px;
+    height: 660px;
+    background: #1E293B;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.6);
+  }
+
+  .back-cover .side-bar {
+    left: auto; right: 0;
+    background: linear-gradient(180deg, #435070, #8B6FA0, #FF6B6B, #E8C547);
+  }
+
+  .back-content {
+    position: relative;
+    z-index: 2;
+    padding: 45px 50px 35px 40px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .back-hook {
+    font-family: 'Instrument Serif', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: #F0EEE9;
+    line-height: 1.35;
+    margin-bottom: 20px;
+  }
+
+  .back-hook .em {
+    font-style: italic;
+    color: #E8C547;
+  }
+
+  .back-desc {
+    font-family: 'Sora', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: rgba(240, 238, 233, 0.6);
+    margin-bottom: 24px;
+  }
+
+  /* Feature cards */
+  .feature-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+
+  .f-card {
+    background: rgba(240, 238, 233, 0.03);
+    border: 1px solid rgba(240, 238, 233, 0.06);
+    border-radius: 8px;
+    padding: 14px;
+  }
+
+  .f-card .f-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: #E8C547;
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+  }
+
+  .f-card .f-text {
+    font-family: 'Sora', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(240, 238, 233, 0.75);
+    line-height: 1.5;
+  }
+
+  .quote-block {
+    position: relative;
+    padding: 18px 22px;
+    background: linear-gradient(135deg, rgba(139, 111, 160, 0.08), rgba(232, 197, 71, 0.05));
+    border-radius: 10px;
+    margin-bottom: 22px;
+  }
+
+  .quote-block::before {
+    content: '\201C';
+    font-family: 'Instrument Serif', serif;
+    font-size: 50px;
+    color: rgba(232, 197, 71, 0.2);
+    position: absolute;
+    top: -5px; left: 12px;
+    line-height: 1;
+  }
+
+  .quote-text {
+    font-family: 'Instrument Serif', serif;
+    font-size: 14px;
+    font-style: italic;
+    line-height: 1.6;
+    color: rgba(240, 238, 233, 0.7);
+    padding-left: 4px;
+  }
+
+  .quote-attr {
+    font-family: 'Sora', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    color: #8B6FA0;
+    margin-top: 10px;
+    padding-left: 4px;
+    letter-spacing: 0.5px;
+  }
+
+  .back-footer {
+    margin-top: auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  .isbn-block {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .isbn-visual {
+    width: 120px;
+    height: 48px;
+    background: #F0EEE9;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .bcode {
+    display: flex;
+    gap: 1px;
+    height: 32px;
+    align-items: flex-end;
+  }
+
+  .bcode span {
+    display: block;
+    width: 2px;
+    background: #1E293B;
+  }
+
+  .isbn-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: rgba(240, 238, 233, 0.25);
+    letter-spacing: 1px;
+  }
+
+  .pub-text {
+    font-family: 'Instrument Serif', serif;
+    font-size: 12px;
+    color: rgba(240, 238, 233, 0.2);
+    letter-spacing: 2px;
+    text-align: right;
+  }
+</style>
+</head>
+<body>
+
+<div class="cover-container">
+
+  <!-- FRONT COVER -->
+  <div>
+    <div class="label">Front Cover</div>
+    <div class="front-cover">
+      <div class="orb violet"></div>
+      <div class="orb gold"></div>
+      <div class="orb coral"></div>
+      <div class="orb blue"></div>
+      <div class="grid-overlay"></div>
+      <div class="diag-line d1"></div>
+      <div class="diag-line d2"></div>
+      <div class="side-bar"></div>
+
+      <div class="front-content">
+        <div class="code-tag">
+          <span>&lt;</span>book<span>&gt;</span> edition="1.0" category="entrepreneurship"
+        </div>
+
+        <h1 class="front-title">
+          Entrepreneurship<br>
+          <span class="line2">in the Age of</span>
+          <span class="accent-text">AI & Web3</span>
+        </h1>
+
+        <p class="front-subtitle">
+          <strong>Building Ventures</strong> in the<br>
+          Decentralized AI Internet
+        </p>
+
+        <div class="tag-row">
+          <span class="tag t1">Tokenomics</span>
+          <span class="tag t2">DAOs</span>
+          <span class="tag t3">DePIN</span>
+          <span class="tag t4">Smart Contracts</span>
+          <span class="tag t1">AI Agents</span>
+        </div>
+
+        <div class="front-bottom">
+          <div class="author-block">
+            <div class="name">Zishan A. Mohammad</div>
+            <div class="role">researcher // professor // consultant</div>
+          </div>
+          <div class="edition-mark">First Edition</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BACK COVER -->
+  <div>
+    <div class="label">Back Cover</div>
+    <div class="back-cover">
+      <div class="orb violet" style="top:auto;bottom:-80px;right:auto;left:-100px"></div>
+      <div class="orb gold" style="bottom:auto;top:-60px;left:auto;right:-80px"></div>
+      <div class="grid-overlay"></div>
+      <div class="side-bar" style="left:auto;right:0"></div>
+
+      <div class="back-content">
+        <p class="back-hook">Two forces are rewriting the rules of venture creation. <span class="em">This book is your blueprint.</span></p>
+
+        <p class="back-desc">
+          From token economy design to DAO governance, from DeFi fundraising to building communities that scale — this comprehensive guide bridges academic research with practical founder insight across 8 chapters and 270+ pages.
+        </p>
+
+        <div class="feature-cards">
+          <div class="f-card">
+            <div class="f-num">01 — 02</div>
+            <div class="f-text">Web3+AI landscape and blockchain fundamentals for founders</div>
+          </div>
+          <div class="f-card">
+            <div class="f-num">03 — 04</div>
+            <div class="f-text">Token economy design and Web3 business model frameworks</div>
+          </div>
+          <div class="f-card">
+            <div class="f-num">05 — 06</div>
+            <div class="f-text">DAO governance, legal strategy, and fundraising mechanics</div>
+          </div>
+          <div class="f-card">
+            <div class="f-num">07 — 08</div>
+            <div class="f-text">Community building and frontier tech: DePIN, AI agents, space</div>
+          </div>
+        </div>
+
+        <div class="back-footer">
+          <div class="isbn-block">
+            <div class="isbn-visual">
+              <div class="bcode">
+                <span style="height:28px"></span><span style="height:32px"></span><span style="height:22px"></span>
+                <span style="height:32px"></span><span style="height:18px"></span><span style="height:28px"></span>
+                <span style="height:32px"></span><span style="height:14px"></span><span style="height:32px"></span>
+                <span style="height:24px"></span><span style="height:28px"></span><span style="height:18px"></span>
+                <span style="height:32px"></span><span style="height:26px"></span><span style="height:32px"></span>
+                <span style="height:20px"></span><span style="height:28px"></span><span style="height:32px"></span>
+                <span style="height:16px"></span><span style="height:32px"></span><span style="height:24px"></span>
+                <span style="height:28px"></span><span style="height:32px"></span><span style="height:18px"></span>
+              </div>
+            </div>
+            <span class="isbn-label">ISBN 978-0-000000-00-0</span>
+          </div>
+          <div class="pub-text">PUBLISHER<br>PRESS</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

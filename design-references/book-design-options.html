@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web3 Entrepreneurship — 3 Design Directions</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@300;400;500&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #0a0a0a;
+    color: #e0e0e0;
+    padding: 60px 40px;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+  .header h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 36px;
+    font-weight: 300;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .header p {
+    font-size: 15px;
+    color: #888;
+    letter-spacing: 1px;
+  }
+
+  /* ── Option wrapper ── */
+  .option {
+    margin-bottom: 120px;
+    border-top: 1px solid #222;
+    padding-top: 60px;
+  }
+  .option-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 8px;
+  }
+  .option-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .option-subtitle {
+    font-size: 14px;
+    color: #aaa;
+    margin-bottom: 40px;
+    line-height: 1.6;
+    max-width: 700px;
+  }
+
+  /* ── Book mockups ── */
+  .book-row {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+    justify-content: center;
+  }
+  .book-mock {
+    width: 320px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    position: relative;
+  }
+
+  /* ── Spec table ── */
+  .specs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    margin-top: 30px;
+  }
+  .spec-card {
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 8px;
+    padding: 24px;
+  }
+  .spec-card h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 12px;
+  }
+  .spec-card p, .spec-card li {
+    font-size: 13px;
+    color: #ccc;
+    line-height: 1.7;
+  }
+  .spec-card ul { list-style: none; padding: 0; }
+  .spec-card li::before { content: "→ "; color: #555; }
+
+  .color-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .swatch {
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 2px;
+  }
+  .swatch span {
+    font-size: 7px;
+    font-family: 'JetBrains Mono', monospace;
+    color: rgba(255,255,255,0.7);
+  }
+
+  /* ═══════════════════════════════════════
+     OPTION A — "Midnight Protocol"
+     Dark navy + electric cyan + warm gold
+     ═══════════════════════════════════════ */
+  .cover-a {
+    background: linear-gradient(170deg, #0B1929 0%, #0D2137 40%, #122A45 100%);
+    padding: 0;
+    height: 460px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover-a::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 70%);
+  }
+  .cover-a::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(212,175,55,0.06) 0%, transparent 70%);
+  }
+  /* Geometric grid overlay */
+  .cover-a .grid-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  /* Isometric node network */
+  .cover-a .nodes {
+    position: absolute;
+    top: 40px; right: 20px;
+    width: 200px; height: 200px;
+  }
+  .cover-a .node {
+    position: absolute;
+    width: 6px; height: 6px;
+    background: #00D4FF;
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(0,212,255,0.5);
+  }
+  .cover-a .node:nth-child(1) { top: 20px; left: 40px; }
+  .cover-a .node:nth-child(2) { top: 60px; left: 100px; width: 8px; height: 8px; }
+  .cover-a .node:nth-child(3) { top: 30px; left: 150px; width: 4px; height: 4px; }
+  .cover-a .node:nth-child(4) { top: 90px; left: 60px; }
+  .cover-a .node:nth-child(5) { top: 110px; left: 140px; width: 5px; height: 5px; }
+  .cover-a .node:nth-child(6) { top: 150px; left: 90px; width: 7px; height: 7px; background: #D4AF37; box-shadow: 0 0 12px rgba(212,175,55,0.5); }
+  .cover-a .node:nth-child(7) { top: 70px; left: 30px; width: 4px; height: 4px; }
+  .cover-a .node:nth-child(8) { top: 130px; left: 170px; width: 5px; height: 5px; }
+  /* SVG lines between nodes */
+  .cover-a .lines {
+    position: absolute;
+    top: 40px; right: 20px;
+    width: 200px; height: 200px;
+  }
+  .cover-a .lines line {
+    stroke: rgba(0,212,255,0.15);
+    stroke-width: 1;
+  }
+
+  .cover-a .top-bar {
+    height: 4px;
+    background: linear-gradient(90deg, #00D4FF, #D4AF37);
+    position: relative;
+    z-index: 2;
+  }
+  .cover-a .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 40px 32px 36px;
+    position: relative;
+    z-index: 2;
+  }
+  .cover-a .edition {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #00D4FF;
+    margin-bottom: 16px;
+  }
+  .cover-a h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #FFFFFF;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .cover-a h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 24px;
+    letter-spacing: 0.5px;
+  }
+  .cover-a .divider {
+    width: 50px;
+    height: 1px;
+    background: linear-gradient(90deg, #D4AF37, transparent);
+    margin-bottom: 16px;
+  }
+  .cover-a .author {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: #D4AF37;
+    letter-spacing: 2px;
+  }
+
+  /* Chapter opener A */
+  .chapter-a {
+    background: #FAFBFC;
+    padding: 0;
+    height: 460px;
+    overflow: hidden;
+  }
+  .chapter-a .ch-top {
+    background: #0B1929;
+    padding: 40px 32px 60px;
+    position: relative;
+  }
+  .chapter-a .ch-top::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0; right: 0;
+    height: 30px;
+    background: #FAFBFC;
+    clip-path: polygon(0 100%, 100% 100%, 100% 0);
+  }
+  .chapter-a .ch-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 72px;
+    font-weight: 800;
+    color: rgba(0,212,255,0.12);
+    position: absolute;
+    top: 10px; right: 30px;
+    line-height: 1;
+  }
+  .chapter-a .ch-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #00D4FF;
+    margin-bottom: 10px;
+  }
+  .chapter-a .ch-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+  }
+  .chapter-a .ch-body {
+    padding: 30px 32px;
+  }
+  .chapter-a .ch-body h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #0B1929;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #00D4FF;
+    display: inline-block;
+  }
+  .chapter-a .ch-body ul {
+    list-style: none;
+    padding: 0;
+  }
+  .chapter-a .ch-body li {
+    font-size: 11px;
+    color: #444;
+    line-height: 1.6;
+    padding: 4px 0 4px 16px;
+    position: relative;
+    font-family: 'Inter', sans-serif;
+  }
+  .chapter-a .ch-body li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 6px;
+    height: 6px;
+    background: #D4AF37;
+    border-radius: 50%;
+  }
+
+  /* Interior page A */
+  .interior-a {
+    background: #FFFFFF;
+    padding: 36px 32px;
+    height: 460px;
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+  }
+  .interior-a .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #00D4FF;
+    margin-bottom: 6px;
+  }
+  .interior-a h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #0B1929;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #E8EDF2;
+  }
+  .interior-a p {
+    font-size: 10.5px;
+    color: #333;
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+  .interior-a .callout {
+    background: linear-gradient(135deg, #F0F7FF, #F8FAFC);
+    border-left: 3px solid #00D4FF;
+    padding: 14px 16px;
+    margin: 16px 0;
+    border-radius: 0 6px 6px 0;
+  }
+  .interior-a .callout p {
+    font-size: 10px;
+    color: #0B1929;
+    margin: 0;
+    font-style: italic;
+  }
+  .interior-a .table-mock {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 14px;
+    font-size: 9px;
+  }
+  .interior-a .table-mock th {
+    background: #0B1929;
+    color: #fff;
+    padding: 8px 10px;
+    text-align: left;
+    font-weight: 600;
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: 0.5px;
+  }
+  .interior-a .table-mock td {
+    padding: 7px 10px;
+    border-bottom: 1px solid #EEF1F5;
+    color: #444;
+  }
+  .interior-a .table-mock tr:nth-child(even) td {
+    background: #F8FAFC;
+  }
+  .interior-a .table-mock .highlight {
+    color: #00D4FF;
+    font-weight: 600;
+  }
+
+  /* ═══════════════════════════════════════
+     OPTION B — "Signal & Noise"
+     Warm ivory + burnt orange + deep charcoal
+     ═══════════════════════════════════════ */
+  .cover-b {
+    background: #1A1714;
+    height: 460px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover-b .texture {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0v60M0 30h60' stroke='%23ffffff' stroke-width='0.3' opacity='0.04'/%3E%3C/svg%3E");
+  }
+  /* Large geometric shape */
+  .cover-b .geo {
+    position: absolute;
+    top: 30px; right: -40px;
+    width: 280px; height: 280px;
+    border: 2px solid rgba(227,120,47,0.2);
+    border-radius: 50%;
+  }
+  .cover-b .geo::before {
+    content: '';
+    position: absolute;
+    top: 30px; left: 30px; right: 30px; bottom: 30px;
+    border: 1px solid rgba(227,120,47,0.12);
+    border-radius: 50%;
+  }
+  .cover-b .geo::after {
+    content: '';
+    position: absolute;
+    top: 60px; left: 60px; right: 60px; bottom: 60px;
+    border: 1px solid rgba(227,120,47,0.08);
+    border-radius: 50%;
+  }
+  /* Accent blocks */
+  .cover-b .accent-block {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 140px;
+    background: linear-gradient(180deg, transparent, rgba(227,120,47,0.06));
+  }
+  .cover-b .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 48px 36px 36px;
+    position: relative;
+    z-index: 2;
+  }
+  .cover-b .tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #E3782F;
+    border: 1px solid rgba(227,120,47,0.3);
+    padding: 4px 12px;
+    border-radius: 2px;
+    margin-bottom: 24px;
+    align-self: flex-start;
+  }
+  .cover-b h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 38px;
+    font-weight: 400;
+    color: #F5F0E8;
+    line-height: 1.08;
+    margin-bottom: 10px;
+    max-width: 240px;
+  }
+  .cover-b h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(245,240,232,0.4);
+    margin-bottom: auto;
+    line-height: 1.5;
+    max-width: 220px;
+  }
+  .cover-b .bottom {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-top: auto;
+  }
+  .cover-b .author {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: #F5F0E8;
+    letter-spacing: 1.5px;
+  }
+  .cover-b .edition-mark {
+    font-family: 'DM Serif Display', serif;
+    font-size: 48px;
+    color: rgba(227,120,47,0.15);
+    line-height: 1;
+  }
+
+  /* Chapter opener B */
+  .chapter-b {
+    background: #F5F0E8;
+    height: 460px;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .chapter-b .ch-header {
+    padding: 32px 32px 24px;
+    border-bottom: 1px solid rgba(26,23,20,0.1);
+  }
+  .chapter-b .ch-num-big {
+    font-family: 'DM Serif Display', serif;
+    font-size: 96px;
+    color: rgba(227,120,47,0.1);
+    line-height: 0.85;
+    margin-bottom: -10px;
+  }
+  .chapter-b .ch-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #E3782F;
+    margin-bottom: 8px;
+  }
+  .chapter-b .ch-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    color: #1A1714;
+    line-height: 1.15;
+  }
+  .chapter-b .ch-content {
+    padding: 24px 32px;
+    flex: 1;
+  }
+  .chapter-b .ch-quote {
+    font-family: 'DM Serif Display', serif;
+    font-size: 14px;
+    color: #555;
+    font-style: italic;
+    line-height: 1.6;
+    padding-left: 16px;
+    border-left: 2px solid #E3782F;
+    margin-bottom: 20px;
+  }
+  .chapter-b .obj-list {
+    list-style: none;
+    padding: 0;
+    counter-reset: obj;
+  }
+  .chapter-b .obj-list li {
+    font-size: 11px;
+    color: #444;
+    line-height: 1.5;
+    padding: 6px 0 6px 32px;
+    position: relative;
+    font-family: 'Inter', sans-serif;
+    counter-increment: obj;
+  }
+  .chapter-b .obj-list li::before {
+    content: counter(obj, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #E3782F;
+    font-weight: 600;
+  }
+
+  /* Interior page B */
+  .interior-b {
+    background: #FFFDF8;
+    padding: 36px 32px;
+    height: 460px;
+    overflow: hidden;
+  }
+  .interior-b .section-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #E3782F;
+    margin-bottom: 8px;
+  }
+  .interior-b h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: #1A1714;
+    margin-bottom: 16px;
+  }
+  .interior-b p {
+    font-family: 'Inter', sans-serif;
+    font-size: 10.5px;
+    color: #3A3530;
+    line-height: 1.8;
+    margin-bottom: 14px;
+  }
+  .interior-b .example-box {
+    background: #F5F0E8;
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin: 16px 0;
+    position: relative;
+  }
+  .interior-b .example-box::before {
+    content: 'EXAMPLE';
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: #E3782F;
+    position: absolute;
+    top: -8px; left: 18px;
+    background: #FFFDF8;
+    padding: 0 6px;
+  }
+  .interior-b .example-box p {
+    font-size: 10px;
+    margin: 0;
+    color: #555;
+    font-style: italic;
+  }
+  .interior-b .table-mock {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 14px;
+    font-size: 9px;
+  }
+  .interior-b .table-mock th {
+    background: #1A1714;
+    color: #F5F0E8;
+    padding: 8px 10px;
+    text-align: left;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+  }
+  .interior-b .table-mock td {
+    padding: 7px 10px;
+    border-bottom: 1px solid #E8E3DA;
+    color: #444;
+    font-family: 'Inter', sans-serif;
+  }
+  .interior-b .table-mock tr:nth-child(even) td {
+    background: #F9F6F0;
+  }
+
+  /* ═══════════════════════════════════════
+     OPTION C — "Neon Genesis"
+     Pure black + electric gradients + white type
+     ═══════════════════════════════════════ */
+  .cover-c {
+    background: #000000;
+    height: 460px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Gradient mesh */
+  .cover-c .mesh1 {
+    position: absolute;
+    top: -60px; left: -60px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(138,43,226,0.25) 0%, transparent 70%);
+    filter: blur(40px);
+  }
+  .cover-c .mesh2 {
+    position: absolute;
+    bottom: -40px; right: -40px;
+    width: 350px; height: 350px;
+    background: radial-gradient(circle, rgba(0,200,150,0.2) 0%, transparent 70%);
+    filter: blur(50px);
+  }
+  .cover-c .mesh3 {
+    position: absolute;
+    top: 120px; right: 40px;
+    width: 180px; height: 180px;
+    background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%);
+    filter: blur(30px);
+  }
+  /* Circuit traces */
+  .cover-c .traces {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    opacity: 0.06;
+    background:
+      linear-gradient(0deg, #fff 1px, transparent 1px),
+      linear-gradient(90deg, #fff 1px, transparent 1px);
+    background-size: 30px 30px;
+    mask-image: radial-gradient(ellipse at 70% 30%, black 20%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at 70% 30%, black 20%, transparent 70%);
+  }
+
+  .cover-c .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 48px 36px;
+    position: relative;
+    z-index: 2;
+  }
+  .cover-c .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 28px;
+    align-self: flex-start;
+    backdrop-filter: blur(10px);
+  }
+  .cover-c .badge .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #8A2BE2, #00C896);
+  }
+  .cover-c h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    color: #FFFFFF;
+    line-height: 1.05;
+    margin-bottom: 12px;
+    letter-spacing: -1px;
+  }
+  .cover-c h2 .gradient {
+    background: linear-gradient(135deg, #8A2BE2, #3B82F6, #00C896);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .cover-c h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 40px;
+    line-height: 1.5;
+  }
+  .cover-c .author {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 1px;
+  }
+
+  /* Chapter opener C */
+  .chapter-c {
+    background: #FAFAFA;
+    height: 460px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .chapter-c .ch-accent {
+    height: 6px;
+    background: linear-gradient(90deg, #8A2BE2, #3B82F6, #00C896);
+  }
+  .chapter-c .ch-header {
+    padding: 28px 32px 20px;
+  }
+  .chapter-c .ch-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #8A2BE2, #3B82F6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+  }
+  .chapter-c .ch-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    color: #111;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+  }
+  .chapter-c .ch-body {
+    padding: 0 32px 24px;
+    flex: 1;
+  }
+  .chapter-c .pill-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+  .chapter-c .pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 1px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(138,43,226,0.08), rgba(0,200,150,0.08));
+    color: #555;
+    border: 1px solid rgba(138,43,226,0.15);
+  }
+  .chapter-c .obj-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .chapter-c .obj-card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+  .chapter-c .obj-card .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #8A2BE2, #3B82F6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 4px;
+  }
+  .chapter-c .obj-card p {
+    font-size: 9px;
+    color: #666;
+    line-height: 1.5;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* Interior C */
+  .interior-c {
+    background: #FFFFFF;
+    padding: 36px 32px;
+    height: 460px;
+    overflow: hidden;
+  }
+  .interior-c .section-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, #8A2BE2, #3B82F6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 6px;
+  }
+  .interior-c h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: #111;
+    margin-bottom: 14px;
+    letter-spacing: -0.3px;
+  }
+  .interior-c p {
+    font-family: 'Inter', sans-serif;
+    font-size: 10.5px;
+    color: #333;
+    line-height: 1.75;
+    margin-bottom: 12px;
+  }
+  .interior-c .insight-box {
+    background: linear-gradient(135deg, rgba(138,43,226,0.04), rgba(0,200,150,0.04));
+    border: 1px solid rgba(138,43,226,0.12);
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 14px 0;
+  }
+  .interior-c .insight-box .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #8A2BE2;
+    margin-bottom: 6px;
+  }
+  .interior-c .insight-box p {
+    font-size: 10px;
+    margin: 0;
+    color: #444;
+  }
+  .interior-c .table-mock {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 14px;
+    font-size: 9px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #eee;
+  }
+  .interior-c .table-mock th {
+    background: linear-gradient(135deg, #8A2BE2, #3B82F6);
+    color: #fff;
+    padding: 8px 10px;
+    text-align: left;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+  }
+  .interior-c .table-mock td {
+    padding: 7px 10px;
+    border-bottom: 1px solid #F0F0F0;
+    color: #444;
+    font-family: 'Inter', sans-serif;
+  }
+  .interior-c .table-mock tr:nth-child(even) td {
+    background: #FAFAFA;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Web3 Entrepreneurship</h1>
+  <p>Three Design Directions — Pick Your Visual Identity</p>
+</div>
+
+<!-- ═══════════════════ OPTION A ═══════════════════ -->
+<div class="option">
+  <div class="option-label">Option A</div>
+  <div class="option-title">Midnight Protocol</div>
+  <div class="option-subtitle">
+    Deep navy + electric cyan + warm gold. Inspired by Bloomberg terminal aesthetics and premium fintech brands.
+    A dark, data-rich visual language that signals authority, technical depth, and institutional credibility.
+    Think: the book a Goldman Sachs analyst keeps on their desk next to a Bloomberg terminal.
+  </div>
+
+  <div class="book-row">
+    <!-- Cover -->
+    <div class="book-mock">
+      <div class="cover-a">
+        <div class="grid-overlay"></div>
+        <svg class="lines" viewBox="0 0 200 200">
+          <line x1="40" y1="20" x2="100" y2="60"/>
+          <line x1="100" y1="60" x2="150" y2="30"/>
+          <line x1="100" y1="60" x2="60" y2="90"/>
+          <line x1="60" y1="90" x2="140" y2="110"/>
+          <line x1="140" y1="110" x2="90" y2="150"/>
+          <line x1="40" y1="20" x2="30" y2="70"/>
+          <line x1="150" y1="30" x2="170" y2="130"/>
+          <line x1="90" y1="150" x2="170" y2="130"/>
+        </svg>
+        <div class="nodes">
+          <div class="node"></div><div class="node"></div><div class="node"></div>
+          <div class="node"></div><div class="node"></div><div class="node"></div>
+          <div class="node"></div><div class="node"></div>
+        </div>
+        <div class="top-bar"></div>
+        <div class="content">
+          <div class="edition">Graduate Textbook</div>
+          <h2>Web3<br>Entrepreneurship</h2>
+          <h3>Building Ventures in the Age<br>of Decentralization and AI</h3>
+          <div class="divider"></div>
+          <div class="author">ZISHAN ASHRAF MOHAMMAD</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chapter opener -->
+    <div class="book-mock">
+      <div class="chapter-a">
+        <div class="ch-top">
+          <div class="ch-num">08</div>
+          <div class="ch-label">Chapter Eight</div>
+          <div class="ch-title">The Future of Web3<br>Entrepreneurship</div>
+        </div>
+        <div class="ch-body">
+          <h4>Learning Objectives</h4>
+          <ul>
+            <li>Explain the infrastructure-application cycle in Web3</li>
+            <li>Evaluate the convergence of AI and blockchain</li>
+            <li>Analyze the DePIN model and its disruption potential</li>
+            <li>Assess blockchain as infrastructure for autonomous machines</li>
+            <li>Apply the Bittensor and peaq case studies</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interior page -->
+    <div class="book-mock">
+      <div class="interior-a">
+        <div class="section-label">Section 8.2</div>
+        <h3>The Crypto &times; AI Convergence</h3>
+        <p>The artificial intelligence industry reached an inflection point in 2023-2024 with the mainstream emergence of large language models and autonomous AI agents. But as agents have grown more capable, they have encountered three fundamental challenges.</p>
+        <div class="callout">
+          <p>"AI agents need blockchain for identity, payments, and commerce — capabilities the current internet cannot provide."</p>
+        </div>
+        <table class="table-mock">
+          <tr><th>Layer</th><th>Function</th><th>Key Projects</th><th>Market</th></tr>
+          <tr><td>Compute</td><td>Decentralized GPU</td><td class="highlight">Render, Akash, io.net</td><td>$230M+</td></tr>
+          <tr><td>Model</td><td>Training & inference</td><td class="highlight">Bittensor, Morpheus</td><td>$2.8B</td></tr>
+          <tr><td>Cognitive</td><td>Agent frameworks</td><td class="highlight">Virtuals, Autonolas</td><td>$4.3B</td></tr>
+          <tr><td>Application</td><td>End-user apps</td><td class="highlight">DeFi agents, trading</td><td>550+</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="specs">
+    <div class="spec-card">
+      <h4>Color Palette (CMYK)</h4>
+      <div class="color-row">
+        <div class="swatch" style="background:#0B1929;"><span>C95 M72 K84</span></div>
+        <div class="swatch" style="background:#00D4FF;"><span>C80 M0 Y5 K0</span></div>
+        <div class="swatch" style="background:#D4AF37;"><span>C10 M25 Y85 K5</span></div>
+        <div class="swatch" style="background:#FAFBFC;"><span>C2 M1 Y1 K1</span></div>
+        <div class="swatch" style="background:#333;"><span>K80</span></div>
+      </div>
+    </div>
+    <div class="spec-card">
+      <h4>Typography</h4>
+      <ul>
+        <li>Headings: Space Grotesk Bold</li>
+        <li>Body: Inter Regular 11pt / 1.75 leading</li>
+        <li>Code/Labels: JetBrains Mono</li>
+        <li>Contrast ratio: ~15:1 (body on white)</li>
+      </ul>
+    </div>
+    <div class="spec-card">
+      <h4>Illustration Style</h4>
+      <ul>
+        <li>Isometric node networks + data visualizations</li>
+        <li>Glowing cyan nodes on dark backgrounds</li>
+        <li>Geometric grid overlays (circuit-board feel)</li>
+        <li>Chapter icons: abstract blockchain/network motifs</li>
+      </ul>
+    </div>
+    <div class="spec-card">
+      <h4>Best For</h4>
+      <p>Institutional credibility. Appeals to finance/business school audiences. Signals "this is serious infrastructure, not crypto hype." Strong shelf presence in university bookstores alongside Bloomberg and McKinsey publications.</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════ OPTION B ═══════════════════ -->
+<div class="option">
+  <div class="option-label">Option B</div>
+  <div class="option-title">Signal &amp; Noise</div>
+  <div class="option-subtitle">
+    Warm ivory + burnt orange + deep charcoal. Inspired by Penguin Classics, A Book Apart, and the editorial warmth of Monocle magazine.
+    A refined, literary visual language that says "this is ideas-first, not tech-first." Serif headings bring gravitas;
+    the warm palette invites long reading sessions. Think: the book a Stanford MBA reads on a long-haul flight.
+  </div>
+
+  <div class="book-row">
+    <!-- Cover -->
+    <div class="book-mock">
+      <div class="cover-b">
+        <div class="texture"></div>
+        <div class="geo"></div>
+        <div class="accent-block"></div>
+        <div class="content">
+          <div class="tag">Graduate Textbook</div>
+          <h2>Web3<br>Entrepreneur&shy;ship</h2>
+          <h3>Building Ventures in the Age of Decentralization and AI</h3>
+          <div class="bottom">
+            <div class="author">ZISHAN ASHRAF MOHAMMAD</div>
+            <div class="edition-mark">W3</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chapter opener -->
+    <div class="book-mock">
+      <div class="chapter-b">
+        <div class="ch-header">
+          <div class="ch-num-big">08</div>
+          <div class="ch-meta">Chapter Eight</div>
+          <div class="ch-title">The Future of Web3<br>Entrepreneurship</div>
+        </div>
+        <div class="ch-content">
+          <div class="ch-quote">"The entrepreneurs of the next decade will not just build applications on blockchains; they will build economies that run on them."</div>
+          <ol class="obj-list">
+            <li>Explain the infrastructure-application cycle</li>
+            <li>Evaluate the AI and blockchain convergence</li>
+            <li>Analyze the DePIN model</li>
+            <li>Assess blockchain for autonomous machines</li>
+            <li>Apply Bittensor and peaq case studies</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interior page -->
+    <div class="book-mock">
+      <div class="interior-b">
+        <div class="section-tag">Section 8.5.2</div>
+        <h3>V2X: When Vehicles Talk — and Pay</h3>
+        <p>Consider an autonomous vehicle traveling at highway speed that detects a multi-car accident 500 meters ahead. Within milliseconds, it broadcasts a cryptographically signed alert to every connected vehicle within range.</p>
+        <div class="example-box">
+          <p>A rerouted autonomous vehicle approaches a toll road. Its Web3 wallet — funded with stablecoins — automatically settles the toll charge via smart contract. The transaction takes less than a second.</p>
+        </div>
+        <table class="table-mock">
+          <tr><th>Machine Type</th><th>Identity</th><th>Payments</th><th>Example</th></tr>
+          <tr><td>Autonomous Vehicles</td><td>Vehicle DID</td><td>Tolls, charging</td><td>peaq, Tesla</td></tr>
+          <tr><td>Delivery Drones</td><td>Operator license</td><td>Airspace fees</td><td>Amazon, Wing</td></tr>
+          <tr><td>Humanoid Robots</td><td>Machine DID</td><td>Service fees</td><td>Optimus, Figure</td></tr>
+          <tr><td>Smart City Infra</td><td>Device DID</td><td>Data sales</td><td>Silencio, Helium</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="specs">
+    <div class="spec-card">
+      <h4>Color Palette (CMYK)</h4>
+      <div class="color-row">
+        <div class="swatch" style="background:#1A1714;"><span>C30 M35 Y40 K85</span></div>
+        <div class="swatch" style="background:#E3782F;"><span>C5 M65 Y90 K0</span></div>
+        <div class="swatch" style="background:#F5F0E8;"><span>C3 M4 Y8 K0</span></div>
+        <div class="swatch" style="background:#3A3530;"><span>C30 M35 Y40 K75</span></div>
+        <div class="swatch" style="background:#FFFDF8;"><span>C0 M1 Y3 K0</span></div>
+      </div>
+    </div>
+    <div class="spec-card">
+      <h4>Typography</h4>
+      <ul>
+        <li>Headings: DM Serif Display (elegant serif)</li>
+        <li>Body: Inter Regular 11pt / 1.8 leading</li>
+        <li>Labels: JetBrains Mono for counters</li>
+        <li>Contrast ratio: ~12:1 (warm on cream)</li>
+      </ul>
+    </div>
+    <div class="spec-card">
+      <h4>Illustration Style</h4>
+      <ul>
+        <li>Minimal geometric shapes (circles, arcs)</li>
+        <li>Subtle crosshatch textures + grain</li>
+        <li>Warm orange accents as focal points</li>
+        <li>Chapter icons: abstract rings/orbits</li>
+      </ul>
+    </div>
+    <div class="spec-card">
+      <h4>Best For</h4>
+      <p>Ideas-first positioning. Appeals to readers who want intellectual substance over tech flash. The warm, literary feel signals "this is a book you'll want to read, not just reference." Strong crossover appeal for business/strategy audiences beyond pure crypto.</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════ OPTION C ═══════════════════ -->
+<div class="option">
+  <div class="option-label">Option C</div>
+  <div class="option-title">Neon Genesis</div>
+  <div class="option-subtitle">
+    Pure black + electric gradient mesh (violet → blue → emerald). Inspired by Vercel, Linear, and Arc Browser design systems.
+    A contemporary digital-native aesthetic that speaks the visual language of the builders. Gradient meshes replace
+    flat color; the typography is tight and confident. Think: the book a Y Combinator founder gifts to their co-founder.
+  </div>
+
+  <div class="book-row">
+    <!-- Cover -->
+    <div class="book-mock">
+      <div class="cover-c">
+        <div class="mesh1"></div>
+        <div class="mesh2"></div>
+        <div class="mesh3"></div>
+        <div class="traces"></div>
+        <div class="content">
+          <div class="badge"><div class="dot"></div> Graduate Textbook — 2026</div>
+          <h2>Web3<br><span class="gradient">Entrepreneurship</span></h2>
+          <h3>Building Ventures in the Age<br>of Decentralization and AI</h3>
+          <div class="author">ZISHAN ASHRAF MOHAMMAD</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chapter opener -->
+    <div class="book-mock">
+      <div class="chapter-c">
+        <div class="ch-accent"></div>
+        <div class="ch-header">
+          <div class="ch-meta">Chapter 08</div>
+          <div class="ch-title">The Future of Web3<br>Entrepreneurship</div>
+        </div>
+        <div class="ch-body">
+          <div class="pill-row">
+            <div class="pill">AI Convergence</div>
+            <div class="pill">DePIN</div>
+            <div class="pill">Autonomous Machines</div>
+            <div class="pill">Space Economy</div>
+          </div>
+          <div class="obj-grid">
+            <div class="obj-card"><div class="num">01</div><p>Infrastructure-application cycle and Web3 adoption curve</p></div>
+            <div class="obj-card"><div class="num">02</div><p>AI + blockchain convergence and emerging standards</p></div>
+            <div class="obj-card"><div class="num">03</div><p>DePIN model and trillion-dollar market disruption</p></div>
+            <div class="obj-card"><div class="num">04</div><p>Autonomous machines, V2X, and space exploration</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interior page -->
+    <div class="book-mock">
+      <div class="interior-c">
+        <div class="section-tag">Section 8.5.1</div>
+        <h3>The Autonomous Machine Economy</h3>
+        <p>Machines already vastly outnumber humans. IoT Analytics estimates 21.1 billion connected IoT devices by end of 2025 — the machine-to-human ratio has already crossed 2.5:1 and is accelerating toward 5:1.</p>
+        <div class="insight-box">
+          <div class="tag">Key Insight</div>
+          <p>Just as Linux became the invisible OS of the machine world, blockchain is positioning itself as the invisible economic operating system of the machine economy.</p>
+        </div>
+        <table class="table-mock">
+          <tr><th>Company</th><th>Valuation</th><th>Robot</th><th>Target</th></tr>
+          <tr><td>Tesla</td><td>$1.33T</td><td>Optimus</td><td>1M units/yr by 2030</td></tr>
+          <tr><td>Figure AI</td><td>~$39B</td><td>Figure 02</td><td>BMW factory deploy</td></tr>
+          <tr><td>Unitree</td><td>~$7B</td><td>H1/G1</td><td>$141M revenue</td></tr>
+          <tr><td>Richtech</td><td>~$679M</td><td>ADAM</td><td>400+ deployed</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="specs">
+    <div class="spec-card">
+      <h4>Color Palette (CMYK)</h4>
+      <div class="color-row">
+        <div class="swatch" style="background:#000;"><span>C0 M0 Y0 K100</span></div>
+        <div class="swatch" style="background:#8A2BE2;"><span>C65 M90 Y0 K0</span></div>
+        <div class="swatch" style="background:#3B82F6;"><span>C75 M45 Y0 K0</span></div>
+        <div class="swatch" style="background:#00C896;"><span>C70 M0 Y45 K0</span></div>
+        <div class="swatch" style="background:#FAFAFA;"><span>C1 M1 Y1 K1</span></div>
+      </div>
+    </div>
+    <div class="spec-card">
+      <h4>Typography</h4>
+      <ul>
+        <li>Headings: Inter Black, tight tracking</li>
+        <li>Body: Inter Regular 11pt / 1.75 leading</li>
+        <li>Labels/Code: JetBrains Mono</li>
+        <li>Gradient text for accent headings</li>
+      </ul>
+    </div>
+    <div class="spec-card">
+      <h4>Illustration Style</h4>
+      <ul>
+        <li>Gradient mesh blobs (aurora-like)</li>
+        <li>Frosted glass cards + subtle blur effects</li>
+        <li>Circuit-trace patterns as background texture</li>
+        <li>Chapter icons: neon-gradient abstract symbols</li>
+      </ul>
+    </div>
+    <div class="spec-card">
+      <h4>Best For</h4>
+      <p>Builder credibility. Speaks the visual language of the Web3 and startup ecosystem. Appeals to founders, developers, and crypto-native readers. The gradient aesthetic signals "we're building the future, not studying the past." Maximum visual impact on social media and digital promotion.</p>
+    </div>
+  </div>
+</div>
+
+<div style="text-align:center; padding: 60px 0 40px; border-top: 1px solid #222;">
+  <p style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 4px; color: #444; text-transform: uppercase; margin-bottom: 12px;">Recommendation</p>
+  <p style="font-size: 14px; color: #999; max-width: 600px; margin: 0 auto; line-height: 1.7;">
+    <strong style="color:#fff;">Option A (Midnight Protocol)</strong> is the strongest fit for a graduate textbook that needs to project institutional authority while being visually distinctive on a bookshelf.<br><br>
+    <strong style="color:#fff;">Option B (Signal & Noise)</strong> is the best choice if you want the book to feel like a "great read" first and a textbook second — the literary warmth invites extended reading.<br><br>
+    <strong style="color:#fff;">Option C (Neon Genesis)</strong> is ideal if your primary audience is the crypto-native startup ecosystem and you want maximum digital/social media presence.
+  </p>
+</div>
+
+</body>
+</html>

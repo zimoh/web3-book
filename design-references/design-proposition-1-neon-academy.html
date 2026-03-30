@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposition 1: Neon Academy</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --deep-navy: #1A1F36;
+    --navy-mid: #252B48;
+    --cyan: #00D4FF;
+    --cyan-dim: #00A3CC;
+    --green: #00E676;
+    --green-dim: #00B85C;
+    --cloud: #F0EEE9;
+    --white: #FFFFFF;
+    --slate: #1E293B;
+    --gray: #94A3B8;
+    --cyan-glow: rgba(0, 212, 255, 0.15);
+    --green-glow: rgba(0, 230, 118, 0.1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0F1225;
+    color: var(--cloud);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+  }
+
+  .header-bar {
+    background: var(--deep-navy);
+    border-bottom: 2px solid var(--cyan);
+    padding: 20px 40px;
+    text-align: center;
+  }
+  .header-bar h1 {
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, var(--cyan), var(--green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .header-bar p {
+    color: var(--gray);
+    font-size: 14px;
+    margin-top: 4px;
+  }
+
+  .section-title {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--cyan);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin: 50px 0 30px;
+  }
+
+  /* ---- COVER MOCKUP ---- */
+  .cover-section {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    padding: 40px;
+    flex-wrap: wrap;
+  }
+
+  .book-cover {
+    width: 340px;
+    height: 500px;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0,212,255,0.2), 0 0 100px rgba(0,212,255,0.05);
+  }
+
+  .front-cover {
+    background: linear-gradient(160deg, #0D1117 0%, var(--deep-navy) 40%, #1A2744 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 30px;
+    position: relative;
+  }
+
+  .front-cover::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(0,212,255,0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(0,230,118,0.06) 0%, transparent 50%);
+  }
+
+  .network-bg {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    overflow: hidden;
+  }
+  .network-bg svg { width: 100%; height: 100%; opacity: 0.12; }
+
+  .cover-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+
+  .cover-subtitle-top {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 20px;
+  }
+
+  .cover-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: 36px;
+    line-height: 1.1;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, var(--cyan), #66EEFF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+  }
+
+  .cover-title-ai {
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: 36px;
+    line-height: 1.1;
+    background: linear-gradient(135deg, var(--green), #66FFB2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .cover-tagline {
+    font-family: 'Lora', serif;
+    font-size: 13px;
+    font-style: italic;
+    color: rgba(240,238,233,0.7);
+    margin: 20px 0 50px;
+    line-height: 1.5;
+  }
+
+  .cover-rule {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--cyan), var(--green));
+    margin: 0 auto 20px;
+  }
+
+  .cover-author {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--cloud);
+  }
+
+  /* Back cover */
+  .back-cover {
+    background: linear-gradient(160deg, var(--deep-navy), #0D1117);
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+
+  .back-cover::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle at 50% 80%, rgba(0,212,255,0.05), transparent 60%);
+  }
+
+  .back-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .back-blurb {
+    font-family: 'Lora', serif;
+    font-size: 12px;
+    color: rgba(240,238,233,0.8);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .back-features {
+    list-style: none;
+    padding: 0;
+  }
+  .back-features li {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--cloud);
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(0,212,255,0.15);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .back-features li::before {
+    content: '▸';
+    color: var(--cyan);
+    font-weight: 700;
+  }
+
+  .back-bottom {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    margin-top: 20px;
+  }
+  .back-isbn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--gray);
+  }
+
+  /* ---- PALETTE ---- */
+  .palette-section {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 0 40px 40px;
+  }
+
+  .swatch {
+    text-align: center;
+  }
+  .swatch-color {
+    width: 80px;
+    height: 80px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    border: 2px solid rgba(255,255,255,0.08);
+  }
+  .swatch-name {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--cloud);
+  }
+  .swatch-hex {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--gray);
+  }
+
+  /* ---- TYPOGRAPHY ---- */
+  .type-section {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 40px 40px;
+  }
+
+  .type-sample {
+    background: var(--navy-mid);
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(0,212,255,0.1);
+  }
+  .type-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 12px;
+  }
+  .type-heading-demo {
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: 28px;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .type-subheading-demo {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--cyan);
+    margin-bottom: 12px;
+  }
+  .type-body-demo {
+    font-family: 'Lora', serif;
+    font-size: 14px;
+    color: rgba(240,238,233,0.85);
+    line-height: 1.8;
+  }
+  .type-code-demo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--green);
+    background: rgba(0,230,118,0.08);
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-top: 12px;
+    border-left: 3px solid var(--green);
+  }
+
+  /* ---- INTERIOR LAYOUT ---- */
+  .interior-section {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 40px 60px;
+  }
+
+  .page-mockup {
+    background: var(--cloud);
+    border-radius: 8px;
+    padding: 40px 36px;
+    color: var(--slate);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-mockup::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--cyan), var(--green));
+  }
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #D4D0C8;
+  }
+  .page-chapter-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--cyan-dim);
+  }
+  .page-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #999;
+  }
+
+  .page-h2 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    color: var(--deep-navy);
+    margin-bottom: 14px;
+  }
+  .page-body {
+    font-family: 'Lora', serif;
+    font-size: 12px;
+    color: #374151;
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+
+  .page-callout {
+    background: linear-gradient(135deg, rgba(0,212,255,0.08), rgba(0,230,118,0.05));
+    border-left: 3px solid var(--cyan);
+    padding: 14px 16px;
+    border-radius: 0 8px 8px 0;
+    margin: 16px 0;
+  }
+  .page-callout-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    color: var(--cyan-dim);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .page-callout-text {
+    font-family: 'Lora', serif;
+    font-size: 11px;
+    color: #374151;
+    line-height: 1.6;
+  }
+
+  .page-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 11px;
+  }
+  .page-table th {
+    background: var(--deep-navy);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    padding: 8px 12px;
+    text-align: left;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+  }
+  .page-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #E5E1D8;
+    font-family: 'Lora', serif;
+    color: #374151;
+  }
+  .page-table tr:nth-child(even) td {
+    background: rgba(0,212,255,0.04);
+  }
+
+  .page-figure-box {
+    background: linear-gradient(135deg, var(--deep-navy), var(--navy-mid));
+    border-radius: 8px;
+    padding: 24px;
+    text-align: center;
+    margin: 16px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .page-figure-box::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(0,212,255,0.15), transparent);
+    border-radius: 50%;
+  }
+  .figure-placeholder {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+  .node {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid var(--cyan);
+    position: relative;
+  }
+  .node.green { border-color: var(--green); }
+  .node::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    width: 20px;
+    height: 2px;
+    background: rgba(0,212,255,0.3);
+  }
+  .node:last-child::after { display: none; }
+  .figure-caption {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    color: var(--gray);
+    font-style: italic;
+  }
+
+  .footer-note {
+    text-align: center;
+    padding: 40px;
+    color: var(--gray);
+    font-size: 12px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header-bar">
+  <h1>PROPOSITION 1 — NEON ACADEMY</h1>
+  <p>Web3-native dark theme with electric neon accents — high-tech immersive feel</p>
+</div>
+
+<!-- COLOR PALETTE -->
+<div class="section-title">Color Palette</div>
+<div class="palette-section">
+  <div class="swatch">
+    <div class="swatch-color" style="background: #1A1F36;"></div>
+    <div class="swatch-name">Deep Navy</div>
+    <div class="swatch-hex">#1A1F36</div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background: #00D4FF;"></div>
+    <div class="swatch-name">Electric Cyan</div>
+    <div class="swatch-hex">#00D4FF</div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background: #00E676;"></div>
+    <div class="swatch-name">Vivid Green</div>
+    <div class="swatch-hex">#00E676</div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background: #F0EEE9;"></div>
+    <div class="swatch-name">Cloud Dancer</div>
+    <div class="swatch-hex">#F0EEE9</div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background: #FFFFFF; border-color: rgba(255,255,255,0.2);"></div>
+    <div class="swatch-name">White</div>
+    <div class="swatch-hex">#FFFFFF</div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background: #1E293B;"></div>
+    <div class="swatch-name">Slate</div>
+    <div class="swatch-hex">#1E293B</div>
+  </div>
+</div>
+
+<!-- BOOK COVER -->
+<div class="section-title">Cover Design</div>
+<div class="cover-section">
+  <!-- Front Cover -->
+  <div class="book-cover front-cover">
+    <div class="network-bg">
+      <svg viewBox="0 0 340 500">
+        <circle cx="60" cy="120" r="3" fill="#00D4FF" opacity="0.4"/>
+        <circle cx="180" cy="80" r="2" fill="#00E676" opacity="0.3"/>
+        <circle cx="280" cy="150" r="3" fill="#00D4FF" opacity="0.3"/>
+        <circle cx="100" cy="350" r="2" fill="#00E676" opacity="0.3"/>
+        <circle cx="240" cy="380" r="3" fill="#00D4FF" opacity="0.4"/>
+        <circle cx="300" cy="300" r="2" fill="#00E676" opacity="0.3"/>
+        <circle cx="40" cy="250" r="2" fill="#00D4FF" opacity="0.3"/>
+        <circle cx="160" cy="420" r="3" fill="#00E676" opacity="0.4"/>
+        <line x1="60" y1="120" x2="180" y2="80" stroke="#00D4FF" stroke-width="0.5" opacity="0.2"/>
+        <line x1="180" y1="80" x2="280" y2="150" stroke="#00D4FF" stroke-width="0.5" opacity="0.2"/>
+        <line x1="280" y1="150" x2="300" y2="300" stroke="#00E676" stroke-width="0.5" opacity="0.15"/>
+        <line x1="300" y1="300" x2="240" y2="380" stroke="#00D4FF" stroke-width="0.5" opacity="0.2"/>
+        <line x1="40" y1="250" x2="100" y2="350" stroke="#00E676" stroke-width="0.5" opacity="0.15"/>
+        <line x1="100" y1="350" x2="160" y2="420" stroke="#00D4FF" stroke-width="0.5" opacity="0.2"/>
+        <line x1="60" y1="120" x2="40" y2="250" stroke="#00D4FF" stroke-width="0.5" opacity="0.15"/>
+        <line x1="240" y1="380" x2="160" y2="420" stroke="#00E676" stroke-width="0.5" opacity="0.15"/>
+      </svg>
+    </div>
+    <div class="cover-content">
+      <div class="cover-subtitle-top">A Textbook for Founders</div>
+      <div class="cover-title">WEB3+AI</div>
+      <div class="cover-title-ai">ENTREPRENEURSHIP</div>
+      <div class="cover-tagline">Blockchain, Tokenomics, DAOs, Fundraising &amp;<br>Community Building for the Next Generation</div>
+      <div class="cover-rule"></div>
+      <div class="cover-author">ZISHAN A. MOHAMMAD</div>
+    </div>
+  </div>
+
+  <!-- Back Cover -->
+  <div class="book-cover back-cover">
+    <div class="back-content">
+      <div class="back-blurb">
+        The convergence of Web3 and artificial intelligence is creating unprecedented opportunities for entrepreneurs. This comprehensive textbook bridges the gap between academic theory and startup practice, equipping MBA and graduate students with the frameworks they need to build, fund, and scale ventures in the decentralized economy.
+      </div>
+      <ul class="back-features">
+        <li>Blockchain fundamentals & smart contract design</li>
+        <li>Tokenomics & token-based business models</li>
+        <li>DAO governance & organizational design</li>
+        <li>Web3 fundraising: from seed to token launch</li>
+        <li>Community building & growth strategies</li>
+        <li>Real-world case studies & frameworks</li>
+        <li>AI integration patterns for Web3 ventures</li>
+        <li>Future trends & emerging opportunities</li>
+      </ul>
+    </div>
+    <div class="back-bottom">
+      <div class="back-isbn">ISBN 978-0-000000-00-0</div>
+    </div>
+  </div>
+</div>
+
+<!-- TYPOGRAPHY -->
+<div class="section-title">Typography</div>
+<div class="type-section">
+  <div class="type-sample">
+    <div class="type-label">Headings — Inter Black</div>
+    <div class="type-heading-demo">Chapter 3: Tokenomics</div>
+    <div class="type-subheading-demo">3.2 Designing Your Token Economy</div>
+  </div>
+  <div class="type-sample">
+    <div class="type-label">Body — Lora Regular</div>
+    <div class="type-body-demo">
+      Token design is both an art and a science. A well-crafted token model aligns incentives among users, developers, investors, and the broader ecosystem. In this section, we examine the fundamental principles of token supply dynamics, utility design, and governance integration.
+    </div>
+  </div>
+  <div class="type-sample">
+    <div class="type-label">Code / Data — JetBrains Mono</div>
+    <div class="type-code-demo">
+      ERC-20: Standard fungible token interface<br>
+      ERC-721: Non-fungible token (NFT) standard<br>
+      ERC-4337: Account abstraction specification
+    </div>
+  </div>
+</div>
+
+<!-- INTERIOR PAGE -->
+<div class="section-title">Interior Page Layout</div>
+<div class="interior-section">
+  <div class="page-mockup">
+    <div class="page-header">
+      <span class="page-chapter-label">Chapter 4 — Business Models</span>
+      <span class="page-number">pg 127</span>
+    </div>
+
+    <div class="page-h2">4.3 Revenue Models in Web3</div>
+    <div class="page-body">
+      Unlike traditional SaaS or marketplace models, Web3 ventures often generate revenue through protocol fees, token appreciation, and transaction-based mechanisms. The choice of revenue model is deeply intertwined with token design and governance structure, creating a unique interplay between economics and technology.
+    </div>
+
+    <div class="page-callout">
+      <div class="page-callout-title">Key Insight</div>
+      <div class="page-callout-text">
+        Protocol revenue differs from traditional revenue in a fundamental way: it flows transparently through smart contracts, making it auditable by any stakeholder in real time.
+      </div>
+    </div>
+
+    <table class="page-table">
+      <tr>
+        <th>Revenue Model</th>
+        <th>Example</th>
+        <th>Token Role</th>
+      </tr>
+      <tr>
+        <td>Protocol Fees</td>
+        <td>Uniswap (0.3% swap fee)</td>
+        <td>Governance + fee share</td>
+      </tr>
+      <tr>
+        <td>Gas/Transaction</td>
+        <td>Ethereum network</td>
+        <td>Utility (gas payment)</td>
+      </tr>
+      <tr>
+        <td>Staking Yield</td>
+        <td>Lido, Rocket Pool</td>
+        <td>Collateral + rewards</td>
+      </tr>
+      <tr>
+        <td>NFT Royalties</td>
+        <td>OpenSea, Blur</td>
+        <td>Creator economy</td>
+      </tr>
+    </table>
+
+    <div class="page-figure-box">
+      <div class="figure-placeholder">
+        <div class="node"></div>
+        <div class="node green"></div>
+        <div class="node"></div>
+        <div class="node green"></div>
+        <div class="node"></div>
+      </div>
+      <div class="figure-caption">Figure 4.3 — Token flow in a protocol fee model</div>
+    </div>
+
+    <div class="page-body">
+      Each model carries distinct implications for token value accrual. Protocol fees create direct cash flows attributable to token holders, while staking yields incentivize long-term network participation.
+    </div>
+  </div>
+</div>
+
+<div class="footer-note">
+  Proposition 1: Neon Academy — Dark, immersive, Web3-native<br>
+  Pantone 2026 Cloud Dancer as interior base | Contrast ratio ≥ 7:1
+</div>
+
+</body>
+</html>

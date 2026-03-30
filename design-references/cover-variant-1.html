@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Cover - Variant 1: Bold Geometric</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #1a1a2e;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+  }
+
+  .cover-container {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .label {
+    color: #8B6FA0;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  /* === FRONT COVER === */
+  .front-cover {
+    width: 440px;
+    height: 660px;
+    background: linear-gradient(165deg, #1E293B 0%, #2E3650 40%, #435070 100%);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+  }
+
+  /* Geometric network pattern */
+  .geo-pattern {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    overflow: hidden;
+  }
+
+  .geo-pattern .node {
+    position: absolute;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(232, 197, 71, 0.3);
+  }
+
+  .geo-pattern .line {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(139, 111, 160, 0.15), rgba(232, 197, 71, 0.1));
+    transform-origin: left center;
+  }
+
+  /* Large decorative blockchain blocks */
+  .block-chain {
+    position: absolute;
+    bottom: 180px;
+    left: -20px;
+    right: -20px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    opacity: 0.12;
+  }
+
+  .chain-block {
+    width: 60px; height: 60px;
+    border: 2px solid #E8C547;
+    border-radius: 8px;
+    position: relative;
+  }
+
+  .chain-block::after {
+    content: '';
+    position: absolute;
+    right: -10px; top: 50%;
+    width: 10px; height: 2px;
+    background: #E8C547;
+  }
+
+  .chain-block:last-child::after { display: none; }
+
+  /* Golden accent stripe */
+  .accent-stripe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 6px;
+    background: linear-gradient(90deg, #E8C547, #FF6B6B, #8B6FA0);
+  }
+
+  /* Content area */
+  .front-content {
+    position: relative;
+    z-index: 2;
+    padding: 50px 40px 40px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .edition-tag {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #E8C547;
+    margin-bottom: 30px;
+    padding: 6px 14px;
+    border: 1px solid rgba(232, 197, 71, 0.3);
+    display: inline-block;
+    border-radius: 2px;
+  }
+
+  .front-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 800;
+    font-size: 38px;
+    line-height: 1.15;
+    color: #F0EEE9;
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+  }
+
+  .front-title .highlight {
+    color: #E8C547;
+    display: block;
+  }
+
+  .front-title .amp {
+    color: #8B6FA0;
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .front-subtitle {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: rgba(240, 238, 233, 0.7);
+    margin-bottom: auto;
+    max-width: 320px;
+    letter-spacing: 0.3px;
+  }
+
+  /* Decorative divider */
+  .divider {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, #E8C547, transparent);
+    margin: 24px 0;
+  }
+
+  .front-author {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #F0EEE9;
+    letter-spacing: 1px;
+  }
+
+  .front-author .prefix {
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(240, 238, 233, 0.5);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  /* Corner decoration */
+  .corner-deco {
+    position: absolute;
+    bottom: 30px; right: 30px;
+    width: 80px; height: 80px;
+    border-right: 2px solid rgba(232, 197, 71, 0.2);
+    border-bottom: 2px solid rgba(232, 197, 71, 0.2);
+    border-radius: 0 0 12px 0;
+  }
+
+  /* === BACK COVER === */
+  .back-cover {
+    width: 440px;
+    height: 660px;
+    background: linear-gradient(165deg, #1E293B 0%, #2E3650 50%, #435070 100%);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+  }
+
+  .back-content {
+    position: relative;
+    z-index: 2;
+    padding: 50px 40px 40px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Bottom golden stripe */
+  .back-cover .accent-stripe {
+    top: auto; bottom: 0;
+  }
+
+  .back-tagline {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #E8C547;
+    line-height: 1.4;
+    margin-bottom: 24px;
+  }
+
+  .back-blurb {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: rgba(240, 238, 233, 0.75);
+    margin-bottom: 28px;
+  }
+
+  .feature-list {
+    list-style: none;
+    margin-bottom: 28px;
+  }
+
+  .feature-list li {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(240, 238, 233, 0.8);
+    padding: 8px 0;
+    padding-left: 20px;
+    position: relative;
+    border-bottom: 1px solid rgba(139, 111, 160, 0.12);
+  }
+
+  .feature-list li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 14px;
+    width: 8px; height: 8px;
+    border: 1.5px solid #E8C547;
+    border-radius: 2px;
+    transform: rotate(45deg);
+  }
+
+  .endorsement {
+    background: rgba(139, 111, 160, 0.1);
+    border-left: 3px solid #8B6FA0;
+    padding: 16px 18px;
+    margin-bottom: 24px;
+    border-radius: 0 6px 6px 0;
+  }
+
+  .endorsement-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-style: italic;
+    line-height: 1.65;
+    color: rgba(240, 238, 233, 0.7);
+  }
+
+  .endorsement-author {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: #E8C547;
+    margin-top: 8px;
+  }
+
+  .back-footer {
+    margin-top: auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  .isbn-area {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .isbn-barcode {
+    width: 120px;
+    height: 50px;
+    background: #F0EEE9;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .barcode-lines {
+    display: flex;
+    gap: 1px;
+    height: 35px;
+    align-items: flex-end;
+  }
+
+  .barcode-lines span {
+    display: block;
+    width: 2px;
+    background: #1E293B;
+  }
+
+  .isbn-text {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 9px;
+    color: rgba(240, 238, 233, 0.4);
+    letter-spacing: 1px;
+  }
+
+  .publisher-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 11px;
+    color: rgba(240, 238, 233, 0.4);
+    text-align: right;
+    letter-spacing: 2px;
+  }
+</style>
+</head>
+<body>
+
+<div class="cover-container">
+
+  <!-- FRONT COVER -->
+  <div>
+    <div class="label">Front Cover</div>
+    <div class="front-cover">
+      <div class="accent-stripe"></div>
+
+      <div class="geo-pattern">
+        <div class="node" style="top:15%;left:75%"></div>
+        <div class="node" style="top:25%;left:85%"></div>
+        <div class="node" style="top:35%;left:70%"></div>
+        <div class="node" style="top:20%;left:60%"></div>
+        <div class="node" style="top:45%;left:80%"></div>
+        <div class="node" style="top:55%;left:90%"></div>
+        <div class="node" style="top:65%;left:75%"></div>
+        <div class="node" style="top:50%;left:65%"></div>
+        <div class="line" style="top:16%;left:61%;width:80px;transform:rotate(-8deg)"></div>
+        <div class="line" style="top:26%;left:76%;width:50px;transform:rotate(-15deg)"></div>
+        <div class="line" style="top:36%;left:71%;width:60px;transform:rotate(25deg)"></div>
+        <div class="line" style="top:46%;left:66%;width:80px;transform:rotate(-10deg)"></div>
+        <div class="line" style="top:56%;left:76%;width:70px;transform:rotate(20deg)"></div>
+      </div>
+
+      <div class="block-chain">
+        <div class="chain-block"></div>
+        <div class="chain-block"></div>
+        <div class="chain-block"></div>
+        <div class="chain-block"></div>
+        <div class="chain-block"></div>
+        <div class="chain-block"></div>
+        <div class="chain-block"></div>
+      </div>
+
+      <div class="front-content">
+        <div class="edition-tag">First Edition</div>
+
+        <h1 class="front-title">
+          Entrepreneurship<br>
+          in the Age of<br>
+          <span class="highlight">AI <span class="amp">&</span> Web3</span>
+        </h1>
+
+        <p class="front-subtitle">
+          Building Ventures in the<br>
+          Decentralized AI Internet
+        </p>
+
+        <div class="divider"></div>
+
+        <div class="front-author">
+          <span class="prefix">Written by</span>
+          Zishan A. Mohammad
+        </div>
+      </div>
+
+      <div class="corner-deco"></div>
+    </div>
+  </div>
+
+  <!-- BACK COVER -->
+  <div>
+    <div class="label">Back Cover</div>
+    <div class="back-cover">
+      <div class="back-content">
+
+        <p class="back-tagline">The definitive guide to building ventures where AI meets the decentralized web.</p>
+
+        <p class="back-blurb">
+          Two seismic forces are reshaping entrepreneurship: artificial intelligence and Web3. Separately, each creates enormous opportunity. Together, they unlock an entirely new design space for ventures — one built on programmable ownership, tokenized incentives, and autonomous AI agents operating on decentralized infrastructure.
+        </p>
+
+        <ul class="feature-list">
+          <li>Master blockchain fundamentals, tokenomics, and smart contract architecture</li>
+          <li>Design token economies using the Token Business Model Canvas (TBMC)</li>
+          <li>Navigate DAO governance, DeFi fundraising, and regulatory strategy</li>
+          <li>Build and scale Web3 communities from zero to network effect</li>
+          <li>Explore frontier opportunities: DePIN, AI agents, and the space economy</li>
+        </ul>
+
+        <div class="endorsement">
+          <p class="endorsement-text">"A rigorous yet accessible roadmap for the next generation of founders building at the intersection of AI and decentralized systems."</p>
+          <p class="endorsement-author">— Endorsement Placeholder</p>
+        </div>
+
+        <div class="back-footer">
+          <div class="isbn-area">
+            <div class="isbn-barcode">
+              <div class="barcode-lines">
+                <span style="height:30px"></span><span style="height:35px"></span><span style="height:25px"></span>
+                <span style="height:35px"></span><span style="height:20px"></span><span style="height:30px"></span>
+                <span style="height:35px"></span><span style="height:15px"></span><span style="height:35px"></span>
+                <span style="height:25px"></span><span style="height:30px"></span><span style="height:20px"></span>
+                <span style="height:35px"></span><span style="height:28px"></span><span style="height:35px"></span>
+                <span style="height:22px"></span><span style="height:30px"></span><span style="height:35px"></span>
+                <span style="height:18px"></span><span style="height:35px"></span><span style="height:25px"></span>
+                <span style="height:30px"></span><span style="height:35px"></span><span style="height:20px"></span>
+              </div>
+            </div>
+            <span class="isbn-text">ISBN 978-0-000000-00-0</span>
+          </div>
+          <div class="publisher-logo">PUBLISHER<br>PRESS</div>
+        </div>
+
+      </div>
+      <div class="accent-stripe"></div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

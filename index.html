@@ -1,0 +1,1501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entrepreneurship in the Age of AI and Web3 | Zishan A. Mohammad</title>
+  <meta name="description" content="The first graduate textbook integrating artificial intelligence and Web3 for the next generation of entrepreneurs. By Zishan A. Mohammad.">
+  <meta property="og:title" content="Entrepreneurship in the Age of AI and Web3">
+  <meta property="og:description" content="The first graduate textbook integrating AI and Web3 for tomorrow's entrepreneurs.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    /* ================================================
+       DESIGN TOKENS — Vibrant Fusion palette
+    ================================================ */
+    :root {
+      --blue-fusion:  #435070;
+      --blue-deep:    #2E3650;
+      --violet:       #8B6FA0;
+      --violet-light: #A98BBF;
+      --golden:       #E8C547;
+      --golden-dim:   #C9A82E;
+      --coral:        #FF6B6B;
+      --coral-dim:    #E85555;
+      --cloud:        #F0EEE9;
+      --cloud-warm:   #FAF8F4;
+      --slate:        #1E293B;
+      --warm-gray:    #6B7280;
+      --white:        #FFFFFF;
+
+      --radius-sm:  8px;
+      --radius-md:  14px;
+      --radius-lg:  22px;
+      --shadow-sm:  0 2px 8px rgba(67,80,112,0.10);
+      --shadow-md:  0 6px 24px rgba(67,80,112,0.14);
+      --shadow-lg:  0 16px 48px rgba(67,80,112,0.18);
+
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body:    'Open Sans', sans-serif;
+    }
+
+    /* ================================================
+       RESET & BASE
+    ================================================ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--cloud);
+      color: var(--slate);
+      line-height: 1.65;
+      font-size: 16px;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    img { max-width: 100%; display: block; }
+
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    .section { padding: 96px 0; }
+    .section--alt { background: var(--cloud-warm); }
+    .section--dark {
+      background: linear-gradient(135deg, var(--blue-deep) 0%, var(--blue-fusion) 60%, var(--violet) 100%);
+      color: var(--white);
+    }
+
+    .label {
+      font-family: var(--font-heading);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--violet);
+      margin-bottom: 14px;
+    }
+    .section--dark .label { color: var(--golden); }
+
+    h2.section-heading {
+      font-family: var(--font-heading);
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 800;
+      color: var(--blue-fusion);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .section--dark h2.section-heading { color: var(--white); }
+
+    .section-sub {
+      font-size: 17px;
+      color: var(--warm-gray);
+      max-width: 580px;
+      margin-bottom: 56px;
+    }
+    .section--dark .section-sub { color: rgba(255,255,255,0.72); }
+
+    /* ================================================
+       NAV
+    ================================================ */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      background: rgba(46, 54, 80, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 28px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--golden);
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.72);
+      letter-spacing: 0.3px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta {
+      background: var(--golden) !important;
+      color: var(--blue-deep) !important;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-weight: 700 !important;
+      letter-spacing: 0.3px;
+      transition: background 0.2s, transform 0.15s !important;
+    }
+    .nav-cta:hover {
+      background: #d4b23a !important;
+      transform: translateY(-1px);
+    }
+
+    /* Mobile nav toggle */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    /* ================================================
+       HERO
+    ================================================ */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--blue-deep) 0%, var(--blue-fusion) 55%, #5a4a7a 100%);
+      display: flex;
+      align-items: center;
+      padding: 120px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Background decorative elements */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -120px;
+      width: 560px;
+      height: 560px;
+      background: radial-gradient(circle, rgba(139,111,160,0.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: -80px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(232,197,71,0.10) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 64px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(232,197,71,0.15);
+      border: 1px solid rgba(232,197,71,0.35);
+      color: var(--golden);
+      font-family: var(--font-heading);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+    }
+
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--golden);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.3); }
+    }
+
+    .hero h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(34px, 5vw, 58px);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 .accent { color: var(--golden); }
+
+    .hero-subtitle {
+      font-family: var(--font-heading);
+      font-size: clamp(16px, 2.2vw, 20px);
+      font-weight: 600;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 20px;
+      letter-spacing: 0.2px;
+    }
+
+    .hero-tagline {
+      font-size: 17px;
+      color: rgba(255,255,255,0.60);
+      max-width: 520px;
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+
+    .hero-author {
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 36px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-author::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 2px;
+      background: var(--golden);
+      flex-shrink: 0;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.3px;
+      padding: 14px 26px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 2px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--golden);
+      color: var(--blue-deep);
+      box-shadow: 0 4px 20px rgba(232,197,71,0.35);
+    }
+    .btn-primary:hover {
+      background: #d4b23a;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(232,197,71,0.45);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border-color: rgba(255,255,255,0.35);
+    }
+    .btn-outline:hover {
+      border-color: var(--white);
+      background: rgba(255,255,255,0.08);
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--blue-fusion);
+      border-color: var(--blue-fusion);
+    }
+    .btn-ghost:hover {
+      background: var(--blue-fusion);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    /* Hero book mockup */
+    .hero-book {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .book-cover {
+      width: 260px;
+      height: 360px;
+      background: linear-gradient(145deg, var(--violet) 0%, var(--blue-fusion) 40%, var(--blue-deep) 100%);
+      border-radius: 4px 14px 14px 4px;
+      box-shadow:
+        -6px 0 0 rgba(0,0,0,0.15),
+        -10px 4px 0 rgba(0,0,0,0.08),
+        var(--shadow-lg),
+        0 32px 64px rgba(0,0,0,0.35);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 28px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .book-cover::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background:
+        radial-gradient(ellipse at 80% 20%, rgba(232,197,71,0.18) 0%, transparent 50%),
+        radial-gradient(ellipse at 20% 80%, rgba(255,107,107,0.12) 0%, transparent 50%);
+    }
+
+    .book-cover-spine {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 20px;
+      background: linear-gradient(180deg, var(--blue-deep) 0%, var(--violet) 100%);
+      border-radius: 4px 0 0 4px;
+    }
+
+    .book-top {
+      position: relative;
+      z-index: 1;
+    }
+
+    .book-series {
+      font-family: var(--font-heading);
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--golden);
+      margin-bottom: 12px;
+    }
+
+    .book-hex-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 4px;
+      margin-bottom: 18px;
+      opacity: 0.35;
+    }
+
+    .book-hex {
+      width: 100%;
+      aspect-ratio: 1;
+      background: rgba(255,255,255,0.15);
+      border-radius: 3px;
+    }
+    .book-hex:nth-child(2n) { background: rgba(232,197,71,0.25); }
+    .book-hex:nth-child(3n) { background: rgba(139,111,160,0.25); }
+
+    .book-title-on-cover {
+      font-family: var(--font-heading);
+      font-size: 15px;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.2;
+      letter-spacing: -0.2px;
+    }
+
+    .book-title-on-cover .on-cover-accent { color: var(--golden); }
+
+    .book-bottom {
+      position: relative;
+      z-index: 1;
+    }
+
+    .book-subtitle-on-cover {
+      font-family: var(--font-heading);
+      font-size: 8.5px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.4;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .book-author-on-cover {
+      font-family: var(--font-heading);
+      font-size: 10px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .book-glow {
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 40px;
+      background: radial-gradient(ellipse, rgba(139,111,160,0.5) 0%, transparent 70%);
+      filter: blur(8px);
+    }
+
+    /* ================================================
+       STATS BAR
+    ================================================ */
+    .stats-bar {
+      background: var(--white);
+      border-bottom: 1px solid rgba(67,80,112,0.08);
+      padding: 28px 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      text-align: center;
+    }
+
+    .stat-item {
+      padding: 8px 20px;
+      border-right: 1px solid rgba(67,80,112,0.10);
+    }
+    .stat-item:last-child { border-right: none; }
+
+    .stat-number {
+      font-family: var(--font-heading);
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--blue-fusion);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-number .stat-accent { color: var(--coral); }
+
+    .stat-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--warm-gray);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ================================================
+       ABOUT / DIFFERENTIATORS
+    ================================================ */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(67,80,112,0.07);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .card-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 20px;
+      flex-shrink: 0;
+    }
+
+    .card-icon--blue   { background: rgba(67,80,112,0.10); }
+    .card-icon--violet { background: rgba(139,111,160,0.12); }
+    .card-icon--golden { background: rgba(232,197,71,0.15); }
+    .card-icon--coral  { background: rgba(255,107,107,0.12); }
+
+    .card h3 {
+      font-family: var(--font-heading);
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--blue-fusion);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .card p {
+      font-size: 14.5px;
+      color: var(--warm-gray);
+      line-height: 1.65;
+    }
+
+    /* ================================================
+       CHAPTERS
+    ================================================ */
+    .chapters-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .chapter-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 26px 28px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(67,80,112,0.07);
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      cursor: default;
+    }
+    .chapter-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--violet-light);
+    }
+
+    .chapter-number {
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 900;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--blue-fusion), var(--violet));
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      letter-spacing: 0.5px;
+    }
+
+    .chapter-content h3 {
+      font-family: var(--font-heading);
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--blue-fusion);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .chapter-content p {
+      font-size: 13.5px;
+      color: var(--warm-gray);
+      line-height: 1.6;
+    }
+
+    /* ================================================
+       INSTRUCTOR SECTION
+    ================================================ */
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-bottom: 48px;
+    }
+
+    .resource-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: var(--radius-md);
+      padding: 28px 24px;
+      text-align: center;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .resource-card:hover {
+      background: rgba(255,255,255,0.13);
+      transform: translateY(-3px);
+    }
+
+    .resource-icon {
+      font-size: 32px;
+      margin-bottom: 14px;
+    }
+
+    .resource-card h3 {
+      font-family: var(--font-heading);
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .resource-card p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.60);
+      line-height: 1.6;
+    }
+
+    .resource-badge {
+      display: inline-block;
+      background: rgba(232,197,71,0.20);
+      border: 1px solid rgba(232,197,71,0.35);
+      color: var(--golden);
+      font-family: var(--font-heading);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-top: 10px;
+    }
+
+    .resource-badge--coming {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.45);
+    }
+
+    .instructor-cta {
+      text-align: center;
+      padding: 40px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-lg);
+    }
+
+    .instructor-cta p {
+      font-size: 16px;
+      color: rgba(255,255,255,0.72);
+      margin-bottom: 24px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ================================================
+       ABOUT AUTHOR
+    ================================================ */
+    .author-grid {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .author-avatar {
+      width: 200px;
+      height: 200px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, var(--violet) 0%, var(--blue-fusion) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-size: 52px;
+      font-weight: 900;
+      color: rgba(255,255,255,0.9);
+      box-shadow: var(--shadow-md);
+      flex-shrink: 0;
+    }
+
+    .author-name {
+      font-family: var(--font-heading);
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--blue-fusion);
+      margin-bottom: 6px;
+    }
+
+    .author-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--violet);
+      margin-bottom: 20px;
+      letter-spacing: 0.3px;
+    }
+
+    .author-bio {
+      font-size: 15.5px;
+      color: var(--warm-gray);
+      line-height: 1.75;
+      margin-bottom: 28px;
+    }
+
+    .author-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag {
+      background: rgba(67,80,112,0.08);
+      color: var(--blue-fusion);
+      font-family: var(--font-heading);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 20px;
+      letter-spacing: 0.3px;
+    }
+
+    /* ================================================
+       CONTACT / SIGNUP
+    ================================================ */
+    .signup-inner {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .signup-form {
+      display: flex;
+      gap: 12px;
+      margin-top: 36px;
+      flex-wrap: wrap;
+    }
+
+    .signup-form input {
+      flex: 1;
+      min-width: 200px;
+      padding: 14px 18px;
+      border: 2px solid rgba(67,80,112,0.15);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: var(--slate);
+      background: var(--white);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    .signup-form input:focus {
+      border-color: var(--violet);
+      box-shadow: 0 0 0 3px rgba(139,111,160,0.15);
+    }
+    .signup-form input::placeholder { color: #b0b7c3; }
+
+    .btn-signup {
+      background: var(--blue-fusion);
+      color: var(--white);
+      border: 2px solid var(--blue-fusion);
+      flex-shrink: 0;
+      padding: 14px 28px;
+    }
+    .btn-signup:hover {
+      background: var(--blue-deep);
+      border-color: var(--blue-deep);
+      transform: translateY(-2px);
+    }
+
+    .signup-note {
+      font-size: 12.5px;
+      color: var(--warm-gray);
+      margin-top: 14px;
+    }
+
+    .contact-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .contact-card {
+      background: var(--white);
+      border: 1px solid rgba(67,80,112,0.10);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .contact-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .contact-card .contact-icon { font-size: 26px; margin-bottom: 12px; }
+
+    .contact-card h3 {
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--blue-fusion);
+      margin-bottom: 6px;
+    }
+
+    .contact-card p {
+      font-size: 13px;
+      color: var(--warm-gray);
+      margin-bottom: 14px;
+    }
+
+    /* ================================================
+       FOOTER
+    ================================================ */
+    footer {
+      background: var(--blue-deep);
+      color: rgba(255,255,255,0.55);
+      padding: 48px 0 32px;
+    }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand h3 {
+      font-family: var(--font-heading);
+      font-size: 15px;
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    .footer-brand p {
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .footer-col h4 {
+      font-family: var(--font-heading);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--golden);
+      margin-bottom: 16px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: rgba(255,255,255,0.50);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--white); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12.5px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-bottom a {
+      color: rgba(255,255,255,0.45);
+      transition: color 0.2s;
+    }
+    .footer-bottom a:hover { color: var(--white); }
+
+    /* ================================================
+       TOAST NOTIFICATION
+    ================================================ */
+    .toast {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: var(--blue-deep);
+      color: var(--white);
+      padding: 14px 22px;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-lg);
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: 600;
+      z-index: 999;
+      transform: translateY(80px);
+      opacity: 0;
+      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .toast-icon { font-size: 18px; }
+
+    /* ================================================
+       RESPONSIVE
+    ================================================ */
+    @media (max-width: 860px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-book { display: none; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .chapters-grid { grid-template-columns: 1fr; }
+      .resources-grid { grid-template-columns: 1fr 1fr; }
+      .author-grid { grid-template-columns: 1fr; }
+      .author-avatar { width: 120px; height: 120px; font-size: 32px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2) { border-right: none; }
+      .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+      .contact-options { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: rgba(46,54,80,0.98);
+        padding: 20px 28px 28px;
+        gap: 20px;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+      }
+      .nav-links.open a { font-size: 15px; }
+      .nav-cta { display: none; }
+    }
+
+    @media (max-width: 540px) {
+      .resources-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .section { padding: 64px 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================================================
+       NAV
+  ================================================ -->
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <span class="nav-logo-dot"></span>
+        AI &amp; Web3 Book
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#chapters">Chapters</a></li>
+        <li><a href="#instructors">For Instructors</a></li>
+        <li><a href="#author">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#contact" class="nav-cta">Request Instructor Copy</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ================================================
+       HERO
+  ================================================ -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            Forthcoming — Graduate Textbook
+          </div>
+          <h1>
+            Entrepreneurship<br>
+            in the Age of<br>
+            <span class="accent">AI and Web3</span>
+          </h1>
+          <p class="hero-subtitle">Building Ventures in the Decentralized AI Internet</p>
+          <p class="hero-tagline">
+            The first graduate textbook integrating artificial intelligence and Web3 as converging forces — preparing the next generation of entrepreneurs for the decentralized AI internet.
+          </p>
+          <div class="hero-author">By Zishan A. Mohammad</div>
+          <div class="hero-actions">
+            <a href="#chapters" class="btn btn-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+              Explore Chapters
+            </a>
+            <a href="#contact" class="btn btn-outline">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+              Request Instructor Copy
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-book">
+          <div class="book-cover">
+            <div class="book-cover-spine"></div>
+            <div class="book-top">
+              <div class="book-series">Graduate Textbook Series</div>
+              <div class="book-hex-grid">
+                <div class="book-hex"></div><div class="book-hex"></div><div class="book-hex"></div><div class="book-hex"></div><div class="book-hex"></div>
+                <div class="book-hex"></div><div class="book-hex"></div><div class="book-hex"></div><div class="book-hex"></div><div class="book-hex"></div>
+                <div class="book-hex"></div><div class="book-hex"></div><div class="book-hex"></div><div class="book-hex"></div><div class="book-hex"></div>
+              </div>
+              <div class="book-title-on-cover">
+                Entrepreneurship<br>
+                in the Age of<br>
+                <span class="on-cover-accent">AI and Web3</span>
+              </div>
+            </div>
+            <div class="book-bottom">
+              <div class="book-subtitle-on-cover">Building Ventures in the<br>Decentralized AI Internet</div>
+              <div class="book-author-on-cover">Zishan A. Mohammad</div>
+            </div>
+          </div>
+          <div class="book-glow"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================
+       STATS BAR
+  ================================================ -->
+  <div class="stats-bar">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">8</div>
+          <div class="stat-label">Chapters</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" style="color: var(--violet);">3</div>
+          <div class="stat-label">Original Frameworks</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" style="color: var(--coral);">100<span class="stat-accent">+</span></div>
+          <div class="stat-label">Case Studies &amp; Examples</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" style="color: var(--golden-dim);">1<span style="font-size:18px; vertical-align: middle;">st</span></div>
+          <div class="stat-label">AI + Web3 Convergence Text</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================
+       ABOUT / DIFFERENTIATORS
+  ================================================ -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="label">About the Book</div>
+      <h2 class="section-heading">Built for the next generation<br>of venture builders</h2>
+      <p class="section-sub">A research-grounded graduate textbook that treats AI and Web3 not as separate topics — but as converging forces reshaping how ventures are built, funded, and governed.</p>
+
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon card-icon--blue">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#435070" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <h3>Research-Grounded Frameworks</h3>
+          <p>Original peer-reviewed contributions including the Token Business Model Canvas (TBMC), developed from systematic literature reviews and empirical Ethereum research — not repurposed frameworks from another field.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon card-icon--violet">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8B6FA0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          </div>
+          <h3>AI + Web3 Convergence Thesis</h3>
+          <p>The only textbook treating AI and Web3 as converging forces — not separate topics — preparing students for autonomous agents, machine economies, and the decentralized AI internet already taking shape.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon card-icon--golden">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A82E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <h3>Full Pedagogical Apparatus</h3>
+          <p>Every chapter includes learning objectives, real-world case studies, key term glossaries, structured discussion questions, hands-on activities, and curated reading lists — designed for the graduate seminar.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon card-icon--coral">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E85555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3>Interactive Companion Resources</h3>
+          <p>Token economy simulator, chapter slide decks, test bank, and teaching manual — a complete digital companion that brings the frameworks to life and makes course preparation effortless.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================
+       CHAPTERS
+  ================================================ -->
+  <section class="section section--alt" id="chapters">
+    <div class="container">
+      <div class="label">Chapter Overview</div>
+      <h2 class="section-heading">Eight chapters. One coherent arc.</h2>
+      <p class="section-sub">From foundational concepts to frontier applications — structured for a full semester or intensive short course.</p>
+
+      <div class="chapters-grid">
+        <div class="chapter-card">
+          <div class="chapter-number">01</div>
+          <div class="chapter-content">
+            <h3>The Web3 + AI Opportunity</h3>
+            <p>Why AI and blockchain are converging, and what it means for entrepreneurs. The macro forces shaping the decentralized AI internet.</p>
+          </div>
+        </div>
+
+        <div class="chapter-card">
+          <div class="chapter-number">02</div>
+          <div class="chapter-content">
+            <h3>Blockchain Fundamentals for Entrepreneurs</h3>
+            <p>The technical foundations every venture builder needs — cryptography, consensus, smart contracts — without requiring a CS degree.</p>
+          </div>
+        </div>
+
+        <div class="chapter-card">
+          <div class="chapter-number">03</div>
+          <div class="chapter-content">
+            <h3>Tokenomics — Designing Your Token Economy</h3>
+            <p>How to design, model, and evaluate token systems using original frameworks including the Token Business Model Canvas (TBMC).</p>
+          </div>
+        </div>
+
+        <div class="chapter-card">
+          <div class="chapter-number">04</div>
+          <div class="chapter-content">
+            <h3>Business Models for Web3 Ventures</h3>
+            <p>From DeFi protocols to creator economies — a taxonomy of Web3 revenue models with real-world cases and analysis frameworks.</p>
+          </div>
+        </div>
+
+        <div class="chapter-card">
+          <div class="chapter-number">05</div>
+          <div class="chapter-content">
+            <h3>Governance and DAOs</h3>
+            <p>Designing decision-making systems for decentralized organizations. Voting mechanisms, treasury management, and governance failures.</p>
+          </div>
+        </div>
+
+        <div class="chapter-card">
+          <div class="chapter-number">06</div>
+          <div class="chapter-content">
+            <h3>Fundraising in Web3</h3>
+            <p>ICOs, IDOs, grants, and hybrid models — navigating the Web3 capital landscape and structuring your fundraising strategy.</p>
+          </div>
+        </div>
+
+        <div class="chapter-card">
+          <div class="chapter-number">07</div>
+          <div class="chapter-content">
+            <h3>Building and Growing Your Web3 Community</h3>
+            <p>Community as competitive advantage — strategies for acquisition, engagement, retention, and measuring community health.</p>
+          </div>
+        </div>
+
+        <div class="chapter-card">
+          <div class="chapter-number">08</div>
+          <div class="chapter-content">
+            <h3>The Future of Web3 Entrepreneurship</h3>
+            <p>Autonomous agents, machine economies, and what comes after Web3 — building ventures for the decade ahead.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================
+       INSTRUCTOR RESOURCES
+  ================================================ -->
+  <section class="section section--dark" id="instructors">
+    <div class="container">
+      <div class="label">For Instructors</div>
+      <h2 class="section-heading">Everything you need to teach this course</h2>
+      <p class="section-sub">A complete companion resource suite — built alongside the manuscript, not as an afterthought.</p>
+
+      <div class="resources-grid">
+        <div class="resource-card">
+          <div class="resource-icon">📊</div>
+          <h3>Chapter Slide Decks</h3>
+          <p>8 fully-designed PowerPoint decks — 15–20 slides each with speaker notes, learning objectives, and Vibrant Fusion styling.</p>
+          <span class="resource-badge">8 Decks</span>
+        </div>
+
+        <div class="resource-card">
+          <div class="resource-icon">📚</div>
+          <h3>Curated Reading Lists</h3>
+          <p>Per-chapter reading lists with Tier 1 foundations, Tier 2 deep dives, and Tier 3 practitioner perspectives — annotated and formatted.</p>
+          <span class="resource-badge">8 PDFs</span>
+        </div>
+
+        <div class="resource-card">
+          <div class="resource-icon">🔢</div>
+          <h3>Token Economy Simulator</h3>
+          <p>Interactive tool to experiment with tokenomics parameters in real time — directly linked to Chapter 3 frameworks.</p>
+          <span class="resource-badge resource-badge--coming">Coming Soon</span>
+        </div>
+
+        <div class="resource-card">
+          <div class="resource-icon">📝</div>
+          <h3>Test Bank</h3>
+          <p>Multiple-choice, short-answer, and essay questions for each chapter, organized by learning objective and difficulty level.</p>
+          <span class="resource-badge resource-badge--coming">On Request</span>
+        </div>
+
+        <div class="resource-card">
+          <div class="resource-icon">🗺️</div>
+          <h3>Teaching Manual</h3>
+          <p>Chapter-by-chapter teaching notes, suggested discussion sequences, common student misconceptions, and facilitation tips.</p>
+          <span class="resource-badge resource-badge--coming">On Request</span>
+        </div>
+
+        <div class="resource-card">
+          <div class="resource-icon">📈</div>
+          <h3>Infographic Gallery</h3>
+          <p>11 high-resolution chapter infographics — the Web3+AI Convergence Map, Token Supply Spectrum, TBMC, DAO Governance Decision Tree, and more.</p>
+          <span class="resource-badge resource-badge--coming">Coming Soon</span>
+        </div>
+      </div>
+
+      <div class="instructor-cta">
+        <p>Request instructor access to slide decks, test bank, and teaching manual. We respond within 48 hours.</p>
+        <a href="#contact" class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Request Instructor Access
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================
+       AUTHOR
+  ================================================ -->
+  <section class="section" id="author">
+    <div class="container">
+      <div class="author-grid">
+        <div>
+          <div class="author-avatar">ZM</div>
+        </div>
+        <div>
+          <div class="label">About the Author</div>
+          <div class="author-name">Zishan A. Mohammad</div>
+          <div class="author-title">Researcher · Entrepreneur · Educator</div>
+          <p class="author-bio">
+            Zishan A. Mohammad is a researcher and educator at the intersection of entrepreneurship, blockchain, and artificial intelligence. His work spans empirical token economy research, Web3 venture strategy, and the design of decentralized governance systems.
+          </p>
+          <p class="author-bio">
+            With academic roots at École des Ponts ParisTech and a career spanning research, teaching, and venture consulting, Zishan brings both analytical rigour and practitioner experience to this textbook — bridging the gap between cutting-edge academic research and the realities of building Web3 ventures.
+          </p>
+          <div class="author-tags">
+            <span class="tag">Blockchain Research</span>
+            <span class="tag">Tokenomics</span>
+            <span class="tag">Web3 Strategy</span>
+            <span class="tag">AI Entrepreneurship</span>
+            <span class="tag">DAO Governance</span>
+            <span class="tag">DeFi</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================
+       CONTACT / SIGNUP
+  ================================================ -->
+  <section class="section section--alt" id="contact">
+    <div class="container">
+      <div class="signup-inner">
+        <div class="label">Stay Updated</div>
+        <h2 class="section-heading" style="text-align:center;">Get notified at launch</h2>
+        <p style="color: var(--warm-gray); font-size: 16px; margin-top: 8px;">
+          Join the mailing list for publication updates, early access to companion materials, and chapter previews.
+        </p>
+
+        <form class="signup-form" id="signupForm" onsubmit="handleSignup(event)">
+          <input type="email" placeholder="your@email.com" required id="emailInput">
+          <button type="submit" class="btn btn-signup">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
+            Subscribe
+          </button>
+        </form>
+        <p class="signup-note">No spam. Unsubscribe at any time. Your email is never shared.</p>
+      </div>
+
+      <div class="contact-options">
+        <div class="contact-card">
+          <div class="contact-icon">🎓</div>
+          <h3>Instructor Copy Request</h3>
+          <p>Faculty considering this text for course adoption. Access slides, test bank, and teaching manual.</p>
+          <a href="mailto:instructor-request@placeholder.com?subject=Instructor%20Copy%20Request%20—%20AI%20%26%20Web3%20Book" class="btn btn-ghost">Request Access</a>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-icon">💬</div>
+          <h3>General Enquiries</h3>
+          <p>Media, speaking engagements, collaboration opportunities, or questions about the research.</p>
+          <a href="mailto:contact@placeholder.com?subject=Enquiry%20—%20AI%20%26%20Web3%20Book" class="btn btn-ghost">Get in Touch</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================
+       FOOTER
+  ================================================ -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <h3>Entrepreneurship in the Age of AI and Web3</h3>
+          <p>The first graduate textbook integrating AI and Web3 as converging forces for the next generation of entrepreneurs.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Content</h4>
+          <ul class="footer-links">
+            <li><a href="#about">About the Book</a></li>
+            <li><a href="#chapters">Chapter Overview</a></li>
+            <li><a href="#instructors">Instructor Resources</a></li>
+            <li><a href="#author">About the Author</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <li><a href="#contact">Mailing List</a></li>
+            <li><a href="#contact">Request Instructor Copy</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 Zishan A. Mohammad. All rights reserved.</span>
+        <span>
+          <a href="https://github.com/mined" target="_blank" rel="noopener">GitHub</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast">
+    <span class="toast-icon">✓</span>
+    <span id="toastMsg">You're on the list!</span>
+  </div>
+
+  <script>
+    // ---- Mobile nav toggle ----
+    const navToggle = document.getElementById('navToggle');
+    const navLinks  = document.getElementById('navLinks');
+
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    // Close mobile nav on link click
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    // ---- Signup form ----
+    function handleSignup(e) {
+      e.preventDefault();
+      const email = document.getElementById('emailInput').value;
+      document.getElementById('signupForm').reset();
+      showToast('You\'re on the list! We\'ll be in touch.');
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastMsg').textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3800);
+    }
+
+    // ---- Nav scroll style ----
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 40) {
+        nav.style.boxShadow = '0 4px 24px rgba(0,0,0,0.20)';
+      } else {
+        nav.style.boxShadow = 'none';
+      }
+    });
+
+    // ---- Intersection observer: fade-in on scroll ----
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.card, .chapter-card, .resource-card, .contact-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease, box-shadow 0.2s';
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposition 3: Vibrant Fusion</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Fira+Code:wght@400;500&display=swap');
+
+  :root {
+    --cloud: #F0EEE9;
+    --cloud-warm: #FAF8F4;
+    --blue-fusion: #435070;
+    --blue-deep: #2E3650;
+    --violet: #8B6FA0;
+    --violet-light: #A98BBF;
+    --golden: #E8C547;
+    --golden-dim: #C9A82E;
+    --coral: #FF6B6B;
+    --coral-dim: #E85555;
+    --slate: #1E293B;
+    --warm-gray: #6B7280;
+    --violet-bg: #F8F5FA;
+    --golden-bg: #FDFBF0;
+    --coral-bg: #FFF5F5;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cloud);
+    color: var(--slate);
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.6;
+  }
+
+  .header-bar {
+    background: linear-gradient(135deg, var(--blue-fusion), var(--violet));
+    padding: 22px 40px;
+    text-align: center;
+  }
+  .header-bar h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 26px;
+    font-weight: 900;
+    color: white;
+    letter-spacing: 2px;
+  }
+  .header-bar p {
+    color: rgba(255,255,255,0.75);
+    font-size: 13px;
+    margin-top: 4px;
+  }
+
+  .section-title {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--blue-fusion);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin: 50px 0 30px;
+  }
+
+  /* ---- PALETTE ---- */
+  .palette-section {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 0 40px 40px;
+  }
+  .swatch { text-align: center; }
+  .swatch-color {
+    width: 80px;
+    height: 80px;
+    border-radius: 14px;
+    margin-bottom: 8px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+    transform: rotate(-3deg);
+  }
+  .swatch-color:nth-child(even) { transform: rotate(3deg); }
+  .swatch-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--slate);
+  }
+  .swatch-hex {
+    font-family: 'Fira Code', monospace;
+    font-size: 10px;
+    color: var(--warm-gray);
+  }
+
+  /* ---- COVER ---- */
+  .cover-section {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    padding: 40px;
+    flex-wrap: wrap;
+  }
+
+  .book-cover {
+    width: 340px;
+    height: 500px;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 16px 50px rgba(67,80,112,0.25);
+  }
+
+  .front-cover {
+    background: linear-gradient(135deg, var(--blue-fusion) 0%, var(--blue-deep) 40%, var(--violet) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 30px;
+    position: relative;
+  }
+
+  .grain-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+    opacity: 0.3;
+    mix-blend-mode: overlay;
+  }
+
+  .diagonal-shapes {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    overflow: hidden;
+  }
+
+  .shape {
+    position: absolute;
+    border-radius: 4px;
+    opacity: 0.08;
+  }
+  .shape-1 {
+    width: 200px; height: 200px;
+    background: var(--golden);
+    transform: rotate(45deg);
+    top: -80px; right: -60px;
+  }
+  .shape-2 {
+    width: 120px; height: 120px;
+    background: var(--coral);
+    transform: rotate(30deg);
+    bottom: 60px; left: -30px;
+    border-radius: 50%;
+  }
+  .shape-3 {
+    width: 80px; height: 80px;
+    background: var(--violet-light);
+    transform: rotate(-15deg);
+    bottom: -20px; right: 40px;
+  }
+
+  .cover-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+
+  .cover-badge {
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--blue-fusion);
+    background: var(--golden);
+    padding: 4px 16px;
+    border-radius: 20px;
+    margin-bottom: 28px;
+  }
+
+  .cover-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 42px;
+    line-height: 1.0;
+    color: white;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+  }
+
+  .cover-title-accent {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 42px;
+    line-height: 1.0;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    -webkit-text-stroke: 2px var(--golden);
+    color: transparent;
+  }
+
+  .cover-tagline {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    color: rgba(255,255,255,0.7);
+    margin: 20px 0 40px;
+    line-height: 1.6;
+  }
+
+  .cover-rule {
+    width: 50px;
+    height: 4px;
+    background: var(--coral);
+    margin: 0 auto 20px;
+    border-radius: 2px;
+  }
+
+  .cover-author {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--cloud);
+  }
+
+  /* Back */
+  .back-cover {
+    background: var(--cloud-warm);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .back-gradient-strip {
+    height: 10px;
+    background: linear-gradient(90deg, var(--blue-fusion), var(--violet), var(--coral), var(--golden));
+  }
+
+  .back-body {
+    flex: 1;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .back-blurb {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    color: var(--slate);
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+
+  .back-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .pill {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    color: white;
+  }
+
+  .back-highlights {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 16px;
+  }
+  .back-highlights li {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 11px;
+    color: var(--slate);
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(67,80,112,0.1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .hl-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .back-isbn {
+    text-align: center;
+    font-family: 'Fira Code', monospace;
+    font-size: 10px;
+    color: var(--warm-gray);
+  }
+
+  /* ---- TYPOGRAPHY ---- */
+  .type-section {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 40px 40px;
+  }
+  .type-sample {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border-top: 4px solid;
+  }
+  .type-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .type-heading-demo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 28px;
+    color: var(--blue-deep);
+    margin-bottom: 4px;
+  }
+  .type-subheading-demo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--violet);
+  }
+  .type-body-demo {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    color: var(--slate);
+    line-height: 1.8;
+  }
+  .type-code-demo {
+    font-family: 'Fira Code', monospace;
+    font-size: 12px;
+    color: var(--blue-deep);
+    background: var(--violet-bg);
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-top: 12px;
+    border-left: 3px solid var(--violet);
+  }
+
+  /* ---- INTERIOR ---- */
+  .interior-section {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 40px 60px;
+  }
+
+  .page-mockup {
+    background: white;
+    border-radius: 8px;
+    padding: 40px 36px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ch-tab {
+    position: absolute;
+    top: 0;
+    right: 30px;
+    width: 50px;
+    height: 28px;
+    background: linear-gradient(135deg, var(--blue-fusion), var(--violet));
+    border-radius: 0 0 8px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    color: white;
+  }
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--cloud);
+  }
+  .page-chapter-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--violet);
+  }
+  .page-number {
+    font-family: 'Fira Code', monospace;
+    font-size: 10px;
+    color: var(--warm-gray);
+  }
+
+  .page-h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    color: var(--blue-deep);
+    margin-bottom: 14px;
+  }
+  .page-body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12.5px;
+    color: var(--slate);
+    line-height: 1.9;
+    margin-bottom: 16px;
+  }
+
+  .page-callout {
+    background: linear-gradient(135deg, var(--coral-bg), var(--golden-bg));
+    border-left: 4px solid var(--coral);
+    padding: 16px 18px;
+    border-radius: 0 10px 10px 0;
+    margin: 16px 0;
+  }
+  .page-callout-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 11px;
+    color: var(--coral-dim);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .page-callout-text {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    color: var(--slate);
+    line-height: 1.7;
+  }
+
+  .page-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 16px 0;
+    font-size: 11px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .page-table th {
+    background: var(--blue-fusion);
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    padding: 10px 12px;
+    text-align: left;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+  }
+  .page-table td {
+    padding: 9px 12px;
+    border-bottom: 1px solid #F0F0F0;
+    font-family: 'Open Sans', sans-serif;
+    color: var(--slate);
+  }
+  .page-table tr:nth-child(even) td {
+    background: var(--violet-bg);
+  }
+  .page-table td:first-child {
+    font-weight: 600;
+    color: var(--blue-fusion);
+  }
+
+  .page-figure-box {
+    background: linear-gradient(135deg, var(--blue-deep), var(--violet));
+    border-radius: 10px;
+    padding: 24px;
+    text-align: center;
+    margin: 16px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .figure-bars {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 12px;
+    height: 60px;
+    margin-bottom: 12px;
+  }
+  .bar {
+    width: 24px;
+    border-radius: 4px 4px 0 0;
+  }
+  .figure-caption {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    color: rgba(255,255,255,0.7);
+    font-style: italic;
+  }
+
+  .footer-note {
+    text-align: center;
+    padding: 40px;
+    color: var(--warm-gray);
+    font-size: 12px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header-bar">
+  <h1>PROPOSITION 3 — VIBRANT FUSION</h1>
+  <p>Bold colors, energetic layout, modern geometric aesthetic — startup meets academia</p>
+</div>
+
+<!-- PALETTE -->
+<div class="section-title">Color Palette</div>
+<div class="palette-section">
+  <div class="swatch">
+    <div class="swatch-color" style="background: #F0EEE9;"></div>
+    <div class="swatch-name">Cloud Dancer</div>
+    <div class="swatch-hex">#F0EEE9</div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background: #435070;"></div>
+    <div class="swatch-name">Blue Fusion</div>
+    <div class="swatch-hex">#435070</div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background: #8B6FA0;"></div>
+    <div class="swatch-name">Quiet Violet</div>
+    <div class="swatch-hex">#8B6FA0</div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background: #E8C547;"></div>
+    <div class="swatch-name">Golden Mist</div>
+    <div class="swatch-hex">#E8C547</div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background: #FF6B6B;"></div>
+    <div class="swatch-name">Coral Pop</div>
+    <div class="swatch-hex">#FF6B6B</div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background: #1E293B;"></div>
+    <div class="swatch-name">Dark Slate</div>
+    <div class="swatch-hex">#1E293B</div>
+  </div>
+</div>
+
+<!-- COVER -->
+<div class="section-title">Cover Design</div>
+<div class="cover-section">
+  <div class="book-cover front-cover">
+    <div class="grain-overlay"></div>
+    <div class="diagonal-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+    <div class="cover-content">
+      <div class="cover-badge">Graduate Textbook</div>
+      <div class="cover-title">ENTREPRENEURSHIP</div>
+      <div class="cover-title" style="font-size: 24px; letter-spacing: 2px; margin-bottom: 4px;">in the Age of</div>
+      <div class="cover-title-accent">AI AND WEB3</div>
+      <div class="cover-tagline">Building Ventures in the<br>Decentralized AI Internet</div>
+      <div class="cover-rule"></div>
+      <div class="cover-author">ZISHAN A. MOHAMMAD</div>
+    </div>
+  </div>
+
+  <div class="book-cover back-cover">
+    <div class="back-gradient-strip"></div>
+    <div class="back-body">
+      <div class="back-blurb">
+        The convergence of Web3 and AI is rewriting the rules of entrepreneurship. This comprehensive textbook arms graduate students and aspiring founders with the frameworks, case studies, and practical tools to build, fund, and scale ventures in the decentralized economy.
+      </div>
+      <div class="back-pills">
+        <span class="pill" style="background: var(--blue-fusion);">Blockchain</span>
+        <span class="pill" style="background: var(--violet);">Tokenomics</span>
+        <span class="pill" style="background: var(--coral);">DAOs</span>
+        <span class="pill" style="background: var(--golden-dim); color: var(--slate);">Fundraising</span>
+        <span class="pill" style="background: var(--blue-fusion);">Community</span>
+        <span class="pill" style="background: var(--violet);">AI + Web3</span>
+      </div>
+      <ul class="back-highlights">
+        <li><span class="hl-dot" style="background: var(--blue-fusion);"></span>8 comprehensive chapters covering the full founder journey</li>
+        <li><span class="hl-dot" style="background: var(--violet);"></span>Real-world case studies from leading Web3 projects</li>
+        <li><span class="hl-dot" style="background: var(--coral);"></span>Practical frameworks for token design & governance</li>
+        <li><span class="hl-dot" style="background: var(--golden);"></span>Academic rigor meets startup-ready insights</li>
+      </ul>
+      <div class="back-isbn">ISBN 978-0-000000-00-0</div>
+    </div>
+  </div>
+</div>
+
+<!-- TYPOGRAPHY -->
+<div class="section-title">Typography</div>
+<div class="type-section">
+  <div class="type-sample" style="border-top-color: var(--blue-fusion);">
+    <div class="type-label" style="color: var(--blue-fusion);">Headings — Montserrat ExtraBold</div>
+    <div class="type-heading-demo">Chapter 3: Tokenomics</div>
+    <div class="type-subheading-demo">3.2 Designing Your Token Economy</div>
+  </div>
+  <div class="type-sample" style="border-top-color: var(--violet);">
+    <div class="type-label" style="color: var(--violet);">Body — Open Sans Regular</div>
+    <div class="type-body-demo">
+      Token design is both an art and a science. A well-crafted token model aligns incentives among users, developers, investors, and the broader ecosystem. In this section, we examine the fundamental principles of token supply dynamics, utility design, and governance integration.
+    </div>
+  </div>
+  <div class="type-sample" style="border-top-color: var(--golden);">
+    <div class="type-label" style="color: var(--golden-dim);">Code / Data — Fira Code</div>
+    <div class="type-code-demo">
+      ERC-20: Standard fungible token interface<br>
+      ERC-721: Non-fungible token (NFT) standard<br>
+      ERC-4337: Account abstraction specification
+    </div>
+  </div>
+</div>
+
+<!-- INTERIOR -->
+<div class="section-title">Interior Page Layout</div>
+<div class="interior-section">
+  <div class="page-mockup">
+    <div class="ch-tab">CH 4</div>
+    <div class="page-header">
+      <span class="page-chapter-label">Chapter 4 — Business Models</span>
+      <span class="page-number">pg 127</span>
+    </div>
+
+    <div class="page-h2">4.3 Revenue Models in Web3</div>
+    <div class="page-body">
+      Unlike traditional SaaS or marketplace models, Web3 ventures often generate revenue through protocol fees, token appreciation, and transaction-based mechanisms. The choice of revenue model is deeply intertwined with token design and governance structure, creating a unique interplay between economics and technology.
+    </div>
+
+    <div class="page-callout">
+      <div class="page-callout-title">Key Insight</div>
+      <div class="page-callout-text">
+        Protocol revenue differs from traditional revenue in a fundamental way: it flows transparently through smart contracts, making it auditable by any stakeholder in real time.
+      </div>
+    </div>
+
+    <table class="page-table">
+      <tr>
+        <th>Revenue Model</th>
+        <th>Example</th>
+        <th>Token Role</th>
+      </tr>
+      <tr>
+        <td>Protocol Fees</td>
+        <td>Uniswap (0.3% swap fee)</td>
+        <td>Governance + fee share</td>
+      </tr>
+      <tr>
+        <td>Gas/Transaction</td>
+        <td>Ethereum network</td>
+        <td>Utility (gas payment)</td>
+      </tr>
+      <tr>
+        <td>Staking Yield</td>
+        <td>Lido, Rocket Pool</td>
+        <td>Collateral + rewards</td>
+      </tr>
+      <tr>
+        <td>NFT Royalties</td>
+        <td>OpenSea, Blur</td>
+        <td>Creator economy</td>
+      </tr>
+    </table>
+
+    <div class="page-figure-box">
+      <div class="figure-bars">
+        <div class="bar" style="height: 25px; background: var(--golden);"></div>
+        <div class="bar" style="height: 45px; background: var(--coral);"></div>
+        <div class="bar" style="height: 35px; background: var(--violet-light);"></div>
+        <div class="bar" style="height: 55px; background: var(--golden);"></div>
+        <div class="bar" style="height: 40px; background: var(--coral);"></div>
+        <div class="bar" style="height: 30px; background: var(--violet-light);"></div>
+        <div class="bar" style="height: 50px; background: var(--golden);"></div>
+      </div>
+      <div class="figure-caption">Figure 4.3 — Revenue model comparison across Web3 protocols</div>
+    </div>
+
+    <div class="page-body">
+      Each model carries distinct implications for token value accrual. Protocol fees create direct cash flows attributable to token holders, while staking yields incentivize long-term network participation.
+    </div>
+  </div>
+</div>
+
+<div class="footer-note">
+  Proposition 3: Vibrant Fusion — Energetic, colorful, startup-meets-academia<br>
+  Pantone 2026 Light & Shadow palette | Contrast ratio ≥ 7:1
+</div>
+
+</body>
+</html>
