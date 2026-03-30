@@ -889,6 +889,127 @@
     }
 
     /* ================================================
+       SIMULATOR
+    ================================================ */
+    .simulator-wrap {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      border: 1px solid rgba(67,80,112,0.08);
+    }
+
+    .simulator-toolbar {
+      background: var(--blue-deep);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sim-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+    }
+
+    .sim-dot--red    { background: #FF5F57; }
+    .sim-dot--yellow { background: #FEBC2E; }
+    .sim-dot--green  { background: #28C840; }
+
+    .sim-url {
+      flex: 1;
+      background: rgba(255,255,255,0.08);
+      border-radius: 6px;
+      padding: 5px 12px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.55);
+      font-family: monospace;
+      margin-left: 8px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .simulator-frame {
+      width: 100%;
+      height: 700px;
+      border: none;
+      display: block;
+    }
+
+    .simulator-placeholder {
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(67,80,112,0.04), rgba(139,111,160,0.06));
+      gap: 16px;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .sim-placeholder-icon {
+      font-size: 48px;
+      opacity: 0.6;
+    }
+
+    .sim-placeholder-title {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--blue-fusion);
+    }
+
+    .sim-placeholder-sub {
+      font-size: 14px;
+      color: var(--warm-gray);
+      max-width: 420px;
+      line-height: 1.65;
+    }
+
+    .sim-features {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+
+    .sim-feature {
+      text-align: center;
+      padding: 20px 16px;
+      background: var(--white);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(67,80,112,0.07);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .sim-feature-icon {
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+
+    .sim-feature h4 {
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--blue-fusion);
+      margin-bottom: 6px;
+    }
+
+    .sim-feature p {
+      font-size: 12.5px;
+      color: var(--warm-gray);
+      line-height: 1.55;
+    }
+
+    @media (max-width: 860px) {
+      .sim-features { grid-template-columns: repeat(2, 1fr); }
+      .simulator-frame { height: 500px; }
+    }
+
+    /* ================================================
        FOOTER
     ================================================ */
     footer {
@@ -1040,6 +1161,7 @@
       </div>
       <ul class="nav-links" id="navLinks">
         <li><a href="#chapters">Chapters</a></li>
+        <li><a href="#simulator">Simulator</a></li>
         <li><a href="#instructors">For Instructors</a></li>
         <li><a href="#author">About</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -1260,6 +1382,56 @@
   </section>
 
   <!-- ================================================
+       TOKEN ECONOMY SIMULATOR
+  ================================================ -->
+  <section class="section" id="simulator">
+    <div class="container">
+      <div class="label">Interactive Tool</div>
+      <h2 class="section-heading">Token Economy Simulator</h2>
+      <p class="section-sub">Experiment with tokenomics parameters in real time — directly linked to the TBMC framework from Chapter 3. Adjust supply, inflation, burn rate, staking, and vesting to see how design choices play out over 5 years.</p>
+
+      <div class="simulator-wrap">
+        <div class="simulator-toolbar">
+          <span class="sim-dot sim-dot--red"></span>
+          <span class="sim-dot sim-dot--yellow"></span>
+          <span class="sim-dot sim-dot--green"></span>
+          <span class="sim-url" id="simUrl">Loading simulator...</span>
+        </div>
+        <!-- SIMULATOR_IFRAME_PLACEHOLDER -->
+        <div class="simulator-placeholder" id="simPlaceholder">
+          <div class="sim-placeholder-icon">⬡</div>
+          <div class="sim-placeholder-title">Simulator Deploying</div>
+          <p class="sim-placeholder-sub">The interactive token economy simulator is being deployed to Streamlit Community Cloud. Check back shortly — it will appear here automatically once live.</p>
+          <a href="https://share.streamlit.io" target="_blank" rel="noopener" class="btn btn-ghost" style="margin-top:8px;">Visit Streamlit ↗</a>
+        </div>
+      </div>
+
+      <div class="sim-features">
+        <div class="sim-feature">
+          <div class="sim-feature-icon">📊</div>
+          <h4>Supply Simulation</h4>
+          <p>Visualise total, circulating, staked, and locked supply over 60 months.</p>
+        </div>
+        <div class="sim-feature">
+          <div class="sim-feature-icon">🥧</div>
+          <h4>Stakeholder Allocation</h4>
+          <p>Dynamic pie chart showing token distribution across founders, investors, community, and treasury.</p>
+        </div>
+        <div class="sim-feature">
+          <div class="sim-feature-icon">🔗</div>
+          <h4>TBMC Mapping</h4>
+          <p>Every parameter linked to the Token Business Model Canvas — see which canvas section each choice affects.</p>
+        </div>
+        <div class="sim-feature">
+          <div class="sim-feature-icon">⚖️</div>
+          <h4>Scenario Comparison</h4>
+          <p>Run Bitcoin, Ethereum, utility token, and governance token models side by side.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================
        INSTRUCTOR RESOURCES
   ================================================ -->
   <section class="section section--dark" id="instructors">
@@ -1441,6 +1613,26 @@
   </div>
 
   <script>
+    // ---- Simulator embed ----
+    // TODO: Replace SIMULATOR_URL with your actual Streamlit app URL once deployed
+    const SIMULATOR_URL = '';  // e.g. 'https://zimoh-token-economy-simulator-app-xxxxx.streamlit.app'
+
+    (function() {
+      const placeholder = document.getElementById('simPlaceholder');
+      const urlBar      = document.getElementById('simUrl');
+      if (SIMULATOR_URL) {
+        urlBar.textContent = SIMULATOR_URL.replace('https://', '');
+        const iframe = document.createElement('iframe');
+        iframe.src              = SIMULATOR_URL + '?embed=true';
+        iframe.className        = 'simulator-frame';
+        iframe.allow            = 'fullscreen';
+        iframe.title            = 'Token Economy Simulator';
+        placeholder.parentNode.replaceChild(iframe, placeholder);
+      } else {
+        urlBar.textContent = 'Deploying to Streamlit Community Cloud...';
+      }
+    })();
+
     // ---- Mobile nav toggle ----
     const navToggle = document.getElementById('navToggle');
     const navLinks  = document.getElementById('navLinks');
