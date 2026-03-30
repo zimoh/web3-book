@@ -1036,7 +1036,7 @@
     <div class="nav-inner">
       <div class="nav-logo">
         <span class="nav-logo-dot"></span>
-        AI &amp; Web3 Book
+        Entrepreneurship in the Age of AI &amp; Web3
       </div>
       <ul class="nav-links" id="navLinks">
         <li><a href="#chapters">Chapters</a></li>
@@ -1381,14 +1381,14 @@
           <div class="contact-icon">🎓</div>
           <h3>Instructor Copy Request</h3>
           <p>Faculty considering this text for course adoption. Access slides, test bank, and teaching manual.</p>
-          <a href="mailto:instructor-request@placeholder.com?subject=Instructor%20Copy%20Request%20—%20AI%20%26%20Web3%20Book" class="btn btn-ghost">Request Access</a>
+          <a href="mailto:zishan.dev@gmail.com?subject=Instructor%20Copy%20Request%20—%20AI%20%26%20Web3%20Book" class="btn btn-ghost">Request Access</a>
         </div>
 
         <div class="contact-card">
           <div class="contact-icon">💬</div>
           <h3>General Enquiries</h3>
           <p>Media, speaking engagements, collaboration opportunities, or questions about the research.</p>
-          <a href="mailto:contact@placeholder.com?subject=Enquiry%20—%20AI%20%26%20Web3%20Book" class="btn btn-ghost">Get in Touch</a>
+          <a href="mailto:zishan.dev@gmail.com?subject=Enquiry%20—%20AI%20%26%20Web3%20Book" class="btn btn-ghost">Get in Touch</a>
         </div>
       </div>
     </div>
@@ -1458,8 +1458,9 @@
     function handleSignup(e) {
       e.preventDefault();
       const email = document.getElementById('emailInput').value;
+      window.location.href = 'mailto:zishan.dev@gmail.com?subject=Mailing%20List%20Signup%20—%20AI%20%26%20Web3%20Book&body=Please%20add%20me%20to%20the%20mailing%20list%3A%20' + encodeURIComponent(email);
       document.getElementById('signupForm').reset();
-      showToast('You\'re on the list! We\'ll be in touch.');
+      showToast('Opening your email client — we\'ll be in touch!');
     }
 
     function showToast(msg) {
