@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter Slide Decks | Entrepreneurship in the Age of AI &amp; Web3</title>
+  <meta name="description" content="8 fully-designed chapter slide decks — learning objectives, case studies, speaker notes, and Vibrant Fusion styling. Built with Remotion.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:ital,wght@0,400;0,600;1,400&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue-fusion:  #435070;
+      --blue-deep:    #2E3650;
+      --violet:       #8B6FA0;
+      --violet-light: #A98BBF;
+      --golden:       #E8C547;
+      --golden-dim:   #C9A82E;
+      --coral:        #FF6B6B;
+      --cloud:        #F0EEE9;
+      --cloud-warm:   #FAF8F4;
+      --slate:        #1E293B;
+      --warm-gray:    #6B7280;
+      --white:        #FFFFFF;
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body:    'Open Sans', sans-serif;
+      --font-mono:    'Fira Code', monospace;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--cloud); color: var(--slate); line-height: 1.65; }
+    a { color: inherit; text-decoration: none; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 28px; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(46,54,80,0.97);
+      backdrop-filter: blur(12px);
+      padding: 0 28px; height: 62px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--font-heading); font-size: 12px; font-weight: 800;
+      color: var(--white); display: flex; align-items: center; gap: 8px;
+      white-space: nowrap;
+    }
+    .nav-logo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--golden); flex-shrink: 0; }
+    .nav-back {
+      font-family: var(--font-heading); font-size: 12px; font-weight: 700;
+      color: rgba(255,255,255,0.6); display: flex; align-items: center; gap: 6px;
+      transition: color 0.2s; white-space: nowrap;
+    }
+    .nav-back:hover { color: var(--golden); }
+
+    /* ── HERO ── */
+    .page-hero {
+      background: linear-gradient(135deg, var(--blue-deep) 0%, var(--blue-fusion) 55%, #5a4a7a 100%);
+      padding: 72px 28px 60px; text-align: center; color: var(--white);
+    }
+    .hero-label {
+      font-family: var(--font-heading); font-size: 11px; font-weight: 800;
+      letter-spacing: 3.5px; text-transform: uppercase; color: var(--golden); margin-bottom: 16px;
+    }
+    .page-hero h1 {
+      font-family: var(--font-heading); font-size: clamp(28px, 4vw, 46px);
+      font-weight: 900; line-height: 1.15; margin-bottom: 18px;
+    }
+    .page-hero p { font-size: 17px; color: rgba(255,255,255,0.72); max-width: 620px; margin: 0 auto 40px; }
+
+    .hero-stats { display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; }
+    .hero-stat-num { font-family: var(--font-heading); font-size: 30px; font-weight: 900; color: var(--golden); }
+    .hero-stat-label { font-size: 11px; color: rgba(255,255,255,0.55); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 2px; }
+
+    /* ── TECH BADGE ── */
+    .tech-strip {
+      background: rgba(255,255,255,0.06); border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 16px 28px; display: flex; justify-content: center; align-items: center;
+      gap: 24px; flex-wrap: wrap;
+    }
+    .tech-item {
+      font-family: var(--font-mono); font-size: 11px; color: rgba(255,255,255,0.45);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .tech-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--golden); opacity: 0.6; }
+
+    /* ── TOC ── */
+    .toc-section { padding: 56px 0 40px; }
+    .section-label {
+      font-family: var(--font-heading); font-size: 11px; font-weight: 800;
+      letter-spacing: 3px; text-transform: uppercase; color: var(--blue-fusion); margin-bottom: 10px;
+    }
+    .section-heading { font-family: var(--font-heading); font-size: 26px; font-weight: 900; color: var(--slate); margin-bottom: 28px; }
+
+    .toc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(460px, 1fr)); gap: 12px; }
+    .toc-card {
+      background: var(--white); border: 1px solid rgba(67,80,112,0.1);
+      border-left: 4px solid var(--blue-fusion); border-radius: 0 8px 8px 0;
+      padding: 16px 20px; display: flex; align-items: center; gap: 16px;
+      cursor: pointer; transition: transform 0.15s, box-shadow 0.15s, border-left-color 0.15s;
+      text-decoration: none; color: inherit;
+    }
+    .toc-card:hover { transform: translateX(4px); box-shadow: 0 4px 20px rgba(67,80,112,0.12); border-left-color: var(--violet); }
+    .toc-num { font-family: var(--font-mono); font-size: 12px; color: var(--warm-gray); flex-shrink: 0; width: 36px; }
+    .toc-info { flex: 1; min-width: 0; }
+    .toc-title { font-family: var(--font-heading); font-size: 13px; font-weight: 800; color: var(--blue-fusion); margin-bottom: 2px; }
+    .toc-sub { font-size: 11px; color: var(--warm-gray); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .toc-pill {
+      font-family: var(--font-heading); font-size: 10px; font-weight: 700;
+      background: rgba(67,80,112,0.08); color: var(--blue-fusion);
+      padding: 3px 10px; border-radius: 10px; white-space: nowrap; flex-shrink: 0;
+    }
+
+    /* ── DECK SECTIONS ── */
+    .decks-section { padding: 20px 0 80px; }
+
+    .deck-block {
+      margin-bottom: 40px;
+      border-radius: 14px; overflow: hidden;
+      box-shadow: 0 4px 24px rgba(67,80,112,0.10);
+    }
+
+    /* Deck header banner */
+    .deck-header {
+      background: linear-gradient(135deg, var(--blue-deep) 0%, var(--blue-fusion) 60%, #5a4a7a 100%);
+      padding: 28px 36px;
+      display: flex; align-items: flex-start; gap: 24px;
+    }
+    .deck-num {
+      font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+      color: var(--golden); background: rgba(232,197,71,0.12);
+      border: 1px solid rgba(232,197,71,0.3); padding: 5px 14px; border-radius: 20px;
+      white-space: nowrap; flex-shrink: 0; margin-top: 4px;
+    }
+    .deck-header-text { flex: 1; }
+    .deck-header-text h2 {
+      font-family: var(--font-heading); font-size: 22px; font-weight: 900;
+      color: var(--white); margin-bottom: 6px; line-height: 1.2;
+    }
+    .deck-header-text p { font-size: 14px; color: rgba(255,255,255,0.62); font-style: italic; }
+    .deck-meta {
+      display: flex; flex-direction: column; align-items: flex-end; gap: 8px; flex-shrink: 0;
+    }
+    .deck-badge {
+      font-family: var(--font-heading); font-size: 10px; font-weight: 700;
+      padding: 4px 12px; border-radius: 12px; white-space: nowrap;
+    }
+    .badge-slides { background: rgba(232,197,71,0.15); color: var(--golden); border: 1px solid rgba(232,197,71,0.3); }
+    .badge-duration { background: rgba(139,111,160,0.15); color: #c9a8e0; border: 1px solid rgba(139,111,160,0.3); }
+    .back-top {
+      font-family: var(--font-heading); font-size: 11px; font-weight: 700;
+      color: rgba(255,255,255,0.45); display: flex; align-items: center; gap: 5px;
+      transition: color 0.2s; white-space: nowrap;
+    }
+    .back-top:hover { color: var(--golden); }
+
+    /* Deck body */
+    .deck-body {
+      background: var(--white); padding: 28px 36px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+    }
+
+    .deck-col-label {
+      font-family: var(--font-heading); font-size: 9px; font-weight: 800;
+      letter-spacing: 2px; text-transform: uppercase; color: var(--warm-gray); margin-bottom: 12px;
+    }
+    .objectives-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .objectives-list li {
+      font-size: 13px; color: var(--slate); line-height: 1.5;
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .obj-dot {
+      width: 6px; height: 6px; border-radius: 50%; background: var(--golden);
+      flex-shrink: 0; margin-top: 6px;
+    }
+
+    .slides-list { display: flex; flex-direction: column; gap: 6px; }
+    .slide-item {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 12px; color: var(--slate);
+    }
+    .slide-num {
+      font-family: var(--font-mono); font-size: 10px; color: var(--warm-gray);
+      width: 24px; flex-shrink: 0;
+    }
+    .slide-type {
+      font-family: var(--font-heading); font-size: 9px; font-weight: 700;
+      padding: 1px 6px; border-radius: 6px; flex-shrink: 0;
+    }
+    .type-title    { background: rgba(67,80,112,0.08);  color: var(--blue-fusion); }
+    .type-obj      { background: rgba(232,197,71,0.12); color: #8a6d00; }
+    .type-content  { background: rgba(139,111,160,0.1); color: var(--violet); }
+    .type-case     { background: rgba(255,107,107,0.1); color: #cc3333; }
+    .type-summary  { background: rgba(67,80,112,0.08);  color: var(--blue-fusion); }
+    .type-discuss  { background: rgba(139,111,160,0.1); color: var(--violet); }
+
+    /* Deck footer */
+    .deck-footer {
+      background: var(--cloud-warm); border-top: 1px solid rgba(67,80,112,0.08);
+      padding: 16px 36px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    }
+    .deck-tech {
+      font-family: var(--font-mono); font-size: 11px; color: var(--warm-gray);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .deck-access-btn {
+      font-family: var(--font-heading); font-size: 12px; font-weight: 700;
+      background: var(--blue-fusion); color: var(--white);
+      padding: 8px 20px; border-radius: 8px; letter-spacing: 0.5px;
+      transition: background 0.2s, transform 0.15s; display: inline-flex; align-items: center; gap: 8px;
+    }
+    .deck-access-btn:hover { background: var(--blue-deep); transform: translateY(-1px); }
+
+    /* ── FOOTER ── */
+    .page-footer {
+      background: var(--blue-deep); color: rgba(255,255,255,0.5);
+      padding: 32px 28px; text-align: center; font-size: 13px;
+    }
+    .page-footer a { color: var(--golden); font-weight: 600; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 720px) {
+      .toc-grid { grid-template-columns: 1fr; }
+      .deck-body { grid-template-columns: 1fr; }
+      .deck-header { flex-wrap: wrap; }
+      .deck-meta { flex-direction: row; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-dot"></span>
+    Entrepreneurship in the Age of AI &amp; Web3
+  </a>
+  <a href="index.html" class="nav-back">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3L5 8l5 5"/></svg>
+    Back to Home
+  </a>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero" id="top">
+  <div class="hero-label">Instructor Resources</div>
+  <h1>Chapter Slide Decks</h1>
+  <p>8 fully-designed presentations — learning objectives, case studies, speaker notes, and Vibrant Fusion styling. Built with Remotion in React.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-num">8</div><div class="hero-stat-label">Chapters</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">137</div><div class="hero-stat-label">Total Slides</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">1920×1080</div><div class="hero-stat-label">Resolution</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">~12 min</div><div class="hero-stat-label">Total Runtime</div></div>
+  </div>
+
+  <div class="tech-strip">
+    <span class="tech-item"><span class="tech-dot"></span> Built with Remotion + React</span>
+    <span class="tech-item"><span class="tech-dot"></span> Vibrant Fusion Design System</span>
+    <span class="tech-item"><span class="tech-dot"></span> Montserrat + Open Sans</span>
+    <span class="tech-item"><span class="tech-dot"></span> Speaker Notes on Every Slide</span>
+    <span class="tech-item"><span class="tech-dot"></span> Animated Transitions</span>
+  </div>
+</div>
+
+<!-- TOC -->
+<section class="toc-section" id="toc">
+  <div class="container">
+    <div class="section-label">Quick Navigation</div>
+    <h2 class="section-heading">Jump to a Chapter Deck</h2>
+    <div class="toc-grid">
+      <a href="#ch1" class="toc-card"><span class="toc-num">Ch.01</span><div class="toc-info"><div class="toc-title">The Web3 + AI Opportunity</div><div class="toc-sub">Why AI and blockchain are converging</div></div><span class="toc-pill">18 Slides</span></a>
+      <a href="#ch2" class="toc-card"><span class="toc-num">Ch.02</span><div class="toc-info"><div class="toc-title">Blockchain Fundamentals for Builders</div><div class="toc-sub">Cryptography, consensus, smart contracts</div></div><span class="toc-pill">17 Slides</span></a>
+      <a href="#ch3" class="toc-card"><span class="toc-num">Ch.03</span><div class="toc-info"><div class="toc-title">Tokenomics — Designing Token Economies</div><div class="toc-sub">Supply mechanics, incentive design, TBMC</div></div><span class="toc-pill">17 Slides</span></a>
+      <a href="#ch4" class="toc-card"><span class="toc-num">Ch.04</span><div class="toc-info"><div class="toc-title">Web3 Business Models</div><div class="toc-sub">DeFi protocols, NFTs, value capture</div></div><span class="toc-pill">17 Slides</span></a>
+      <a href="#ch5" class="toc-card"><span class="toc-num">Ch.05</span><div class="toc-info"><div class="toc-title">Governance &amp; DAOs</div><div class="toc-sub">On-chain coordination, collective decisions</div></div><span class="toc-pill">17 Slides</span></a>
+      <a href="#ch6" class="toc-card"><span class="toc-num">Ch.06</span><div class="toc-info"><div class="toc-title">Fundraising in Web3</div><div class="toc-sub">ICOs, SAFTs, token warrants, VC</div></div><span class="toc-pill">17 Slides</span></a>
+      <a href="#ch7" class="toc-card"><span class="toc-num">Ch.07</span><div class="toc-info"><div class="toc-title">Community Building in Web3</div><div class="toc-sub">Token incentives, airdrops, culture</div></div><span class="toc-pill">16 Slides</span></a>
+      <a href="#ch8" class="toc-card"><span class="toc-num">Ch.08</span><div class="toc-info"><div class="toc-title">The Agentic Economy &amp; Future of Web3</div><div class="toc-sub">AI agents, autonomous economic actors</div></div><span class="toc-pill">18 Slides</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- DECKS -->
+<section class="decks-section" id="decks">
+  <div class="container">
+
+    <!-- CH 1 -->
+    <div class="deck-block" id="ch1">
+      <div class="deck-header">
+        <span class="deck-num">CHAPTER 01</span>
+        <div class="deck-header-text">
+          <h2>The Web3 + AI Opportunity</h2>
+          <p>Why AI and blockchain are converging — and what it means for entrepreneurs</p>
+        </div>
+        <div class="deck-meta">
+          <span class="deck-badge badge-slides">18 Slides</span>
+          <span class="deck-badge badge-duration">90 sec preview</span>
+          <a href="#toc" class="back-top">
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3M3 8l5-5 5 5"/></svg>
+            Table
+          </a>
+        </div>
+      </div>
+      <div class="deck-body">
+        <div>
+          <div class="deck-col-label">Learning Objectives</div>
+          <ul class="objectives-list">
+            <li><span class="obj-dot"></span>Articulate why AI and Web3 are converging and the entrepreneurial implications</li>
+            <li><span class="obj-dot"></span>Distinguish hype from structural opportunity in the AI+Web3 space</li>
+            <li><span class="obj-dot"></span>Apply the Zero to One lens to evaluate vertical progress in decentralized AI</li>
+            <li><span class="obj-dot"></span>Identify at least three venture categories enabled by the convergence</li>
+          </ul>
+        </div>
+        <div>
+          <div class="deck-col-label">Slide Overview</div>
+          <div class="slides-list">
+            <div class="slide-item"><span class="slide-num">01</span><span class="slide-type type-title">Title</span>The Web3 + AI Opportunity</div>
+            <div class="slide-item"><span class="slide-num">02</span><span class="slide-type type-obj">Objectives</span>Learning Objectives</div>
+            <div class="slide-item"><span class="slide-num">03</span><span class="slide-type type-content">Content</span>The Civilizational Moment</div>
+            <div class="slide-item"><span class="slide-num">04</span><span class="slide-type type-content">Content</span>What is Web3? Foundations</div>
+            <div class="slide-item"><span class="slide-num">05</span><span class="slide-type type-content">Content</span>What is Agentic AI?</div>
+            <div class="slide-item"><span class="slide-num">06</span><span class="slide-type type-content">Content</span>Why Now? The Timing Thesis</div>
+            <div class="slide-item"><span class="slide-num">07</span><span class="slide-type type-content">Content</span>The AI + Web3 Convergence Map</div>
+            <div class="slide-item"><span class="slide-num">08</span><span class="slide-type type-content">Content</span>Decentralized AI: Core Concept</div>
+            <div class="slide-item"><span class="slide-num">09</span><span class="slide-type type-content">Content</span>AI Agents as Economic Actors</div>
+            <div class="slide-item"><span class="slide-num">10</span><span class="slide-type type-content">Content</span>Zero to One Lens</div>
+            <div class="slide-item"><span class="slide-num">11</span><span class="slide-type type-content">Content</span>Market Sizing the Opportunity</div>
+            <div class="slide-item"><span class="slide-num">12</span><span class="slide-type type-case">Case Study</span>Bittensor</div>
+            <div class="slide-item"><span class="slide-num">13–15</span><span class="slide-type type-content">Content</span>Early Movers · Risks · Strategy</div>
+            <div class="slide-item"><span class="slide-num">16</span><span class="slide-type type-content">Content</span>TBMC Preview</div>
+            <div class="slide-item"><span class="slide-num">17</span><span class="slide-type type-summary">Summary</span>Chapter Takeaways</div>
+            <div class="slide-item"><span class="slide-num">18</span><span class="slide-type type-discuss">Discussion</span>Questions &amp; Further Reading</div>
+          </div>
+        </div>
+      </div>
+      <div class="deck-footer">
+        <span class="deck-tech">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+          Remotion · React · 1920×1080 · 30fps
+        </span>
+        <a href="mailto:zishan.dev@gmail.com?subject=Instructor Access — Chapter 1 Slide Deck" class="deck-access-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Request Access
+        </a>
+      </div>
+    </div>
+
+    <!-- CH 2 -->
+    <div class="deck-block" id="ch2">
+      <div class="deck-header">
+        <span class="deck-num">CHAPTER 02</span>
+        <div class="deck-header-text">
+          <h2>Blockchain Fundamentals for Builders</h2>
+          <p>The technical substrate — cryptography, consensus, smart contracts, and L2 scaling</p>
+        </div>
+        <div class="deck-meta">
+          <span class="deck-badge badge-slides">17 Slides</span>
+          <span class="deck-badge badge-duration">85 sec preview</span>
+          <a href="#toc" class="back-top"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3M3 8l5-5 5 5"/></svg>Table</a>
+        </div>
+      </div>
+      <div class="deck-body">
+        <div>
+          <div class="deck-col-label">Learning Objectives</div>
+          <ul class="objectives-list">
+            <li><span class="obj-dot"></span>Explain how Bitcoin achieves trustless consensus</li>
+            <li><span class="obj-dot"></span>Describe the EVM and smart contract execution model</li>
+            <li><span class="obj-dot"></span>Identify security risks in smart contract design</li>
+            <li><span class="obj-dot"></span>Evaluate which consensus mechanism fits a given use case</li>
+          </ul>
+        </div>
+        <div>
+          <div class="deck-col-label">Slide Overview</div>
+          <div class="slides-list">
+            <div class="slide-item"><span class="slide-num">01</span><span class="slide-type type-title">Title</span>Blockchain Fundamentals for Builders</div>
+            <div class="slide-item"><span class="slide-num">02</span><span class="slide-type type-obj">Objectives</span>Learning Objectives</div>
+            <div class="slide-item"><span class="slide-num">03</span><span class="slide-type type-content">Content</span>The Double-Spend Problem</div>
+            <div class="slide-item"><span class="slide-num">04</span><span class="slide-type type-content">Content</span>Bitcoin's Architecture</div>
+            <div class="slide-item"><span class="slide-num">05</span><span class="slide-type type-content">Content</span>Ethereum: Programmable Blockchain</div>
+            <div class="slide-item"><span class="slide-num">06</span><span class="slide-type type-content">Content</span>Consensus Mechanisms</div>
+            <div class="slide-item"><span class="slide-num">07</span><span class="slide-type type-content">Content</span>The Blockchain Trilemma</div>
+            <div class="slide-item"><span class="slide-num">08</span><span class="slide-type type-content">Content</span>Token Standards (ERC-20/721/4626)</div>
+            <div class="slide-item"><span class="slide-num">09</span><span class="slide-type type-content">Content</span>Smart Contract Security</div>
+            <div class="slide-item"><span class="slide-num">10</span><span class="slide-type type-content">Content</span>Layer 2 Scaling Solutions</div>
+            <div class="slide-item"><span class="slide-num">11</span><span class="slide-type type-content">Content</span>Account Abstraction</div>
+            <div class="slide-item"><span class="slide-num">12</span><span class="slide-type type-case">Case Study</span>The DAO Hack (2016)</div>
+            <div class="slide-item"><span class="slide-num">13–14</span><span class="slide-type type-content">Content</span>Builder Tools · Choosing Your Chain</div>
+            <div class="slide-item"><span class="slide-num">15</span><span class="slide-type type-content">Content</span>The Builder's Checklist</div>
+            <div class="slide-item"><span class="slide-num">16</span><span class="slide-type type-summary">Summary</span>Chapter Takeaways</div>
+            <div class="slide-item"><span class="slide-num">17</span><span class="slide-type type-discuss">Discussion</span>Questions &amp; Further Reading</div>
+          </div>
+        </div>
+      </div>
+      <div class="deck-footer">
+        <span class="deck-tech"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>Remotion · React · 1920×1080 · 30fps</span>
+        <a href="mailto:zishan.dev@gmail.com?subject=Instructor Access — Chapter 2 Slide Deck" class="deck-access-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Request Access</a>
+      </div>
+    </div>
+
+    <!-- CH 3 -->
+    <div class="deck-block" id="ch3">
+      <div class="deck-header">
+        <span class="deck-num">CHAPTER 03</span>
+        <div class="deck-header-text">
+          <h2>Tokenomics — Designing Token Economies</h2>
+          <p>Supply mechanics, incentive architecture, valuation, and the Token Business Model Canvas</p>
+        </div>
+        <div class="deck-meta">
+          <span class="deck-badge badge-slides">17 Slides</span>
+          <span class="deck-badge badge-duration">85 sec preview</span>
+          <a href="#toc" class="back-top"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3M3 8l5-5 5 5"/></svg>Table</a>
+        </div>
+      </div>
+      <div class="deck-body">
+        <div>
+          <div class="deck-col-label">Learning Objectives</div>
+          <ul class="objectives-list">
+            <li><span class="obj-dot"></span>Design a token supply schedule balancing growth and sustainability</li>
+            <li><span class="obj-dot"></span>Apply the TBMC to evaluate a token-based business model</li>
+            <li><span class="obj-dot"></span>Identify the dual-nature tension in utility vs. investment tokens</li>
+            <li><span class="obj-dot"></span>Model token adoption dynamics using the Cong Li Wang (2021) framework</li>
+          </ul>
+        </div>
+        <div>
+          <div class="deck-col-label">Slide Overview</div>
+          <div class="slides-list">
+            <div class="slide-item"><span class="slide-num">01</span><span class="slide-type type-title">Title</span>Tokenomics: Designing Your Token Economy</div>
+            <div class="slide-item"><span class="slide-num">02</span><span class="slide-type type-obj">Objectives</span>Learning Objectives</div>
+            <div class="slide-item"><span class="slide-num">03</span><span class="slide-type type-content">Content</span>What are Tokens?</div>
+            <div class="slide-item"><span class="slide-num">04</span><span class="slide-type type-content">Content</span>The Token Economy Flywheel</div>
+            <div class="slide-item"><span class="slide-num">05–06</span><span class="slide-type type-content">Content</span>Supply Mechanics · Vesting &amp; Allocation</div>
+            <div class="slide-item"><span class="slide-num">07</span><span class="slide-type type-content">Content</span>Staking Mechanics</div>
+            <div class="slide-item"><span class="slide-num">08–10</span><span class="slide-type type-content">Content</span>TBMC · Token Utility · Incentive Architecture</div>
+            <div class="slide-item"><span class="slide-num">11</span><span class="slide-type type-case">Case Study</span>Uniswap: Fat Protocol Tokenomics</div>
+            <div class="slide-item"><span class="slide-num">12–13</span><span class="slide-type type-content">Content</span>Valuation · Dual Nature</div>
+            <div class="slide-item"><span class="slide-num">14</span><span class="slide-type type-content">Content</span>Common Tokenomics Failures</div>
+            <div class="slide-item"><span class="slide-num">15</span><span class="slide-type type-content">Content</span>Using the Token Economy Simulator</div>
+            <div class="slide-item"><span class="slide-num">16</span><span class="slide-type type-summary">Summary</span>Chapter Takeaways</div>
+            <div class="slide-item"><span class="slide-num">17</span><span class="slide-type type-discuss">Discussion</span>Questions &amp; Further Reading</div>
+          </div>
+        </div>
+      </div>
+      <div class="deck-footer">
+        <span class="deck-tech"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>Remotion · React · 1920×1080 · 30fps</span>
+        <a href="mailto:zishan.dev@gmail.com?subject=Instructor Access — Chapter 3 Slide Deck" class="deck-access-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Request Access</a>
+      </div>
+    </div>
+
+    <!-- CH 4 -->
+    <div class="deck-block" id="ch4">
+      <div class="deck-header">
+        <span class="deck-num">CHAPTER 04</span>
+        <div class="deck-header-text">
+          <h2>Web3 Business Models</h2>
+          <p>DeFi protocols, NFT platforms, fat protocol thesis, and trustless value capture architectures</p>
+        </div>
+        <div class="deck-meta">
+          <span class="deck-badge badge-slides">17 Slides</span>
+          <span class="deck-badge badge-duration">85 sec preview</span>
+          <a href="#toc" class="back-top"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3M3 8l5-5 5 5"/></svg>Table</a>
+        </div>
+      </div>
+      <div class="deck-body">
+        <div>
+          <div class="deck-col-label">Learning Objectives</div>
+          <ul class="objectives-list">
+            <li><span class="obj-dot"></span>Map the DeFi protocol stack and identify where value accrues</li>
+            <li><span class="obj-dot"></span>Apply the fat protocol thesis and evaluate its critiques</li>
+            <li><span class="obj-dot"></span>Compare Web3 and Web2 business model defensibility</li>
+            <li><span class="obj-dot"></span>Design a revenue model for a token-native protocol</li>
+          </ul>
+        </div>
+        <div>
+          <div class="deck-col-label">Slide Overview</div>
+          <div class="slides-list">
+            <div class="slide-item"><span class="slide-num">01</span><span class="slide-type type-title">Title</span>Web3 Business Models</div>
+            <div class="slide-item"><span class="slide-num">02</span><span class="slide-type type-obj">Objectives</span>Learning Objectives</div>
+            <div class="slide-item"><span class="slide-num">03</span><span class="slide-type type-content">Content</span>The Web2 Platform Trap</div>
+            <div class="slide-item"><span class="slide-num">04</span><span class="slide-type type-content">Content</span>The DeFi Stack (Schär 2021)</div>
+            <div class="slide-item"><span class="slide-num">05–07</span><span class="slide-type type-content">Content</span>AMMs · Lending Protocols · Stablecoins</div>
+            <div class="slide-item"><span class="slide-num">08</span><span class="slide-type type-content">Content</span>NFT Platform Business Models</div>
+            <div class="slide-item"><span class="slide-num">09–10</span><span class="slide-type type-content">Content</span>Fat Protocol Thesis · Web3 Moats</div>
+            <div class="slide-item"><span class="slide-num">11</span><span class="slide-type type-case">Case Study</span>MakerDAO: Protocol as Central Bank</div>
+            <div class="slide-item"><span class="slide-num">12–14</span><span class="slide-type type-content">Content</span>Revenue Models · Less Trust More Truth · RWA + DePIN</div>
+            <div class="slide-item"><span class="slide-num">15</span><span class="slide-type type-content">Content</span>AI + Web3 Business Models</div>
+            <div class="slide-item"><span class="slide-num">16</span><span class="slide-type type-summary">Summary</span>Chapter Takeaways</div>
+            <div class="slide-item"><span class="slide-num">17</span><span class="slide-type type-discuss">Discussion</span>Questions &amp; Further Reading</div>
+          </div>
+        </div>
+      </div>
+      <div class="deck-footer">
+        <span class="deck-tech"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>Remotion · React · 1920×1080 · 30fps</span>
+        <a href="mailto:zishan.dev@gmail.com?subject=Instructor Access — Chapter 4 Slide Deck" class="deck-access-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Request Access</a>
+      </div>
+    </div>
+
+    <!-- CH 5 -->
+    <div class="deck-block" id="ch5">
+      <div class="deck-header">
+        <span class="deck-num">CHAPTER 05</span>
+        <div class="deck-header-text">
+          <h2>Governance &amp; DAOs</h2>
+          <p>On-chain coordination, Ostrom's principles, quadratic voting, and DAO legal structures</p>
+        </div>
+        <div class="deck-meta">
+          <span class="deck-badge badge-slides">17 Slides</span>
+          <span class="deck-badge badge-duration">85 sec preview</span>
+          <a href="#toc" class="back-top"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3M3 8l5-5 5 5"/></svg>Table</a>
+        </div>
+      </div>
+      <div class="deck-body">
+        <div>
+          <div class="deck-col-label">Learning Objectives</div>
+          <ul class="objectives-list">
+            <li><span class="obj-dot"></span>Explain how DAO governance mechanisms work technically</li>
+            <li><span class="obj-dot"></span>Apply Ostrom's design principles to DAO structure</li>
+            <li><span class="obj-dot"></span>Identify failure modes of token-weighted voting</li>
+            <li><span class="obj-dot"></span>Design a governance system for a real protocol</li>
+          </ul>
+        </div>
+        <div>
+          <div class="deck-col-label">Slide Overview</div>
+          <div class="slides-list">
+            <div class="slide-item"><span class="slide-num">01</span><span class="slide-type type-title">Title</span>Governance &amp; DAOs</div>
+            <div class="slide-item"><span class="slide-num">02</span><span class="slide-type type-obj">Objectives</span>Learning Objectives</div>
+            <div class="slide-item"><span class="slide-num">03</span><span class="slide-type type-content">Content</span>What is a DAO?</div>
+            <div class="slide-item"><span class="slide-num">04</span><span class="slide-type type-content">Content</span>Ostrom's Design Principles for Commons</div>
+            <div class="slide-item"><span class="slide-num">05–06</span><span class="slide-type type-content">Content</span>How On-Chain Governance Works · Token Mechanics</div>
+            <div class="slide-item"><span class="slide-num">07–08</span><span class="slide-type type-content">Content</span>Participation Problem · Off-Chain vs On-Chain</div>
+            <div class="slide-item"><span class="slide-num">09</span><span class="slide-type type-content">Content</span>DAO Legal Structures</div>
+            <div class="slide-item"><span class="slide-num">10</span><span class="slide-type type-content">Content</span>Quadratic Voting &amp; Funding</div>
+            <div class="slide-item"><span class="slide-num">11</span><span class="slide-type type-case">Case Study</span>Nouns DAO: Perpetual Funding Machine</div>
+            <div class="slide-item"><span class="slide-num">12–14</span><span class="slide-type type-content">Content</span>Multi-Sig · AI in DAO Governance · Failure Modes</div>
+            <div class="slide-item"><span class="slide-num">15</span><span class="slide-type type-content">Content</span>Designing Sustainable DAO Governance</div>
+            <div class="slide-item"><span class="slide-num">16</span><span class="slide-type type-summary">Summary</span>Chapter Takeaways</div>
+            <div class="slide-item"><span class="slide-num">17</span><span class="slide-type type-discuss">Discussion</span>Questions &amp; Further Reading</div>
+          </div>
+        </div>
+      </div>
+      <div class="deck-footer">
+        <span class="deck-tech"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>Remotion · React · 1920×1080 · 30fps</span>
+        <a href="mailto:zishan.dev@gmail.com?subject=Instructor Access — Chapter 5 Slide Deck" class="deck-access-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Request Access</a>
+      </div>
+    </div>
+
+    <!-- CH 6 -->
+    <div class="deck-block" id="ch6">
+      <div class="deck-header">
+        <span class="deck-num">CHAPTER 06</span>
+        <div class="deck-header-text">
+          <h2>Fundraising in Web3</h2>
+          <p>ICOs, SAFTs, token warrants, VC landscape, and regulatory frameworks</p>
+        </div>
+        <div class="deck-meta">
+          <span class="deck-badge badge-slides">17 Slides</span>
+          <span class="deck-badge badge-duration">85 sec preview</span>
+          <a href="#toc" class="back-top"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3M3 8l5-5 5 5"/></svg>Table</a>
+        </div>
+      </div>
+      <div class="deck-body">
+        <div>
+          <div class="deck-col-label">Learning Objectives</div>
+          <ul class="objectives-list">
+            <li><span class="obj-dot"></span>Compare ICO, IDO and traditional VC fundraising structures</li>
+            <li><span class="obj-dot"></span>Apply the SAFT framework to a compliant token fundraise</li>
+            <li><span class="obj-dot"></span>Identify key signals investors look for in Web3 ventures</li>
+            <li><span class="obj-dot"></span>Structure a fundraising strategy across equity and token rounds</li>
+          </ul>
+        </div>
+        <div>
+          <div class="deck-col-label">Slide Overview</div>
+          <div class="slides-list">
+            <div class="slide-item"><span class="slide-num">01</span><span class="slide-type type-title">Title</span>Fundraising in Web3</div>
+            <div class="slide-item"><span class="slide-num">02</span><span class="slide-type type-obj">Objectives</span>Learning Objectives</div>
+            <div class="slide-item"><span class="slide-num">03–04</span><span class="slide-type type-content">Content</span>The Web3 Capital Stack · The ICO Era</div>
+            <div class="slide-item"><span class="slide-num">05</span><span class="slide-type type-content">Content</span>What ICO Research Tells Us</div>
+            <div class="slide-item"><span class="slide-num">06–07</span><span class="slide-type type-content">Content</span>The SAFT Structure · Token Warrant</div>
+            <div class="slide-item"><span class="slide-num">08–09</span><span class="slide-type type-content">Content</span>Crypto VC Landscape · What VCs Evaluate</div>
+            <div class="slide-item"><span class="slide-num">10</span><span class="slide-type type-content">Content</span>IDOs and Token Launch Mechanics</div>
+            <div class="slide-item"><span class="slide-num">11</span><span class="slide-type type-case">Case Study</span>YFI: The Fair Launch</div>
+            <div class="slide-item"><span class="slide-num">12–13</span><span class="slide-type type-content">Content</span>Retroactive PGF · Regulatory Landscape</div>
+            <div class="slide-item"><span class="slide-num">14–15</span><span class="slide-type type-content">Content</span>Fundraising Strategy Framework · Investor Relations</div>
+            <div class="slide-item"><span class="slide-num">16</span><span class="slide-type type-summary">Summary</span>Chapter Takeaways</div>
+            <div class="slide-item"><span class="slide-num">17</span><span class="slide-type type-discuss">Discussion</span>Questions &amp; Further Reading</div>
+          </div>
+        </div>
+      </div>
+      <div class="deck-footer">
+        <span class="deck-tech"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>Remotion · React · 1920×1080 · 30fps</span>
+        <a href="mailto:zishan.dev@gmail.com?subject=Instructor Access — Chapter 6 Slide Deck" class="deck-access-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Request Access</a>
+      </div>
+    </div>
+
+    <!-- CH 7 -->
+    <div class="deck-block" id="ch7">
+      <div class="deck-header">
+        <span class="deck-num">CHAPTER 07</span>
+        <div class="deck-header-text">
+          <h2>Community Building in Web3</h2>
+          <p>Token incentives, airdrop design, contributor culture, and network effects through ownership</p>
+        </div>
+        <div class="deck-meta">
+          <span class="deck-badge badge-slides">16 Slides</span>
+          <span class="deck-badge badge-duration">80 sec preview</span>
+          <a href="#toc" class="back-top"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3M3 8l5-5 5 5"/></svg>Table</a>
+        </div>
+      </div>
+      <div class="deck-body">
+        <div>
+          <div class="deck-col-label">Learning Objectives</div>
+          <ul class="objectives-list">
+            <li><span class="obj-dot"></span>Design a token-based contributor incentive system</li>
+            <li><span class="obj-dot"></span>Evaluate airdrop mechanics for community quality vs. quantity</li>
+            <li><span class="obj-dot"></span>Apply the ownership economy thesis to community strategy</li>
+            <li><span class="obj-dot"></span>Identify how community dynamics change across market cycles</li>
+          </ul>
+        </div>
+        <div>
+          <div class="deck-col-label">Slide Overview</div>
+          <div class="slides-list">
+            <div class="slide-item"><span class="slide-num">01</span><span class="slide-type type-title">Title</span>Community Building in Web3</div>
+            <div class="slide-item"><span class="slide-num">02</span><span class="slide-type type-obj">Objectives</span>Learning Objectives</div>
+            <div class="slide-item"><span class="slide-num">03–04</span><span class="slide-type type-content">Content</span>Why Community is the Moat · Ownership Economy</div>
+            <div class="slide-item"><span class="slide-num">05–06</span><span class="slide-type type-content">Content</span>Token Incentive Design · Airdrop Mechanics</div>
+            <div class="slide-item"><span class="slide-num">07</span><span class="slide-type type-content">Content</span>Anatomy of the Uniswap Airdrop</div>
+            <div class="slide-item"><span class="slide-num">08–09</span><span class="slide-type type-content">Content</span>Points Systems · Discord &amp; Community Ops</div>
+            <div class="slide-item"><span class="slide-num">10</span><span class="slide-type type-case">Case Study</span>Nouns DAO Community Model</div>
+            <div class="slide-item"><span class="slide-num">11–13</span><span class="slide-type type-content">Content</span>Bear Market Survival · Contributor Programs · Community as Distribution</div>
+            <div class="slide-item"><span class="slide-num">14</span><span class="slide-type type-content">Content</span>AI-Enhanced Community Management</div>
+            <div class="slide-item"><span class="slide-num">15</span><span class="slide-type type-summary">Summary</span>Chapter Takeaways</div>
+            <div class="slide-item"><span class="slide-num">16</span><span class="slide-type type-discuss">Discussion</span>Questions &amp; Further Reading</div>
+          </div>
+        </div>
+      </div>
+      <div class="deck-footer">
+        <span class="deck-tech"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>Remotion · React · 1920×1080 · 30fps</span>
+        <a href="mailto:zishan.dev@gmail.com?subject=Instructor Access — Chapter 7 Slide Deck" class="deck-access-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Request Access</a>
+      </div>
+    </div>
+
+    <!-- CH 8 -->
+    <div class="deck-block" id="ch8">
+      <div class="deck-header">
+        <span class="deck-num">CHAPTER 08</span>
+        <div class="deck-header-text">
+          <h2>The Agentic Economy &amp; Future of Web3 Entrepreneurship</h2>
+          <p>AI agents as economic actors, A2A commerce, governance challenges, and frontier venture opportunities</p>
+        </div>
+        <div class="deck-meta">
+          <span class="deck-badge badge-slides">18 Slides</span>
+          <span class="deck-badge badge-duration">90 sec preview</span>
+          <a href="#toc" class="back-top"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3M3 8l5-5 5 5"/></svg>Table</a>
+        </div>
+      </div>
+      <div class="deck-body">
+        <div>
+          <div class="deck-col-label">Learning Objectives</div>
+          <ul class="objectives-list">
+            <li><span class="obj-dot"></span>Define agentic AI and its distinguishing characteristics</li>
+            <li><span class="obj-dot"></span>Map the architecture of AI agents operating on-chain</li>
+            <li><span class="obj-dot"></span>Evaluate legal and governance challenges of agent-to-agent commerce</li>
+            <li><span class="obj-dot"></span>Identify frontier venture opportunities in the agentic economy</li>
+          </ul>
+        </div>
+        <div>
+          <div class="deck-col-label">Slide Overview</div>
+          <div class="slides-list">
+            <div class="slide-item"><span class="slide-num">01</span><span class="slide-type type-title">Title</span>The Agentic Economy &amp; Future of Web3</div>
+            <div class="slide-item"><span class="slide-num">02</span><span class="slide-type type-obj">Objectives</span>Learning Objectives</div>
+            <div class="slide-item"><span class="slide-num">03–04</span><span class="slide-type type-content">Content</span>The Agentic Shift · Architecture of an AI Agent</div>
+            <div class="slide-item"><span class="slide-num">05–06</span><span class="slide-type type-content">Content</span>AI Agents Meet Web3 · The Agentic Economy</div>
+            <div class="slide-item"><span class="slide-num">07–08</span><span class="slide-type type-content">Content</span>Agent-to-Agent Commerce · Trust &amp; Verification</div>
+            <div class="slide-item"><span class="slide-num">09</span><span class="slide-type type-content">Content</span>Decentralized AI Infrastructure</div>
+            <div class="slide-item"><span class="slide-num">10</span><span class="slide-type type-case">Case Study</span>Fetch.ai: Agentic Economy in Production</div>
+            <div class="slide-item"><span class="slide-num">11–12</span><span class="slide-type type-content">Content</span>Proof of Useful Work · The Agentic Startup</div>
+            <div class="slide-item"><span class="slide-num">13–14</span><span class="slide-type type-content">Content</span>Governance of Agents · Regulatory Frontier</div>
+            <div class="slide-item"><span class="slide-num">15–16</span><span class="slide-type type-content">Content</span>Frontier Opportunities · Looking Forward: 2025–2030</div>
+            <div class="slide-item"><span class="slide-num">17</span><span class="slide-type type-summary">Summary</span>Chapter Takeaways</div>
+            <div class="slide-item"><span class="slide-num">18</span><span class="slide-type type-discuss">Discussion</span>Questions &amp; Further Reading</div>
+          </div>
+        </div>
+      </div>
+      <div class="deck-footer">
+        <span class="deck-tech"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>Remotion · React · 1920×1080 · 30fps</span>
+        <a href="mailto:zishan.dev@gmail.com?subject=Instructor Access — Chapter 8 Slide Deck" class="deck-access-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Request Access</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="page-footer">
+  <p><strong style="color:rgba(255,255,255,0.8)">Entrepreneurship in the Age of AI &amp; Web3</strong> &nbsp;·&nbsp; Zishan A. Mohammad &nbsp;·&nbsp; <a href="index.html">Return to Home</a> &nbsp;·&nbsp; <a href="reading-list.html">Reading Lists</a></p>
+  <p style="margin-top:6px">8 Chapter Decks · 137 Slides · Built with Remotion + React · March 2026</p>
+</div>
+
+</body>
+</html>
