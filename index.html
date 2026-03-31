@@ -128,13 +128,15 @@
 
     .nav-logo {
       font-family: var(--font-heading);
-      font-size: 14px;
+      font-size: 12px;
       font-weight: 800;
       color: var(--white);
-      letter-spacing: 0.5px;
+      letter-spacing: 0.3px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .nav-logo-dot {
@@ -148,16 +150,19 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 32px;
+      gap: 20px;
       list-style: none;
+      flex-wrap: nowrap;
+      white-space: nowrap;
     }
 
     .nav-links a {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
       color: rgba(255,255,255,0.72);
-      letter-spacing: 0.3px;
+      letter-spacing: 0.2px;
       transition: color 0.2s;
+      white-space: nowrap;
     }
 
     .nav-links a:hover { color: var(--white); }
@@ -165,10 +170,11 @@
     .nav-cta {
       background: var(--golden) !important;
       color: var(--blue-deep) !important;
-      padding: 8px 18px;
+      padding: 7px 14px;
       border-radius: 6px;
       font-weight: 700 !important;
-      letter-spacing: 0.3px;
+      letter-spacing: 0.2px;
+      white-space: nowrap;
       transition: background 0.2s, transform 0.15s !important;
     }
     .nav-cta:hover {
