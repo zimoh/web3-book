@@ -150,30 +150,46 @@
     .nav-links {
       display: flex;
       align-items: center;
+      height: 64px;          /* match nav-inner height */
       gap: 20px;
       list-style: none;
       flex-wrap: nowrap;
       white-space: nowrap;
     }
 
+    .nav-links > li {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
     .nav-links a {
+      display: flex;
+      align-items: center;
       font-size: 12px;
       font-weight: 600;
       color: rgba(255,255,255,0.72);
       letter-spacing: 0.2px;
       transition: color 0.2s;
       white-space: nowrap;
+      line-height: 1;
     }
 
     .nav-links a:hover { color: var(--white); }
 
     /* Dropdown menus */
-    .nav-dropdown { position: relative; }
+    .nav-dropdown {
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
     .nav-dropdown-trigger {
       display: flex;
       align-items: center;
       gap: 4px;
       cursor: pointer;
+      height: 100%;
     }
     .nav-dropdown-trigger::after {
       content: "▾";
