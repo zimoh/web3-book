@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infographic Gallery | Entrepreneurship in the Age of AI &amp; Web3</title>
+  <meta name="description" content="8 chapter infographics — visual summaries of every chapter in Vibrant Fusion design.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:ital,wght@0,400;0,600;1,400&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ================================================
+       DESIGN TOKENS — Vibrant Fusion palette
+    ================================================ */
+    :root {
+      --blue-fusion:  #435070;
+      --blue-deep:    #2E3650;
+      --violet:       #8B6FA0;
+      --violet-light: #A98BBF;
+      --golden:       #E8C547;
+      --golden-dim:   #C9A82E;
+      --coral:        #FF6B6B;
+      --cloud:        #F0EEE9;
+      --cloud-warm:   #FAF8F4;
+      --slate:        #1E293B;
+      --warm-gray:    #6B7280;
+      --white:        #FFFFFF;
+
+      --radius-sm:  8px;
+      --radius-md:  14px;
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body:    'Open Sans', sans-serif;
+      --font-mono:    'Fira Code', monospace;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--cloud);
+      color: var(--slate);
+      line-height: 1.65;
+      font-size: 16px;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* ================================================
+       NAV
+    ================================================ */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(46,54,80,0.97);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 0 28px;
+      height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .nav-logo {
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--golden);
+      flex-shrink: 0;
+    }
+
+    .nav-back {
+      font-family: var(--font-heading);
+      font-size: 12px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--golden); }
+    .nav-back svg { width: 14px; height: 14px; }
+
+    /* ================================================
+       HERO
+    ================================================ */
+    .page-hero {
+      background: linear-gradient(135deg, var(--blue-deep) 0%, var(--blue-fusion) 55%, #5a4a7a 100%);
+      padding: 72px 28px 60px;
+      text-align: center;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(139,111,160,0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .page-hero .label {
+      font-family: var(--font-heading);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--golden);
+      margin-bottom: 16px;
+    }
+
+    .page-hero h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 900;
+      line-height: 1.12;
+      margin-bottom: 18px;
+      letter-spacing: -0.5px;
+    }
+
+    .page-hero p {
+      font-size: 17px;
+      color: rgba(255,255,255,0.72);
+      max-width: 580px;
+      margin: 0 auto 36px;
+      line-height: 1.6;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+
+    .hero-stat { text-align: center; }
+
+    .hero-stat-num {
+      font-family: var(--font-heading);
+      font-size: 30px;
+      font-weight: 900;
+      color: var(--golden);
+    }
+
+    .hero-stat-label {
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+
+    /* ================================================
+       TOC GRID
+    ================================================ */
+    .toc-section {
+      padding: 56px 0 48px;
+      background: var(--cloud-warm);
+      border-bottom: 1px solid rgba(67,80,112,0.08);
+    }
+
+    .section-label {
+      font-family: var(--font-heading);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--blue-fusion);
+      margin-bottom: 10px;
+    }
+
+    .section-heading {
+      font-family: var(--font-heading);
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--slate);
+      margin-bottom: 10px;
+    }
+
+    .section-sub {
+      font-size: 15px;
+      color: var(--warm-gray);
+      margin-bottom: 32px;
+    }
+
+    .toc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 12px;
+    }
+
+    .toc-card {
+      background: var(--white);
+      border: 1px solid rgba(67,80,112,0.1);
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .toc-card:hover {
+      border-color: var(--golden);
+      box-shadow: 0 4px 16px rgba(232,197,71,0.15);
+      transform: translateY(-2px);
+    }
+
+    .toc-num {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--golden);
+      flex-shrink: 0;
+      width: 32px;
+      line-height: 1;
+    }
+
+    .toc-text {
+      font-family: var(--font-heading);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--slate);
+      line-height: 1.35;
+    }
+
+    /* ================================================
+       GALLERY GRID
+    ================================================ */
+    .gallery-section {
+      padding: 64px 0 80px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+      gap: 32px;
+    }
+
+    .infographic-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid rgba(67,80,112,0.1);
+      box-shadow: 0 2px 12px rgba(46,54,80,0.06);
+      transition: box-shadow 0.25s, transform 0.2s;
+    }
+
+    .infographic-card:hover {
+      box-shadow: 0 8px 32px rgba(46,54,80,0.14);
+      transform: translateY(-3px);
+    }
+
+    /* Thumbnail area */
+    .card-thumbnail {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 = 1920×1080 */
+      background: var(--blue-deep);
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .card-thumbnail img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: top left;
+      transition: transform 0.3s;
+    }
+
+    .infographic-card:hover .card-thumbnail img {
+      transform: scale(1.02);
+    }
+
+    .card-thumbnail-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(46,54,80,0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.25s;
+    }
+
+    .infographic-card:hover .card-thumbnail-overlay {
+      background: rgba(46,54,80,0.45);
+    }
+
+    .overlay-btn {
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--white);
+      background: var(--golden);
+      color: var(--blue-deep);
+      padding: 10px 22px;
+      border-radius: 6px;
+      letter-spacing: 0.3px;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .infographic-card:hover .overlay-btn {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .chapter-badge-img {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(46,54,80,0.88);
+      border: 1px solid rgba(232,197,71,0.4);
+      border-radius: 5px;
+      padding: 4px 10px;
+      font-family: var(--font-heading);
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--golden);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      backdrop-filter: blur(4px);
+    }
+
+    /* Card body */
+    .card-body {
+      padding: 22px 24px 20px;
+    }
+
+    .card-chapter-label {
+      font-family: var(--font-heading);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--violet);
+      margin-bottom: 6px;
+    }
+
+    .card-title {
+      font-family: var(--font-heading);
+      font-size: 17px;
+      font-weight: 900;
+      color: var(--slate);
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+
+    .card-desc {
+      font-size: 13.5px;
+      color: var(--warm-gray);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-view {
+      font-family: var(--font-heading);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--blue-deep);
+      background: var(--golden);
+      padding: 8px 18px;
+      border-radius: 6px;
+      letter-spacing: 0.3px;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-view:hover {
+      background: var(--golden-dim);
+      transform: translateY(-1px);
+    }
+
+    .btn-download {
+      font-family: var(--font-heading);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--blue-fusion);
+      background: rgba(67,80,112,0.08);
+      padding: 8px 18px;
+      border-radius: 6px;
+      letter-spacing: 0.3px;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-download:hover {
+      background: rgba(67,80,112,0.15);
+      transform: translateY(-1px);
+    }
+
+    /* ================================================
+       FOOTER
+    ================================================ */
+    footer {
+      background: var(--blue-deep);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 32px 28px;
+      font-size: 13px;
+    }
+
+    footer strong {
+      color: var(--golden);
+      font-family: var(--font-heading);
+    }
+
+    /* ================================================
+       RESPONSIVE
+    ================================================ */
+    @media (max-width: 720px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+      .toc-grid { grid-template-columns: 1fr 1fr; }
+      .hero-stats { gap: 28px; }
+    }
+
+    @media (max-width: 480px) {
+      .toc-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-dot"></span>
+      Entrepreneurship in the Age of AI &amp; Web3
+    </a>
+    <a href="index.html" class="nav-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+      Back to Home
+    </a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="label">Visual Companion</div>
+    <h1>Chapter Infographics</h1>
+    <p>One visual summary per chapter — key frameworks, data, and concepts distilled into a single high-resolution infographic.</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">8</div>
+        <div class="hero-stat-label">Infographics</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">1920<span style="font-size:18px">×</span>1080</div>
+        <div class="hero-stat-label">Resolution</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">HTML</div>
+        <div class="hero-stat-label">+ PNG</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">Free</div>
+        <div class="hero-stat-label">To Use</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOC -->
+  <section class="toc-section">
+    <div class="container">
+      <div class="section-label">Quick Navigation</div>
+      <div class="section-heading">Jump to a Chapter</div>
+      <div class="section-sub">Click any chapter to jump to its infographic.</div>
+      <div class="toc-grid">
+        <a href="#ch01" class="toc-card">
+          <div class="toc-num">01</div>
+          <div class="toc-text">Introduction to Web3 &amp; Blockchain Fundamentals</div>
+        </a>
+        <a href="#ch02" class="toc-card">
+          <div class="toc-num">02</div>
+          <div class="toc-text">Blockchain Architecture &amp; Protocol Design</div>
+        </a>
+        <a href="#ch03" class="toc-card">
+          <div class="toc-num">03</div>
+          <div class="toc-text">Tokenomics — Designing Token Economies</div>
+        </a>
+        <a href="#ch04" class="toc-card">
+          <div class="toc-num">04</div>
+          <div class="toc-text">Business Models for Web3 Ventures</div>
+        </a>
+        <a href="#ch05" class="toc-card">
+          <div class="toc-num">05</div>
+          <div class="toc-text">Governance &amp; DAOs</div>
+        </a>
+        <a href="#ch06" class="toc-card">
+          <div class="toc-num">06</div>
+          <div class="toc-text">Fundraising in Web3</div>
+        </a>
+        <a href="#ch07" class="toc-card">
+          <div class="toc-num">07</div>
+          <div class="toc-text">Building &amp; Growing Your Web3 Community</div>
+        </a>
+        <a href="#ch08" class="toc-card">
+          <div class="toc-num">08</div>
+          <div class="toc-text">The Future of Web3 Entrepreneurship</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery-section">
+    <div class="container">
+      <div class="section-label">Gallery</div>
+      <div class="section-heading" style="margin-bottom:40px;">All 8 Chapter Infographics</div>
+
+      <div class="gallery-grid">
+
+        <!-- Ch01 -->
+        <div class="infographic-card" id="ch01">
+          <a href="infographics/Ch01_Infographic_Web3Fundamentals.html" target="_blank">
+            <div class="card-thumbnail">
+              <img src="infographics/Ch01_Infographic_Web3Fundamentals.png" alt="Chapter 1 Infographic — Introduction to Web3 & Blockchain Fundamentals" loading="lazy">
+              <div class="chapter-badge-img">CH. 01</div>
+              <div class="card-thumbnail-overlay">
+                <div class="overlay-btn">View Full Infographic →</div>
+              </div>
+            </div>
+          </a>
+          <div class="card-body">
+            <div class="card-chapter-label">Chapter 01</div>
+            <div class="card-title">Introduction to Web3 &amp; Blockchain Fundamentals</div>
+            <div class="card-desc">The Blockchain Trilemma, key statistics, the chapter thesis, takeaways, and core glossary terms — all in one visual.</div>
+            <div class="card-actions">
+              <a href="infographics/Ch01_Infographic_Web3Fundamentals.html" target="_blank" class="btn-view">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                View Infographic
+              </a>
+              <a href="infographics/Ch01_Infographic_Web3Fundamentals.png" download class="btn-download">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download PNG
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ch02 -->
+        <div class="infographic-card" id="ch02">
+          <a href="infographics/Ch02_Infographic_ProtocolDesign.html" target="_blank">
+            <div class="card-thumbnail">
+              <img src="infographics/Ch02_Infographic_ProtocolDesign.png" alt="Chapter 2 Infographic — Blockchain Architecture & Protocol Design" loading="lazy">
+              <div class="chapter-badge-img">CH. 02</div>
+              <div class="card-thumbnail-overlay">
+                <div class="overlay-btn">View Full Infographic →</div>
+              </div>
+            </div>
+          </a>
+          <div class="card-body">
+            <div class="card-chapter-label">Chapter 02</div>
+            <div class="card-title">Blockchain Architecture &amp; Protocol Design</div>
+            <div class="card-desc">Consensus mechanisms, protocol layers, network architecture, and the technical foundations every Web3 entrepreneur needs to know.</div>
+            <div class="card-actions">
+              <a href="infographics/Ch02_Infographic_ProtocolDesign.html" target="_blank" class="btn-view">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                View Infographic
+              </a>
+              <a href="infographics/Ch02_Infographic_ProtocolDesign.png" download class="btn-download">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download PNG
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ch03 -->
+        <div class="infographic-card" id="ch03">
+          <a href="infographics/Ch03_Infographic_Tokenomics.html" target="_blank">
+            <div class="card-thumbnail">
+              <img src="infographics/Ch03_Infographic_Tokenomics.png" alt="Chapter 3 Infographic — Tokenomics" loading="lazy">
+              <div class="chapter-badge-img">CH. 03</div>
+              <div class="card-thumbnail-overlay">
+                <div class="overlay-btn">View Full Infographic →</div>
+              </div>
+            </div>
+          </a>
+          <div class="card-body">
+            <div class="card-chapter-label">Chapter 03</div>
+            <div class="card-title">Tokenomics — Designing Token Economies</div>
+            <div class="card-desc">Token Supply Spectrum, Token Value Hierarchy, the TBMC framework, and key metrics for designing sustainable token economies.</div>
+            <div class="card-actions">
+              <a href="infographics/Ch03_Infographic_Tokenomics.html" target="_blank" class="btn-view">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                View Infographic
+              </a>
+              <a href="infographics/Ch03_Infographic_Tokenomics.png" download class="btn-download">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download PNG
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ch04 -->
+        <div class="infographic-card" id="ch04">
+          <a href="infographics/Ch04_Infographic_BusinessModels.html" target="_blank">
+            <div class="card-thumbnail">
+              <img src="infographics/Ch04_Infographic_BusinessModels.png" alt="Chapter 4 Infographic — Business Models for Web3 Ventures" loading="lazy">
+              <div class="chapter-badge-img">CH. 04</div>
+              <div class="card-thumbnail-overlay">
+                <div class="overlay-btn">View Full Infographic →</div>
+              </div>
+            </div>
+          </a>
+          <div class="card-body">
+            <div class="card-chapter-label">Chapter 04</div>
+            <div class="card-title">Business Models for Web3 Ventures</div>
+            <div class="card-desc">Protocol vs. application layers, value capture mechanisms, revenue models, and the Web3 Business Model Canvas.</div>
+            <div class="card-actions">
+              <a href="infographics/Ch04_Infographic_BusinessModels.html" target="_blank" class="btn-view">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                View Infographic
+              </a>
+              <a href="infographics/Ch04_Infographic_BusinessModels.png" download class="btn-download">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download PNG
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ch05 -->
+        <div class="infographic-card" id="ch05">
+          <a href="infographics/Ch05_Infographic_GovernanceDAOs.html" target="_blank">
+            <div class="card-thumbnail">
+              <img src="infographics/Ch05_Infographic_GovernanceDAOs.png" alt="Chapter 5 Infographic — Governance & DAOs" loading="lazy">
+              <div class="chapter-badge-img">CH. 05</div>
+              <div class="card-thumbnail-overlay">
+                <div class="overlay-btn">View Full Infographic →</div>
+              </div>
+            </div>
+          </a>
+          <div class="card-body">
+            <div class="card-chapter-label">Chapter 05</div>
+            <div class="card-title">Governance &amp; DAOs</div>
+            <div class="card-desc">DAO governance models, voting mechanisms, the DAO Decision Tree, coordination problems, and on-chain vs. off-chain governance tradeoffs.</div>
+            <div class="card-actions">
+              <a href="infographics/Ch05_Infographic_GovernanceDAOs.html" target="_blank" class="btn-view">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                View Infographic
+              </a>
+              <a href="infographics/Ch05_Infographic_GovernanceDAOs.png" download class="btn-download">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download PNG
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ch06 -->
+        <div class="infographic-card" id="ch06">
+          <a href="infographics/Ch06_Infographic_Fundraising.html" target="_blank">
+            <div class="card-thumbnail">
+              <img src="infographics/Ch06_Infographic_Fundraising.png" alt="Chapter 6 Infographic — Fundraising in Web3" loading="lazy">
+              <div class="chapter-badge-img">CH. 06</div>
+              <div class="card-thumbnail-overlay">
+                <div class="overlay-btn">View Full Infographic →</div>
+              </div>
+            </div>
+          </a>
+          <div class="card-body">
+            <div class="card-chapter-label">Chapter 06</div>
+            <div class="card-title">Fundraising in Web3</div>
+            <div class="card-desc">ICOs, IDOs, venture capital, token sales, and grant programmes — a comparative map of every Web3 fundraising pathway.</div>
+            <div class="card-actions">
+              <a href="infographics/Ch06_Infographic_Fundraising.html" target="_blank" class="btn-view">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                View Infographic
+              </a>
+              <a href="infographics/Ch06_Infographic_Fundraising.png" download class="btn-download">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download PNG
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ch07 -->
+        <div class="infographic-card" id="ch07">
+          <a href="infographics/Ch07_Infographic_Community.html" target="_blank">
+            <div class="card-thumbnail">
+              <img src="infographics/Ch07_Infographic_Community.png" alt="Chapter 7 Infographic — Building & Growing Your Web3 Community" loading="lazy">
+              <div class="chapter-badge-img">CH. 07</div>
+              <div class="card-thumbnail-overlay">
+                <div class="overlay-btn">View Full Infographic →</div>
+              </div>
+            </div>
+          </a>
+          <div class="card-body">
+            <div class="card-chapter-label">Chapter 07</div>
+            <div class="card-title">Building &amp; Growing Your Web3 Community</div>
+            <div class="card-desc">Community flywheels, token-gated access, Discord architecture, contributor incentives, and the growth stages of a Web3 community.</div>
+            <div class="card-actions">
+              <a href="infographics/Ch07_Infographic_Community.html" target="_blank" class="btn-view">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                View Infographic
+              </a>
+              <a href="infographics/Ch07_Infographic_Community.png" download class="btn-download">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download PNG
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ch08 -->
+        <div class="infographic-card" id="ch08">
+          <a href="infographics/Ch08_Infographic_FutureWeb3.html" target="_blank">
+            <div class="card-thumbnail">
+              <img src="infographics/Ch08_Infographic_FutureWeb3.png" alt="Chapter 8 Infographic — The Future of Web3 Entrepreneurship" loading="lazy">
+              <div class="chapter-badge-img">CH. 08</div>
+              <div class="card-thumbnail-overlay">
+                <div class="overlay-btn">View Full Infographic →</div>
+              </div>
+            </div>
+          </a>
+          <div class="card-body">
+            <div class="card-chapter-label">Chapter 08</div>
+            <div class="card-title">The Future of Web3 Entrepreneurship</div>
+            <div class="card-desc">Agentic AI, autonomous organisations, Web3 infrastructure stacks for machines, and the frontier of the decentralised economy.</div>
+            <div class="card-actions">
+              <a href="infographics/Ch08_Infographic_FutureWeb3.html" target="_blank" class="btn-view">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                View Infographic
+              </a>
+              <a href="infographics/Ch08_Infographic_FutureWeb3.png" download class="btn-download">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download PNG
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /gallery-grid -->
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <strong>Entrepreneurship in the Age of AI &amp; Web3</strong> · Zishan A. Mohammad<br>
+    <span style="margin-top:6px;display:inline-block;">All infographics are free to use for educational purposes.</span>
+  </footer>
+
+</body>
+</html>
