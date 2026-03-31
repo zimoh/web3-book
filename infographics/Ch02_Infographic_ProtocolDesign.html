@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ch2: Blockchain Architecture & Protocol Design — Infographic</title>
+<style>
+*{{margin:0;padding:0;box-sizing:border-box}}
+@page{{size:A4 landscape;margin:0}}
+body{{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:#D8D8D8;display:flex;justify-content:center;align-items:center;min-height:100vh}}
+.ig{{width:1920px;height:1080px;display:grid;grid-template-rows:95px 640px 295px 50px;background:#F7F8FA;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.35)}}
+.hdr{{background:#1A1A2E;display:flex;align-items:center;padding:0 48px;gap:20px;border-bottom:4px solid #00B4D8}}
+.badge{{font-size:11px;font-weight:800;color:#00B4D8;letter-spacing:.14em;border:2px solid #00B4D840;padding:5px 13px;border-radius:4px;white-space:nowrap}}
+.hdiv{{width:2px;height:34px;background:#00B4D835;flex-shrink:0}}
+.chnum{{font-size:56px;font-weight:900;color:#00B4D8;line-height:1;flex-shrink:0}}
+.chtitle{{font-size:24px;font-weight:300;color:white;letter-spacing:.02em;flex:1;font-family:Georgia,serif}}
+.series{{font-size:10px;color:rgba(255,255,255,.4);letter-spacing:.07em;text-align:right;flex-shrink:0;line-height:1.7}}
+.main{{display:grid;grid-template-columns:1200px 720px}}
+.fw{{background:white;padding:20px 28px 16px;border-right:1px solid #DDE0E8;overflow:hidden}}
+.fwlabel{{font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#00B4D8;margin-bottom:6px;display:flex;align-items:center;gap:8px}}
+.fwlabel::after{{content:'';flex:1;height:1px;background:#00B4D828}}
+.fw svg{{width:100%;height:calc(100% - 26px)}}
+.rp{{display:flex;flex-direction:column;padding:24px 32px;gap:20px;background:#F7F8FA}}
+.dc{{background:#1A1A2E;border-radius:10px;padding:24px 28px;border-left:5px solid #00B4D8;flex-shrink:0}}
+.dch{{font-size:64px;font-weight:900;color:#00B4D8;line-height:1;letter-spacing:-.02em;font-family:Georgia,serif}}
+.dcx{{font-size:12.5px;color:rgba(255,255,255,.6);line-height:1.5;margin-top:8px}}
+.thesis{{flex:1;background:white;border-radius:9px;padding:18px 22px;border-top:3px solid #00B4D855}}
+.tlabel{{font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#6C757D;margin-bottom:8px}}
+.ttext{{font-size:13.5px;line-height:1.65;color:#2C2C3A;font-family:Georgia,serif;font-style:italic}}
+.chibadge{{display:flex;align-items:center;gap:8px;flex-shrink:0}}
+.dot{{width:9px;height:9px;border-radius:50%;background:#00B4D8;flex-shrink:0}}
+.chibadge span{{font-size:10.5px;color:#6C757D;letter-spacing:.05em}}
+.btm{{display:grid;grid-template-columns:1fr 600px;border-top:2px solid #DDE0E8}}
+.ta{{background:white;padding:20px 32px;border-right:1px solid #DDE0E8}}
+.gl{{background:#EAECF0;padding:20px 26px}}
+.seclabel{{font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#00B4D8;margin-bottom:12px;display:flex;align-items:center;gap:8px}}
+.seclabel::after{{content:'';flex:1;height:1px;background:#00B4D822}}
+.tai{{display:flex;gap:12px;margin-bottom:9px;align-items:flex-start}}
+.tan{{font-size:22px;font-weight:900;color:#00B4D8;line-height:1;flex-shrink:0;width:20px}}
+.tat{{font-size:11.5px;line-height:1.52;color:#2C2C3A}}
+.gi{{margin-bottom:11px}}
+.gterm{{font-size:11px;font-weight:700;color:#1A1A2E;letter-spacing:.02em;margin-bottom:2px}}
+.gdef{{font-size:10px;line-height:1.5;color:#6C757D}}
+.ftr{{background:#1A1A2E;display:flex;align-items:center;padding:0 44px;gap:20px;border-top:1px solid #00B4D828}}
+.ftrlabel{{font-size:8.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#00B4D8;flex-shrink:0}}
+.ftrtext{{font-size:10px;color:rgba(255,255,255,.45);flex:1;line-height:1.4}}
+.ftrbrand{{font-size:9.5px;color:rgba(255,255,255,.28);flex-shrink:0;text-align:right;letter-spacing:.05em}}
+</style>
+</head>
+<body>
+<div class="ig">
+  <div class="hdr">
+    <div class="badge">CH. 02</div>
+    <div class="hdiv"></div>
+    <div class="chnum">2</div>
+    <div class="chtitle">Blockchain Architecture & Protocol Design</div>
+    <div class="series">Web3 Entrepreneurship · MBA Programme<br>Zishan A. Mohammad · March 2026</div>
+  </div>
+  <div class="main">
+    <div class="fw">
+      <div class="fwlabel">Consensus Mechanism Matrix</div>
+      <svg viewBox="0 0 1000 520" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+  <defs>
+    <marker id="arr2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0,8 3,0 6" fill="#00B4D8"/>
+    </marker>
+    <marker id="arrgr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0,8 3,0 6" fill="#6C757D"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="520" fill="#F7F8FA"/>
+  <!-- Quadrant backgrounds -->
+  <rect x="130" y="60" width="405" height="205" fill="#E8F8FF" opacity="0.6"/>
+  <rect x="535" y="60" width="405" height="205" fill="#FFF3E8" opacity="0.6"/>
+  <rect x="130" y="265" width="405" height="205" fill="#F0F0F0" opacity="0.5"/>
+  <rect x="535" y="265" width="405" height="205" fill="#FFE8E8" opacity="0.5"/>
+  <!-- Grid lines -->
+  <line x1="292" y1="60" x2="292" y2="470" stroke="#D0D4DC" stroke-width="1" stroke-dasharray="4,4"/><line x1="454" y1="60" x2="454" y2="470" stroke="#D0D4DC" stroke-width="1" stroke-dasharray="4,4"/><line x1="616" y1="60" x2="616" y2="470" stroke="#D0D4DC" stroke-width="1" stroke-dasharray="4,4"/><line x1="778" y1="60" x2="778" y2="470" stroke="#D0D4DC" stroke-width="1" stroke-dasharray="4,4"/>
+  <line x1="130" y1="388" x2="940" y2="388" stroke="#D0D4DC" stroke-width="1" stroke-dasharray="4,4"/><line x1="130" y1="306" x2="940" y2="306" stroke="#D0D4DC" stroke-width="1" stroke-dasharray="4,4"/><line x1="130" y1="224" x2="940" y2="224" stroke="#D0D4DC" stroke-width="1" stroke-dasharray="4,4"/><line x1="130" y1="142" x2="940" y2="142" stroke="#D0D4DC" stroke-width="1" stroke-dasharray="4,4"/>
+  <!-- Axes -->
+  <line x1="130" y1="470" x2="940" y2="470" stroke="#1A1A2E" stroke-width="2.5" marker-end="url(#arrgr)"/>
+  <line x1="130" y1="470" x2="130" y2="60" stroke="#1A1A2E" stroke-width="2.5" marker-end="url(#arrgr)"/>
+  <!-- Axis labels -->
+  <text x="535" y="502" text-anchor="middle" fill="#1A1A2E" font-size="13" font-weight="700" font-family="sans-serif">Energy Consumption  →  HIGH</text>
+  <text x="108" y="80" text-anchor="middle" fill="#1A1A2E" font-size="13" font-weight="700" font-family="sans-serif" transform="rotate(-90,108,265)">Decentralisation  →  HIGH</text>
+  <text x="140" y="488" text-anchor="start" fill="#6C757D" font-size="10" font-family="sans-serif">LOW</text>
+  <text x="140" y="462" text-anchor="start" fill="#6C757D" font-size="10" font-family="sans-serif">LOW</text>
+  <!-- Border -->
+  <rect x="130" y="60" width="810" height="410" fill="none" stroke="#C8CDD8" stroke-width="1.5"/>
+  <!-- The Merge arrow: Ethereum PoW → PoS -->
+  <circle cx="778" cy="109" r="14" fill="#00B4D830" stroke="#00B4D8" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="778" y="87" text-anchor="middle" fill="#6C757D" font-size="11" font-family="sans-serif">Ethereum (PoW)</text>
+  <path d="M778,109 Q503,49 227,93" fill="none" stroke="#00B4D8" stroke-width="2.5" stroke-dasharray="8,4" marker-end="url(#arr2)"/>
+  <!-- "The Merge" label on arrow -->
+  <rect x="438" y="14" width="130" height="30" rx="6" fill="#00B4D8" opacity="0.92"/>
+  <text x="503" y="35" text-anchor="middle" fill="#1A1A2E" font-size="13" font-weight="700" font-family="sans-serif">⚡ The Merge</text>
+  <!-- Protocol dots -->
+  <circle cx="818" cy="101" r="18" fill="#F7931A" stroke="white" stroke-width="2.5" opacity="0.92"/><text x="818" y="129" text-anchor="middle" fill="#1A1A2E" font-size="12" font-weight="600" font-family="sans-serif">Bitcoin</text><text x="818" y="145" text-anchor="middle" fill="#1A1A2E" font-size="12" font-weight="600" font-family="sans-serif">(PoW)</text><circle cx="227" cy="93" r="18" fill="#00B4D8" stroke="white" stroke-width="2.5" opacity="0.92"/><text x="227" y="121" text-anchor="middle" fill="#1A1A2E" font-size="12" font-weight="600" font-family="sans-serif">Ethereum</text><text x="227" y="137" text-anchor="middle" fill="#1A1A2E" font-size="12" font-weight="600" font-family="sans-serif">(PoS)</text><circle cx="252" cy="244" r="18" fill="#9945FF" stroke="white" stroke-width="2.5" opacity="0.92"/><text x="252" y="272" text-anchor="middle" fill="#1A1A2E" font-size="12" font-weight="600" font-family="sans-serif">Solana</text><text x="252" y="288" text-anchor="middle" fill="#1A1A2E" font-size="12" font-weight="600" font-family="sans-serif">(PoH+PoS)</text><circle cx="211" cy="368" r="18" fill="#F0B90B" stroke="white" stroke-width="2.5" opacity="0.92"/><text x="211" y="340" text-anchor="middle" fill="#1A1A2E" font-size="12" font-weight="600" font-family="sans-serif">BNB Chain</text><text x="211" y="356" text-anchor="middle" fill="#1A1A2E" font-size="12" font-weight="600" font-family="sans-serif">(PoSA)</text>
+</svg>
+    </div>
+    <div class="rp">
+      <div class="dc">
+        <div class="dch">99.95%</div>
+        <div class="dcx">Ethereum's energy reduction after The Merge, September 2022</div>
+      </div>
+      <div class="thesis">
+        <div class="tlabel">Chapter Thesis</div>
+        <div class="ttext">Every blockchain design choice is a deliberate trade-off between decentralisation, security, and throughput — there is no free lunch.</div>
+      </div>
+      <div class="chibadge"><div class="dot"></div><span>Chapter 2 of 8 &nbsp;·&nbsp; Protocol Design</span></div>
+    </div>
+  </div>
+  <div class="btm">
+    <div class="ta">
+      <div class="seclabel">Key Takeaways</div>
+      <div class="tai"><div class="tan">1</div><div class="tat">Proof of Work secures via economic cost of attack; Proof of Stake secures via economic cost of slashing. PoS achieves comparable security at 99.95% lower energy cost.</div></div>
+      <div class="tai"><div class="tan">2</div><div class="tat">Solana's design deliberately trades some decentralisation for throughput (50,000 TPS theoretical). This is not a flaw — it is an explicit, well-reasoned design choice with known trade-offs.</div></div>
+      <div class="tai"><div class="tan">3</div><div class="tat">No blockchain has solved the trilemma. Layer 2 solutions (Optimism, Arbitrum, zkSync) scale Ethereum by moving computation off-chain while inheriting L1 security.</div></div>
+    </div>
+    <div class="gl">
+      <div class="seclabel">Glossary</div>
+      <div class="gi"><div class="gterm">Proof of Stake (PoS)</div><div class="gdef">Consensus where validators are selected proportional to staked collateral; slashing punishes misbehaviour; used by Ethereum post-Merge.</div></div>
+      <div class="gi"><div class="gterm">Finality</div><div class="gdef">The point at which a transaction is considered irreversible; probabilistic in PoW (6 confirmations ≈ safe), deterministic in most PoS systems.</div></div>
+      <div class="gi"><div class="gterm">MEV (Maximal Extractable Value)</div><div class="gdef">Profit validators extract by reordering, inserting, or censoring transactions within a block; a structural feature of transparent mempools.</div></div>
+    </div>
+  </div>
+  <div class="ftr">
+    <div class="ftrlabel">60% Test</div>
+    <div class="ftrtext">Compare Ethereum and Solana architectural trade-offs. What changed at The Merge and why? How do Layer 2s scale without sacrificing security?</div>
+    <div class="ftrbrand">Entrepreneurship in the Age of AI &amp; Web3</div>
+  </div>
+</div>
+</body>
+</html>
