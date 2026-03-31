@@ -185,38 +185,43 @@
     .nav-dropdown-menu {
       display: none;
       position: absolute;
-      top: calc(100% + 12px);
+      top: 100%;           /* flush — no gap so hover zone is continuous */
       left: 50%;
       transform: translateX(-50%);
+      padding-top: 8px;   /* visual spacing without breaking hover chain */
+      list-style: none;
+      min-width: 200px;
+      z-index: 200;
+      white-space: nowrap;
+    }
+    /* Inner panel carries the visual styling so the padding-top gap is invisible */
+    .nav-dropdown-menu-inner {
       background: rgba(30, 38, 68, 0.98);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border: 1px solid rgba(255,255,255,0.1);
       border-radius: 10px;
       padding: 6px 0;
-      list-style: none;
-      min-width: 200px;
       box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-      z-index: 200;
-      white-space: nowrap;
     }
-    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
-    .nav-dropdown-menu li a {
+    .nav-dropdown:hover .nav-dropdown-menu,
+    .nav-dropdown.open .nav-dropdown-menu { display: block; }
+    .nav-dropdown-menu-inner a {
       display: block;
       padding: 9px 18px;
       font-size: 12px;
       font-weight: 600;
       color: rgba(255,255,255,0.75);
       transition: background 0.15s, color 0.15s;
-      border-radius: 0;
       white-space: nowrap;
+      text-decoration: none;
     }
-    .nav-dropdown-menu li a:hover {
+    .nav-dropdown-menu-inner a:hover {
       background: rgba(255,255,255,0.07);
       color: var(--white);
     }
-    .nav-dropdown-menu li:first-child a { border-radius: 10px 10px 0 0; }
-    .nav-dropdown-menu li:last-child a { border-radius: 0 0 10px 10px; }
+    .nav-dropdown-menu-inner a:first-child { border-radius: 10px 10px 0 0; }
+    .nav-dropdown-menu-inner a:last-child { border-radius: 0 0 10px 10px; }
     .nav-dropdown-menu .menu-icon {
       display: inline-block;
       width: 16px;
@@ -1226,17 +1231,21 @@
         <li><a href="#chapters">Chapters</a></li>
         <li class="nav-dropdown">
           <a href="#" class="nav-dropdown-trigger">For Students</a>
-          <ul class="nav-dropdown-menu">
-            <li><a href="reading-list.html"><span class="menu-icon">📚</span>Reading Lists</a></li>
-            <li><a href="#simulator"><span class="menu-icon">🔢</span>Token Simulator</a></li>
-          </ul>
+          <div class="nav-dropdown-menu">
+            <div class="nav-dropdown-menu-inner">
+              <a href="reading-list.html"><span class="menu-icon">📚</span>Reading Lists</a>
+              <a href="#simulator"><span class="menu-icon">🔢</span>Token Simulator</a>
+            </div>
+          </div>
         </li>
         <li class="nav-dropdown">
           <a href="#instructors" class="nav-dropdown-trigger">For Instructors</a>
-          <ul class="nav-dropdown-menu">
-            <li><a href="slidedecks.html"><span class="menu-icon">📊</span>Slide Decks</a></li>
-            <li><a href="#instructors"><span class="menu-icon">📝</span>All Resources</a></li>
-          </ul>
+          <div class="nav-dropdown-menu">
+            <div class="nav-dropdown-menu-inner">
+              <a href="slidedecks.html"><span class="menu-icon">📊</span>Slide Decks</a>
+              <a href="#instructors"><span class="menu-icon">📝</span>All Resources</a>
+            </div>
+          </div>
         </li>
         <li><a href="#author">About</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -1725,6 +1734,31 @@
     // Close mobile nav on link click
     navLinks.querySelectorAll('a').forEach(a => {
       a.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    // ---- Dropdown menus: click-toggle (fixes hover gap bug) ----
+    document.querySelectorAll('.nav-dropdown').forEach(dropdown => {
+      const trigger = dropdown.querySelector('.nav-dropdown-trigger');
+
+      // Toggle open on trigger click
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const isOpen = dropdown.classList.contains('open');
+        // Close all other dropdowns
+        document.querySelectorAll('.nav-dropdown.open').forEach(d => d.classList.remove('open'));
+        if (!isOpen) dropdown.classList.add('open');
+      });
+
+      // Allow clicking links inside the menu without closing prematurely
+      dropdown.querySelector('.nav-dropdown-menu').addEventListener('click', (e) => {
+        e.stopPropagation();
+      });
+    });
+
+    // Close dropdowns when clicking anywhere outside
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.nav-dropdown.open').forEach(d => d.classList.remove('open'));
     });
 
     // ---- Signup form ----
