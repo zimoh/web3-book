@@ -782,6 +782,27 @@
       color: rgba(255,255,255,0.45);
     }
 
+    .resource-badge--live {
+      background: rgba(6,214,160,0.15);
+      border-color: rgba(6,214,160,0.35);
+      color: #06D6A0;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .resource-badge--live::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #06D6A0;
+      animation: pulse-live 1.8s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    @keyframes pulse-live {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(0.7); }
+    }
+
     .instructor-cta {
       text-align: center;
       padding: 40px;
@@ -1485,9 +1506,9 @@
         <!-- SIMULATOR_IFRAME_PLACEHOLDER -->
         <div class="simulator-placeholder" id="simPlaceholder">
           <div class="sim-placeholder-icon">⬡</div>
-          <div class="sim-placeholder-title">Simulator Deploying</div>
-          <p class="sim-placeholder-sub">The interactive token economy simulator is being deployed to Streamlit Community Cloud. Check back shortly — it will appear here automatically once live.</p>
-          <a href="https://share.streamlit.io" target="_blank" rel="noopener" class="btn btn-ghost" style="margin-top:8px;">Visit Streamlit ↗</a>
+          <div class="sim-placeholder-title">Loading Simulator…</div>
+          <p class="sim-placeholder-sub">The Token Economy Simulator is live on Streamlit Community Cloud. If the embed does not load, open it directly below.</p>
+          <a href="https://token-economy-simulator.streamlit.app" target="_blank" rel="noopener" class="btn btn-ghost" style="margin-top:8px;">Open Simulator ↗</a>
         </div>
       </div>
 
@@ -1544,12 +1565,12 @@
         </div>
         </a>
 
-        <a href="#simulator" style="text-decoration:none;color:inherit;">
+        <a href="https://token-economy-simulator.streamlit.app" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
         <div class="resource-card" style="cursor:pointer;">
           <div class="resource-icon">🔢</div>
           <h3>Token Economy Simulator</h3>
-          <p>Interactive tool to experiment with tokenomics parameters in real time — directly linked to Chapter 3 frameworks.</p>
-          <span class="resource-badge resource-badge--coming">Coming Soon</span>
+          <p>Model supply schedules, vesting cliffs, fee burns, and treasury runway in real time — directly linked to the Chapter 3 TBMC framework.</p>
+          <span class="resource-badge resource-badge--live">Live</span>
         </div>
         </a>
 
@@ -1601,10 +1622,10 @@
           <div class="author-name">Zishan A. Mohammad</div>
           <div class="author-title">Researcher · Entrepreneur · Educator</div>
           <p class="author-bio">
-            Zishan A. Mohammad is a researcher and educator at the intersection of entrepreneurship, blockchain, and artificial intelligence. His work spans empirical token economy research, Web3 venture strategy, and the design of decentralized governance systems.
+            Zishan A. Mohammad is a researcher and educator at the intersection of entrepreneurship, blockchain, and artificial intelligence. His work spans empirical token economy research, Web3 venture strategy, and the design of decentralized AI governance systems.
           </p>
           <p class="author-bio">
-            With academic roots at École des Ponts ParisTech and a career spanning research, teaching, and venture consulting, Zishan brings both analytical rigour and practitioner experience to this textbook — bridging the gap between cutting-edge academic research and the realities of building Web3 ventures.
+            With academic roots at École des Ponts ParisTech - Business School and University of Durham and a career spanning research, teaching, and venture consulting, Zishan brings both analytical rigour and practitioner experience to this textbook — bridging the gap between cutting-edge academic research and the realities of building Web3 ventures.
           </p>
           <div class="author-tags">
             <span class="tag">Blockchain Research</span>
