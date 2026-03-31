@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reading List | Entrepreneurship in the Age of AI &amp; Web3</title>
+  <meta name="description" content="Curated reading lists for all 8 chapters — foundational books, seminal academic papers, and practitioner resources.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:ital,wght@0,400;0,600;1,400&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ================================================
+       DESIGN TOKENS — Vibrant Fusion palette
+    ================================================ */
+    :root {
+      --blue-fusion:  #435070;
+      --blue-deep:    #2E3650;
+      --violet:       #8B6FA0;
+      --violet-light: #A98BBF;
+      --golden:       #E8C547;
+      --golden-dim:   #C9A82E;
+      --coral:        #FF6B6B;
+      --cloud:        #F0EEE9;
+      --cloud-warm:   #FAF8F4;
+      --slate:        #1E293B;
+      --warm-gray:    #6B7280;
+      --white:        #FFFFFF;
+
+      --radius-sm:  8px;
+      --radius-md:  14px;
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body:    'Open Sans', sans-serif;
+      --font-mono:    'Fira Code', monospace;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--cloud);
+      color: var(--slate);
+      line-height: 1.65;
+      font-size: 16px;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* ================================================
+       NAV
+    ================================================ */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(46,54,80,0.97);
+      backdrop-filter: blur(12px);
+      padding: 0 28px;
+      height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--golden);
+      flex-shrink: 0;
+    }
+
+    .nav-back {
+      font-family: var(--font-heading);
+      font-size: 12px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+
+    .nav-back:hover { color: var(--golden); }
+    .nav-back svg { width: 14px; height: 14px; }
+
+    /* ================================================
+       HERO HEADER
+    ================================================ */
+    .page-hero {
+      background: linear-gradient(135deg, var(--blue-deep) 0%, var(--blue-fusion) 55%, #5a4a7a 100%);
+      padding: 64px 28px 56px;
+      text-align: center;
+      color: var(--white);
+    }
+
+    .page-hero .label {
+      font-family: var(--font-heading);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--golden);
+      margin-bottom: 16px;
+    }
+
+    .page-hero h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 18px;
+    }
+
+    .page-hero p {
+      font-size: 17px;
+      color: rgba(255,255,255,0.72);
+      max-width: 600px;
+      margin: 0 auto 32px;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .hero-stat {
+      text-align: center;
+    }
+
+    .hero-stat-num {
+      font-family: var(--font-heading);
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--golden);
+    }
+
+    .hero-stat-label {
+      font-size: 11px;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    /* ================================================
+       TOC TABLE
+    ================================================ */
+    .toc-section {
+      padding: 56px 0 48px;
+    }
+
+    .section-label {
+      font-family: var(--font-heading);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--blue-fusion);
+      margin-bottom: 10px;
+    }
+
+    .section-heading {
+      font-family: var(--font-heading);
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--slate);
+      margin-bottom: 32px;
+    }
+
+    .toc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+      gap: 14px;
+    }
+
+    .toc-card {
+      background: var(--white);
+      border: 1px solid rgba(67,80,112,0.1);
+      border-left: 4px solid var(--blue-fusion);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s, border-left-color 0.15s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .toc-card:hover {
+      transform: translateX(4px);
+      box-shadow: 0 4px 20px rgba(67,80,112,0.12);
+      border-left-color: var(--violet);
+    }
+
+    .toc-num {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--warm-gray);
+      flex-shrink: 0;
+      width: 36px;
+    }
+
+    .toc-info { flex: 1; min-width: 0; }
+
+    .toc-title {
+      font-family: var(--font-heading);
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--blue-fusion);
+      line-height: 1.3;
+      margin-bottom: 3px;
+    }
+
+    .toc-sub {
+      font-size: 12px;
+      color: var(--warm-gray);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .toc-counts {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 3px;
+      flex-shrink: 0;
+    }
+
+    .toc-badge {
+      font-family: var(--font-heading);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      white-space: nowrap;
+    }
+
+    .badge-blue  { background: rgba(67,80,112,0.1);  color: var(--blue-fusion); }
+    .badge-violet{ background: rgba(139,111,160,0.1); color: var(--violet); }
+    .badge-gold  { background: rgba(232,197,71,0.15); color: #8a6d00; }
+
+    /* ================================================
+       CHAPTER SECTIONS
+    ================================================ */
+    .chapter-section {
+      padding: 64px 0;
+      border-top: 1px solid rgba(67,80,112,0.1);
+    }
+
+    .chapter-section:first-of-type { border-top: none; }
+
+    .chapter-banner {
+      background: linear-gradient(135deg, var(--blue-deep) 0%, var(--blue-fusion) 55%, #5a4a7a 100%);
+      border-radius: var(--radius-md);
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+
+    .chapter-num-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--golden);
+      background: rgba(232,197,71,0.12);
+      border: 1px solid rgba(232,197,71,0.3);
+      padding: 4px 12px;
+      border-radius: 20px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .chapter-banner-text { flex: 1; min-width: 0; }
+
+    .chapter-banner-text h2 {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .chapter-banner-text p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      font-style: italic;
+    }
+
+    .back-to-toc {
+      font-family: var(--font-heading);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: rgba(255,255,255,0.5);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-shrink: 0;
+      transition: color 0.2s;
+      margin-left: auto;
+    }
+
+    .back-to-toc:hover { color: var(--golden); }
+
+    /* ================================================
+       TIER BLOCKS
+    ================================================ */
+    .tier-block {
+      margin-bottom: 28px;
+    }
+
+    .tier-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid;
+    }
+
+    .tier-block--books   .tier-header { border-color: var(--blue-fusion); }
+    .tier-block--papers  .tier-header { border-color: var(--violet); }
+    .tier-block--practice .tier-header { border-color: var(--golden); }
+
+    .tier-pill {
+      font-family: var(--font-heading);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 3px 12px;
+      border-radius: 12px;
+      color: var(--white);
+    }
+
+    .tier-block--books   .tier-pill { background: var(--blue-fusion); }
+    .tier-block--papers  .tier-pill { background: var(--violet); }
+    .tier-block--practice .tier-pill { background: var(--golden); color: var(--blue-deep); }
+
+    .tier-name {
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--slate);
+    }
+
+    .tier-desc {
+      font-size: 12px;
+      color: var(--warm-gray);
+      font-style: italic;
+      margin-left: auto;
+    }
+
+    /* ================================================
+       ENTRY CARDS
+    ================================================ */
+    .entry-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .entry-card {
+      background: #FAFAFA;
+      border: 1px solid rgba(67,80,112,0.08);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+    }
+
+    .tier-block--books   .entry-card { border-left: 3px solid var(--blue-fusion); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+    .tier-block--papers  .entry-card { border-left: 3px solid var(--violet);       border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+    .tier-block--practice .entry-card { border-left: 3px solid var(--golden);      border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+
+    .entry-head {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+
+    .entry-icon { font-size: 18px; flex-shrink: 0; line-height: 1.4; }
+
+    .entry-title {
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--blue-fusion);
+      line-height: 1.3;
+    }
+
+    .tier-block--papers .entry-title { color: var(--violet); }
+
+    .entry-authors {
+      font-size: 12px;
+      color: var(--warm-gray);
+      margin-top: 2px;
+    }
+
+    .entry-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+
+    .entry-type-pill {
+      display: inline-block;
+      font-family: var(--font-heading);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 10px;
+    }
+
+    .tier-block--books    .entry-type-pill { background: rgba(67,80,112,0.08); color: var(--blue-fusion); }
+    .tier-block--papers   .entry-type-pill { background: rgba(139,111,160,0.1); color: var(--violet); }
+    .tier-block--practice .entry-type-pill { background: rgba(232,197,71,0.15); color: #8a6d00; }
+
+    .citations-badge {
+      font-family: var(--font-heading);
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--coral);
+    }
+
+    .entry-why {
+      font-size: 13px;
+      color: var(--slate);
+      line-height: 1.6;
+      margin-bottom: 6px;
+    }
+
+    .entry-access {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--blue-fusion);
+      word-break: break-all;
+    }
+
+    .tier-block--papers .entry-access { color: var(--violet); }
+
+    /* ================================================
+       FOOTER
+    ================================================ */
+    .page-footer {
+      background: var(--blue-deep);
+      color: rgba(255,255,255,0.5);
+      padding: 32px 28px;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .page-footer a {
+      color: var(--golden);
+      font-weight: 600;
+    }
+
+    /* ================================================
+       RESPONSIVE
+    ================================================ */
+    @media (max-width: 640px) {
+      .toc-grid { grid-template-columns: 1fr; }
+      .toc-counts { display: none; }
+      .chapter-banner { padding: 18px 20px; }
+      .chapter-banner-text h2 { font-size: 17px; }
+      .tier-desc { display: none; }
+      .back-to-toc span { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ================================================
+     NAV
+================================================ -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-dot"></span>
+    Entrepreneurship in the Age of AI &amp; Web3
+  </a>
+  <a href="index.html" class="nav-back">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M10 3L5 8l5 5"/>
+    </svg>
+    <span>Back to Home</span>
+  </a>
+</nav>
+
+<!-- ================================================
+     HERO
+================================================ -->
+<div class="page-hero" id="top">
+  <div class="label">Curated Reading Lists</div>
+  <h1>All 8 Chapters — Reading Materials</h1>
+  <p>Foundational books, seminal academic papers, and practitioner perspectives — curated per chapter</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">8</div>
+      <div class="hero-stat-label">Chapters</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">~30</div>
+      <div class="hero-stat-label">Foundational Books</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">~44</div>
+      <div class="hero-stat-label">Academic Papers</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">~33</div>
+      <div class="hero-stat-label">Practitioner Resources</div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================
+     TOC
+================================================ -->
+<div class="toc-section" id="toc">
+  <div class="container">
+    <div class="section-label">Quick Navigation</div>
+    <h2 class="section-heading">Jump to a Chapter</h2>
+    <div class="toc-grid">
+
+      <a href="#ch1" class="toc-card">
+        <span class="toc-num">Ch.01</span>
+        <div class="toc-info">
+          <div class="toc-title">The Web3 + AI Opportunity</div>
+          <div class="toc-sub">Why AI and blockchain are converging</div>
+        </div>
+        <div class="toc-counts">
+          <span class="toc-badge badge-blue">4 Books</span>
+          <span class="toc-badge badge-violet">5 Papers</span>
+          <span class="toc-badge badge-gold">3 Resources</span>
+        </div>
+      </a>
+
+      <a href="#ch2" class="toc-card">
+        <span class="toc-num">Ch.02</span>
+        <div class="toc-info">
+          <div class="toc-title">Blockchain Fundamentals for Builders</div>
+          <div class="toc-sub">Cryptography, consensus, smart contracts</div>
+        </div>
+        <div class="toc-counts">
+          <span class="toc-badge badge-blue">4 Books</span>
+          <span class="toc-badge badge-violet">5 Papers</span>
+          <span class="toc-badge badge-gold">3 Resources</span>
+        </div>
+      </a>
+
+      <a href="#ch3" class="toc-card">
+        <span class="toc-num">Ch.03</span>
+        <div class="toc-info">
+          <div class="toc-title">Tokenomics — Designing Token Economies</div>
+          <div class="toc-sub">Supply mechanics, incentive design, TBMC</div>
+        </div>
+        <div class="toc-counts">
+          <span class="toc-badge badge-blue">3 Books</span>
+          <span class="toc-badge badge-violet">5 Papers</span>
+          <span class="toc-badge badge-gold">3 Resources</span>
+        </div>
+      </a>
+
+      <a href="#ch4" class="toc-card">
+        <span class="toc-num">Ch.04</span>
+        <div class="toc-info">
+          <div class="toc-title">Web3 Business Models</div>
+          <div class="toc-sub">DeFi, NFTs, protocol revenue, value capture</div>
+        </div>
+        <div class="toc-counts">
+          <span class="toc-badge badge-blue">3 Books</span>
+          <span class="toc-badge badge-violet">5 Papers</span>
+          <span class="toc-badge badge-gold">3 Resources</span>
+        </div>
+      </a>
+
+      <a href="#ch5" class="toc-card">
+        <span class="toc-num">Ch.05</span>
+        <div class="toc-info">
+          <div class="toc-title">Governance &amp; DAOs</div>
+          <div class="toc-sub">On-chain governance and digital coordination</div>
+        </div>
+        <div class="toc-counts">
+          <span class="toc-badge badge-blue">3 Books</span>
+          <span class="toc-badge badge-violet">5 Papers</span>
+          <span class="toc-badge badge-gold">3 Resources</span>
+        </div>
+      </a>
+
+      <a href="#ch6" class="toc-card">
+        <span class="toc-num">Ch.06</span>
+        <div class="toc-info">
+          <div class="toc-title">Fundraising in Web3</div>
+          <div class="toc-sub">ICOs, IDOs, SAFTs, token warrants</div>
+        </div>
+        <div class="toc-counts">
+          <span class="toc-badge badge-blue">3 Books</span>
+          <span class="toc-badge badge-violet">5 Papers</span>
+          <span class="toc-badge badge-gold">3 Resources</span>
+        </div>
+      </a>
+
+      <a href="#ch7" class="toc-card">
+        <span class="toc-num">Ch.07</span>
+        <div class="toc-info">
+          <div class="toc-title">Community Building in Web3</div>
+          <div class="toc-sub">Token incentives, airdrops, contributor culture</div>
+        </div>
+        <div class="toc-counts">
+          <span class="toc-badge badge-blue">3 Books</span>
+          <span class="toc-badge badge-violet">4 Papers</span>
+          <span class="toc-badge badge-gold">3 Resources</span>
+        </div>
+      </a>
+
+      <a href="#ch8" class="toc-card">
+        <span class="toc-num">Ch.08</span>
+        <div class="toc-info">
+          <div class="toc-title">The Agentic Economy &amp; Future of Web3</div>
+          <div class="toc-sub">AI agents, autonomous economic actors</div>
+        </div>
+        <div class="toc-counts">
+          <span class="toc-badge badge-blue">3 Books</span>
+          <span class="toc-badge badge-violet">7 Papers</span>
+          <span class="toc-badge badge-gold">3 Resources</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+<!-- ================================================
+     CHAPTER 1
+================================================ -->
+<div class="chapter-section" id="ch1">
+  <div class="container">
+    <div class="chapter-banner">
+      <span class="chapter-num-badge">CHAPTER 01</span>
+      <div class="chapter-banner-text">
+        <h2>The Web3 + AI Opportunity</h2>
+        <p>Why AI and blockchain are converging — and what it means for entrepreneurs</p>
+      </div>
+      <a href="#toc" class="back-to-toc">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3l-5 5 5 5M3 8h10"/></svg>
+        <span>Back to Table</span>
+      </a>
+    </div>
+
+    <!-- Tier 1 -->
+    <div class="tier-block tier-block--books">
+      <div class="tier-header">
+        <span class="tier-pill">Tier 1</span>
+        <span class="tier-name">Foundational Books</span>
+        <span class="tier-desc">Essential reading before engaging with the chapter</span>
+      </div>
+      <div class="entry-list">
+
+        <div class="entry-card">
+          <div class="entry-head">
+            <span class="entry-icon">📖</span>
+            <div>
+              <div class="entry-title">The Internet of Money, Vol. 1</div>
+              <div class="entry-authors">Andreas M. Antonopoulos — 2016, Merkle Bloom</div>
+            </div>
+          </div>
+          <div class="entry-meta"><span class="entry-type-pill">Book</span></div>
+          <p class="entry-why">A landmark collection of talks explaining <em>why</em> Bitcoin and open blockchains matter — not as payments technology, but as a new internet of value. Essential intellectual grounding before engaging with the AI+Web3 convergence thesis.</p>
+          <div class="entry-access">https://aantonop.com/books/</div>
+        </div>
+
+        <div class="entry-card">
+          <div class="entry-head">
+            <span class="entry-icon">📖</span>
+            <div>
+              <div class="entry-title">The Age of AI: And Our Human Future</div>
+              <div class="entry-authors">Henry Kissinger, Eric Schmidt &amp; Daniel Huttenlocher — 2021, Little, Brown</div>
+            </div>
+          </div>
+          <div class="entry-meta"><span class="entry-type-pill">Book</span></div>
+          <p class="entry-why">Three intellectual heavyweights examine how AI will reshape geopolitics, philosophy, and knowledge. Provides the macro backdrop for understanding why AI is not just another technology cycle — it is a civilizational shift intersecting directly with Web3's decentralization thesis.</p>
+          <div class="entry-access">ISBN: 978-0316273800</div>
+        </div>
+
+        <div class="entry-card">
+          <div class="entry-head">
+            <span class="entry-icon">📖</span>
+            <div>
+              <div class="entry-title">The Network State: How to Start a New Country</div>
+              <div class="entry-authors">Balaji Srinivasan — 2022, Self-published</div>
+            </div>
+          </div>
+          <div class="entry-meta"><span class="entry-type-pill">Book</span></div>
+          <p class="entry-why">A provocative framework for how crypto-enabled communities could form new political and economic entities. Directly relevant to the argument that Web3 enables new forms of venture organization that bypass traditional institutional gatekeepers.</p>
+          <div class="entry-access">https://thenetworkstate.com</div>
+        </div>
+
+        <div class="entry-card">
+          <div class="entry-head">
+            <span class="entry-icon">📖</span>
+            <div>
+              <div class="entry-title">Zero to One: Notes on Startups, or How to Build the Future</div>
+              <div class="entry-authors">Peter Thiel with Blake Masters — 2014, Crown Business</div>
+            </div>
+          </div>
+          <div class="entry-meta"><span class="entry-type-pill">Book</span></div>
+          <p class="entry-why">The canonical text on entrepreneurial thinking, vertical progress, and building monopolies. Provides the venture-building lens through which the AI+Web3 opportunity should be evaluated.</p>
+          <div class="entry-access">ISBN: 978-0804139021</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Tier 2 -->
+    <div class="tier-block tier-block--papers">
+      <div class="tier-header">
+        <span class="tier-pill">Tier 2</span>
+        <span class="tier-name">Seminal Academic Papers</span>
+        <span class="tier-desc">Most-cited research — sourced via Consensus &amp; Google Scholar</span>
+      </div>
+      <div class="entry-list">
+
+        <div class="entry-card">
+          <div class="entry-head">
+            <span class="entry-icon">📄</span>
+            <div>
+              <div class="entry-title">Decentralized AI: Edge Intelligence and Smart Blockchain, Metaverse, Web3, and DeSci</div>
+              <div class="entry-authors">Qinglan et al. — 2022, IEEE Intelligent Systems</div>
+            </div>
+          </div>
+          <div class="entry-meta"><span class="entry-type-pill">Survey Paper</span><span class="citations-badge">166 citations</span></div>
+          <p class="entry-why">The most-cited survey at the AI+Web3 intersection. Maps the conceptual landscape of decentralized AI, its technical architecture, and how it enables smart blockchains and Web3 ecosystems.</p>
+          <div class="entry-access">https://consensus.app/papers/details/4606b3945ce35cb3b058fd1686db6c62/</div>
+        </div>
+
+        <div class="entry-card">
+          <div class="entry-head">
+            <span class="entry-icon">📄</span>
+            <div>
+              <div class="entry-title">The Promise of a Decentralized Internet: What is Web3 and How Can Firms Prepare?</div>
+              <div class="entry-authors">Lumineau, Wang &amp; Schilke — 2022, Business Horizons</div>
+            </div>
+          </div>
+          <div class="entry-meta"><span class="entry-type-pill">Academic Paper</span><span class="citations-badge">128 citations</span></div>
+          <p class="entry-why">One of the most-cited management-oriented Web3 papers. Defines the four key blockchain-enabled applications (fungible tokens, NFTs, DAOs, metaverses) and explains how they challenge established companies.</p>
+          <div class="entry-access">https://consensus.app/papers/details/432b4874693e5ae8a2f0ec376d06fa69/</div>
+        </div>
+
+        <div class="entry-card">
+          <div class="entry-head">
+            <span class="entry-icon">📄</span>
+            <div>
+              <div class="entry-title">Web3: A Comprehensive Review on Background, Technologies, Applications, Zero-Trust Architectures, Challenges and Future Directions</div>
+              <div class="entry-authors">Ante et al. — 2023, Internet of Things and Cyber-Physical Systems</div>
+            </div>
+          </div>
+          <div class="entry-meta"><span class="entry-type-pill">Survey Paper</span><span class="citations-badge">95 citations</span></div>
+          <p class="entry-why">A comprehensive technical and application survey of Web3. Covers DApps, DeFi, NFTs, DAOs, supply chains, and the integration of AI and IoT across the full Web3 stack.</p>
+          <div class="entry-access">https://consensus.app/papers/details/50772eabdea35d42ba9684d793b72ac4/</div>
+        </div>
+
+        <div class="entry-card">
+          <div class="entry-head">
+            <span class="entry-icon">📄</span>
+            <div>
+              <div class="entry-title">AI Agents Meet Blockchain: A Survey on Secure and Scalable Collaboration for Multi-Agents</div>
+              <div class="entry-authors">Chen et al. — 2025, Future Internet</div>
+            </div>
+          </div>
+          <div class="entry-meta"><span class="entry-type-pill">Survey Paper</span><span class="citations-badge">29 citations</span></div>
+          <p class="entry-why">The most comprehensive survey on how AI agents and blockchain systems are converging — covering multi-agent coordination in DeFi, governance, and autonomous systems.</p>
+          <div class="entry-access">https://consensus.app/papers/details/94274c5a153059c791c29a23c75d2952/</div>
+        </div>
+
+        <div class="entry-card">
+          <div class="entry-head">
+            <span class="entry-icon">📄</span>
+            <div>
+              <div class="entry-title">Web3 x AI Agents: Landscape, Integrations, and Foundational Challenges</div>
+              <div class="entry-authors">Wang et al. — 2025, ArXiv</div>
+            </div>
+          </div>
+          <div class="entry-meta"><span class="entry-type-pill">Working Paper</span></div>
+          <p class="entry-why">The first comprehensive analysis of the Web3+AI agent intersection, mapping 133 existing projects across economics, governance, security, and trust dimensions.</p>
+          <div class="entry-access">https://consensus.app/papers/details/0e6c458437585af888496aa33cbe88f5/</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Tier 3 -->
+    <div class="tier-block tier-block--practice">
+      <div class="tier-header">
+        <span class="tier-pill">Tier 3</span>
+        <span class="tier-name">Practitioner Perspectives</span>
+        <span class="tier-desc">Essays, reports, and talks from builders at the frontier</span>
+      </div>
+      <div class="entry-list">
+
+        <div class="entry-card">
+          <div class="entry-head"><span class="entry-icon">🎙️</span>
+            <div><div class="entry-title">a16z Crypto State of Crypto Report (Annual)</div><div class="entry-authors">Andreessen Horowitz — Annual</div></div>
+          </div>
+          <div class="entry-meta"><span class="entry-type-pill">Industry Report</span></div>
+          <p class="entry-why">The most data-rich annual snapshot of Web3's growth: developer activity, user adoption, application categories, and capital flows.</p>
+          <div class="entry-access">https://a16zcrypto.com/state-of-crypto/</div>
+        </div>
+
+        <div class="entry-card">
+          <div class="entry-head"><span class="entry-icon">📝</span>
+            <div><div class="entry-title">Vitalik Buterin's Research Blog — Selected Essays</div><div class="entry-authors">Vitalik Buterin — vitalik.eth.limo</div></div>
+          </div>
+          <div class="entry-meta"><span class="entry-type-pill">Essay Series</span></div>
+          <p class="entry-why">Required reading for any serious builder. Recommended: "The Meaning of Decentralization" (2017) and "Where to use a blockchain" (2022).</p>
+          <div class="entry-access">https://vitalik.eth.limo</div>
+        </div>
+
+        <div class="entry-card">
+          <div class="entry-head"><span class="entry-icon">🎙️</span>
+            <div><div class="entry-title">Bankless Podcast — Episode Archive</div><div class="entry-authors">Ryan Sean Adams &amp; David Hoffman</div></div>
+          </div>
+          <div class="entry-meta"><span class="entry-type-pill">Podcast</span></div>
+          <p class="entry-why">The leading long-form interview podcast at the intersection of crypto, DeFi, and Web3 culture. Start with "Crypto x AI" and founder interviews from Ethereum, Uniswap, and Aave.</p>
+          <div class="entry-access">https://www.bankless.com/listen</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================
+     CHAPTER 2
+================================================ -->
+<div class="chapter-section" id="ch2">
+  <div class="container">
+    <div class="chapter-banner">
+      <span class="chapter-num-badge">CHAPTER 02</span>
+      <div class="chapter-banner-text">
+        <h2>Blockchain Fundamentals for Builders</h2>
+        <p>Cryptographic primitives, consensus mechanisms, and smart contracts</p>
+      </div>
+      <a href="#toc" class="back-to-toc">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3l-5 5 5 5M3 8h10"/></svg>
+        <span>Back to Table</span>
+      </a>
+    </div>
+
+    <div class="tier-block tier-block--books">
+      <div class="tier-header"><span class="tier-pill">Tier 1</span><span class="tier-name">Foundational Books</span><span class="tier-desc">Essential technical references</span></div>
+      <div class="entry-list">
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📖</span><div><div class="entry-title">Mastering Bitcoin: Programming the Open Blockchain</div><div class="entry-authors">Andreas M. Antonopoulos — 2nd ed. 2017, O'Reilly</div></div></div><div class="entry-meta"><span class="entry-type-pill">Book</span></div><p class="entry-why">The definitive technical reference for Bitcoin and blockchain fundamentals. Covers cryptographic keys, transactions, the UTXO model, and the Bitcoin protocol in depth.</p><div class="entry-access">ISBN: 978-1491954386</div></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📖</span><div><div class="entry-title">Mastering Ethereum: Building Smart Contracts and DApps</div><div class="entry-authors">Antonopoulos &amp; Wood — 2018, O'Reilly</div></div></div><div class="entry-meta"><span class="entry-type-pill">Book</span></div><p class="entry-why">Covers Solidity, the EVM, token standards (ERC-20/ERC-721), DeFi primitives, and decentralized application architecture. Required for any entrepreneur building on Ethereum or EVM-compatible chains.</p><div class="entry-access">https://github.com/ethereumbook/ethereumbook</div></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📖</span><div><div class="entry-title">Bitcoin and Cryptocurrency Technologies</div><div class="entry-authors">Arvind Narayanan et al. — 2016, Princeton University Press</div></div></div><div class="entry-meta"><span class="entry-type-pill">Book</span></div><p class="entry-why">The academic gold standard for blockchain education, developed as the companion to Princeton's Coursera course. Covers hash functions, digital signatures, proof-of-work, and the economics of decentralized systems.</p><div class="entry-access">https://bitcoinbook.cs.princeton.edu/</div></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📖</span><div><div class="entry-title">The Bitcoin Standard</div><div class="entry-authors">Saifedean Ammous — 2018, Wiley</div></div></div><div class="entry-meta"><span class="entry-type-pill">Book</span></div><p class="entry-why">An economic history of money culminating in the case for Bitcoin as sound money — the economic philosophy that underpins much of the Web3 builder ethos.</p><div class="entry-access">ISBN: 978-1119473862</div></div>
+      </div>
+    </div>
+
+    <div class="tier-block tier-block--papers">
+      <div class="tier-header"><span class="tier-pill">Tier 2</span><span class="tier-name">Seminal Academic Papers</span><span class="tier-desc">Most-cited blockchain research</span></div>
+      <div class="entry-list">
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📄</span><div><div class="entry-title">Blockchain Disruption and Smart Contracts</div><div class="entry-authors">Cong &amp; He — 2019, Review of Financial Studies</div></div></div><div class="entry-meta"><span class="entry-type-pill">Academic Paper</span><span class="citations-badge">959 citations</span></div><p class="entry-why">The most-cited rigorous economic analysis of how blockchain and smart contracts reshape market structure — demonstrating how they reduce information asymmetry and lower intermediary rents.</p></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📄</span><div><div class="entry-title">Survey on Consensus Mechanisms and Mining Strategy Management in Blockchain Networks</div><div class="entry-authors">Wang et al. — 2019, IEEE Access</div></div></div><div class="entry-meta"><span class="entry-type-pill">Survey Paper</span><span class="citations-badge">790 citations</span></div><p class="entry-why">The most comprehensive survey of blockchain consensus mechanisms — covering PoW, PoS, DPoS, PBFT, and hybrid approaches with security/scalability/decentralization trade-offs.</p></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📄</span><div><div class="entry-title">Blockchain Technology in Business and Information Systems Research</div><div class="entry-authors">Beck et al. — 2017, Business &amp; Information Systems Engineering</div></div></div><div class="entry-meta"><span class="entry-type-pill">Academic Paper</span><span class="citations-badge">465 citations</span></div><p class="entry-why">A seminal management science framing of blockchain as a general-purpose technology, mapping its properties to business use cases.</p></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📄</span><div><div class="entry-title">Ethereum: A Next-Generation Smart Contract and Decentralized Application Platform</div><div class="entry-authors">Vitalik Buterin — 2014, Ethereum White Paper</div></div></div><div class="entry-meta"><span class="entry-type-pill">White Paper</span></div><p class="entry-why">The founding document of programmable blockchain. Essential reading — Buterin's architectural reasoning behind Ethereum is directly relevant to every platform built on it.</p><div class="entry-access">https://ethereum.org/en/whitepaper/</div></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📄</span><div><div class="entry-title">Smart Contracts: Critical Review and Future Directions</div><div class="entry-authors">Zou et al. — 2019, IEEE Transactions on Emerging Topics</div></div></div><div class="entry-meta"><span class="entry-type-pill">Academic Paper</span><span class="citations-badge">190 citations</span></div><p class="entry-why">A critical analysis of smart contract security vulnerabilities, formal verification, and scalability limitations. Covers the DAO hack, reentrancy attacks, and oracle problems.</p></div>
+      </div>
+    </div>
+
+    <div class="tier-block tier-block--practice">
+      <div class="tier-header"><span class="tier-pill">Tier 3</span><span class="tier-name">Practitioner Perspectives</span><span class="tier-desc">Documentation and talks from builders</span></div>
+      <div class="entry-list">
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📝</span><div><div class="entry-title">Bitcoin: A Peer-to-Peer Electronic Cash System</div><div class="entry-authors">Satoshi Nakamoto — 2008</div></div></div><div class="entry-meta"><span class="entry-type-pill">White Paper</span></div><p class="entry-why">The 9-page document that started it all. Every serious Web3 builder should read Nakamoto's original paper — it is remarkably clear, elegant, and surprisingly accessible.</p><div class="entry-access">https://bitcoin.org/bitcoin.pdf</div></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📚</span><div><div class="entry-title">Ethereum Developer Documentation</div><div class="entry-authors">Ethereum Foundation</div></div></div><div class="entry-meta"><span class="entry-type-pill">Technical Reference</span></div><p class="entry-why">The canonical technical reference for building on Ethereum. Covers EVM, gas, token standards, and security best practices. Kept current by the community.</p><div class="entry-access">https://ethereum.org/developers</div></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">🎙️</span><div><div class="entry-title">Unchained Podcast — Laura Shin</div><div class="entry-authors">Unchained Media</div></div></div><div class="entry-meta"><span class="entry-type-pill">Podcast</span></div><p class="entry-why">The most respected investigative podcast in crypto. Episodes on Ethereum upgrades, Layer 2 scaling, and the Merge provide essential practitioner context.</p><div class="entry-access">https://unchainedcrypto.com/</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================
+     CHAPTER 3
+================================================ -->
+<div class="chapter-section" id="ch3">
+  <div class="container">
+    <div class="chapter-banner">
+      <span class="chapter-num-badge">CHAPTER 03</span>
+      <div class="chapter-banner-text">
+        <h2>Tokenomics — Designing Token Economies</h2>
+        <p>Supply mechanics, incentive design, and the TBMC framework</p>
+      </div>
+      <a href="#toc" class="back-to-toc">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3l-5 5 5 5M3 8h10"/></svg>
+        <span>Back to Table</span>
+      </a>
+    </div>
+
+    <div class="tier-block tier-block--books">
+      <div class="tier-header"><span class="tier-pill">Tier 1</span><span class="tier-name">Foundational Books</span></div>
+      <div class="entry-list">
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📖</span><div><div class="entry-title">Token Economy: How the Web3 Reinvents the Internet</div><div class="entry-authors">Shermin Voshmgir — 2nd ed. 2020, Token Kitchen</div></div></div><div class="entry-meta"><span class="entry-type-pill">Book</span></div><p class="entry-why">The most comprehensive practitioner book on token economics. Covers token classifications, governance tokens, DeFi primitives, and the broader economic logic of tokenized networks. Widely used in blockchain MBA courses.</p><div class="entry-access">https://token.kitchen/book/</div></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📖</span><div><div class="entry-title">Cryptoassets: The Innovative Investor's Guide</div><div class="entry-authors">Burniske &amp; Tatar — 2017, McGraw-Hill</div></div></div><div class="entry-meta"><span class="entry-type-pill">Book</span></div><p class="entry-why">Introduced the cryptoasset taxonomy and the first rigorous valuation framework for digital assets. Burniske's equation of exchange (MV=PQ) adapted for token economies remains the foundational lens for token valuation.</p><div class="entry-access">ISBN: 978-1260026672</div></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📖</span><div><div class="entry-title">The Infinite Machine</div><div class="entry-authors">Camila Russo — 2020, Currency/Crown</div></div></div><div class="entry-meta"><span class="entry-type-pill">Book</span></div><p class="entry-why">A narrative history of Ethereum's creation. Understanding how Ethereum's original token distribution and incentive design emerged from real decisions provides essential context for any tokenomics practitioner.</p><div class="entry-access">ISBN: 978-0593113455</div></div>
+      </div>
+    </div>
+
+    <div class="tier-block tier-block--papers">
+      <div class="tier-header"><span class="tier-pill">Tier 2</span><span class="tier-name">Seminal Academic Papers</span></div>
+      <div class="entry-list">
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📄</span><div><div class="entry-title">Tokenomics: Dynamic Adoption and Valuation</div><div class="entry-authors">Cong, Li &amp; Wang — 2021, Review of Financial Studies</div></div></div><div class="entry-meta"><span class="entry-type-pill">Academic Paper</span><span class="citations-badge">471 citations</span></div><p class="entry-why">The most-cited rigorous economic model of token adoption and valuation dynamics. Proves token price appreciation can bootstrap platform adoption through a self-reinforcing feedback loop — and shows how this creates fragility.</p></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📄</span><div><div class="entry-title">A Morphological Analysis of Tokenomics</div><div class="entry-authors">Freni, Ferro &amp; Moncada — 2022, Journal of Systems Architecture</div></div></div><div class="entry-meta"><span class="entry-type-pill">Academic Paper</span><span class="citations-badge">69 citations</span></div><p class="entry-why">One of the first systematic frameworks for classifying and designing token systems across six design dimensions — directly maps onto the TBMC canvas.</p></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📄</span><div><div class="entry-title">Token-Based Ecosystem Design: Lessons from Steemit</div><div class="entry-authors">Li &amp; Mann — 2018</div></div></div><div class="entry-meta"><span class="entry-type-pill">Academic Paper</span><span class="citations-badge">64 citations</span></div><p class="entry-why">A detailed case study of Steemit's dual-token economy. One of the earliest empirical analyses of a live token economy — rich in practical lessons for incentive design.</p></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📄</span><div><div class="entry-title">The Token's Secret: The Two-Faced Financial Incentive of the Token Economy</div><div class="entry-authors">Cohney et al. — 2019, Columbia Business Law Review</div></div></div><div class="entry-meta"><span class="entry-type-pill">Academic Paper</span><span class="citations-badge">30 citations</span></div><p class="entry-why">Exposes the inherent tension in token design: tokens must function simultaneously as utility instruments and speculative investment vehicles. Essential for navigating legal and design challenges.</p></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📄</span><div><div class="entry-title">Mechanism Design for Blockchain Protocols and Token Economies</div><div class="entry-authors">Roughgarden — 2021, ACM</div></div></div><div class="entry-meta"><span class="entry-type-pill">Academic Paper</span></div><p class="entry-why">Game-theoretic analysis of EIP-1559 by a leading algorithmic game theorist. Demonstrates how mechanism design principles apply to token economies and protocol incentive structures.</p><div class="entry-access">https://timroughgarden.org/papers/eip1559.pdf</div></div>
+      </div>
+    </div>
+
+    <div class="tier-block tier-block--practice">
+      <div class="tier-header"><span class="tier-pill">Tier 3</span><span class="tier-name">Practitioner Perspectives</span></div>
+      <div class="entry-list">
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📝</span><div><div class="entry-title">Fat Protocols</div><div class="entry-authors">Joel Monegro — 2016, Union Square Ventures</div></div></div><div class="entry-meta"><span class="entry-type-pill">Essay</span></div><p class="entry-why">The most influential essay in Web3 investing. Monegro's "fat protocol" thesis argues value accrues to the protocol layer rather than applications — inverting the Web2 value stack.</p><div class="entry-access">https://www.usv.com/writing/2016/08/fat-protocols/</div></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">🛠️</span><div><div class="entry-title">Token Economy Simulator — Companion Tool</div><div class="entry-authors">Zishan A. Mohammad — 2026</div></div></div><div class="entry-meta"><span class="entry-type-pill">Interactive Tool</span></div><p class="entry-why">Model supply curves, inflation schedules, burn mechanics, and stakeholder vesting over 60 months. Run the four presets (Bitcoin, Ethereum, Utility, Governance) to build tokenomics intuition.</p><div class="entry-access">https://token-economy-simulator.streamlit.app</div></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📝</span><div><div class="entry-title">Uniswap V3 Core — Technical Deep Dive</div><div class="entry-authors">Adams et al. — 2021, Uniswap Labs</div></div></div><div class="entry-meta"><span class="entry-type-pill">Technical Paper</span></div><p class="entry-why">Describes Uniswap V3's concentrated liquidity mechanism — one of the most sophisticated tokenomics designs in DeFi. Studying its LP incentives and fee tiers reveals how advanced tokenomics engineering works in practice.</p><div class="entry-access">https://uniswap.org/whitepaper-v3.pdf</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================
+     CHAPTER 4
+================================================ -->
+<div class="chapter-section" id="ch4">
+  <div class="container">
+    <div class="chapter-banner">
+      <span class="chapter-num-badge">CHAPTER 04</span>
+      <div class="chapter-banner-text">
+        <h2>Web3 Business Models</h2>
+        <p>DeFi, NFTs, platform protocols, and new value-capture architectures</p>
+      </div>
+      <a href="#toc" class="back-to-toc">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3l-5 5 5 5M3 8h10"/></svg>
+        <span>Back to Table</span>
+      </a>
+    </div>
+
+    <div class="tier-block tier-block--books">
+      <div class="tier-header"><span class="tier-pill">Tier 1</span><span class="tier-name">Foundational Books</span></div>
+      <div class="entry-list">
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📖</span><div><div class="entry-title">Platform Revolution</div><div class="entry-authors">Parker, Van Alstyne &amp; Choudary — 2016, W.W. Norton</div></div></div><div class="entry-meta"><span class="entry-type-pill">Book</span></div><p class="entry-why">The authoritative text on platform economics and network effects. Understanding how traditional platforms create value and capture rent is the essential baseline for understanding what Web3 business models disrupt.</p><div class="entry-access">ISBN: 978-0393354355</div></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📖</span><div><div class="entry-title">The DeFi Handbook</div><div class="entry-authors">Fabian Schär &amp; Aleksander Berentsen — 2022, MIT Press</div></div></div><div class="entry-meta"><span class="entry-type-pill">Book</span></div><p class="entry-why">The most rigorous academic treatment of DeFi protocols. Covers AMMs, lending, stablecoins, and derivatives with both technical clarity and economic analysis.</p><div class="entry-access">ISBN: 978-0262547475</div></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📖</span><div><div class="entry-title">The Business Blockchain</div><div class="entry-authors">William Mougayar — 2016, Wiley</div></div></div><div class="entry-meta"><span class="entry-type-pill">Book</span></div><p class="entry-why">The first business-oriented treatment of blockchain as infrastructure for new commercial models. Mougayar's analysis of blockchain's role in disintermediating incumbents remains a useful conceptual lens.</p><div class="entry-access">ISBN: 978-1119300311</div></div>
+      </div>
+    </div>
+
+    <div class="tier-block tier-block--papers">
+      <div class="tier-header"><span class="tier-pill">Tier 2</span><span class="tier-name">Seminal Academic Papers</span></div>
+      <div class="entry-list">
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📄</span><div><div class="entry-title">An Introduction to Decentralized Finance (DeFi)</div><div class="entry-authors">Fabian Schär — 2021, Federal Reserve Bank of St. Louis Review</div></div></div><div class="entry-meta"><span class="entry-type-pill">Academic Paper</span><span class="citations-badge">89 citations</span></div><p class="entry-why">The canonical architectural model for DeFi — Schär's layered DeFi stack (settlement, asset, protocol, application, aggregation) is the most-cited framework for understanding where value is created and captured in DeFi.</p></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📄</span><div><div class="entry-title">The Technology of Decentralized Finance (DeFi)</div><div class="entry-authors">Auer et al. — 2022, BIS Working Paper</div></div></div><div class="entry-meta"><span class="entry-type-pill">Working Paper</span><span class="citations-badge">67 citations</span></div><p class="entry-why">A Bank for International Settlements analysis of DeFi's technical architecture. Maps AMMs, liquidity pools, flash loans, and composability ("money legos") with unusual clarity.</p></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📄</span><div><div class="entry-title">A Taxonomy of Decentralized Finance (DeFi) Business Models</div><div class="entry-authors">Zetzsche et al. — 2023, Journal of Financial Regulation</div></div></div><div class="entry-meta"><span class="entry-type-pill">Academic Paper</span><span class="citations-badge">11 citations</span></div><p class="entry-why">The first systematic taxonomy of DeFi business models, classifying protocols by value proposition, revenue model, and governance structure — DEXes, lending, derivatives, yield aggregators, and bridges.</p></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📄</span><div><div class="entry-title">Less Trust, More Truth: How Web3 Disrupts Platform Business Models</div><div class="entry-authors">Lumineau &amp; Schilke — 2023, Strategy Science</div></div></div><div class="entry-meta"><span class="entry-type-pill">Academic Paper</span><span class="citations-badge">5 citations</span></div><p class="entry-why">A management strategy analysis arguing that Web3 shifts competitive advantage from data accumulation to protocol governance — directly informing Chapter 4's discussion of new Web3 moats.</p></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📄</span><div><div class="entry-title">Non-Fungible Tokens and the Economics of Digital Ownership</div><div class="entry-authors">Chohan — 2021, SSRN</div></div></div><div class="entry-meta"><span class="entry-type-pill">Working Paper</span></div><p class="entry-why">One of the first academic analyses of NFTs as an economic phenomenon, examining digital scarcity, provenance, and ownership in creative markets.</p><div class="entry-access">https://ssrn.com/abstract=3822743</div></div>
+      </div>
+    </div>
+
+    <div class="tier-block tier-block--practice">
+      <div class="tier-header"><span class="tier-pill">Tier 3</span><span class="tier-name">Practitioner Perspectives</span></div>
+      <div class="entry-list">
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📝</span><div><div class="entry-title">Why Decentralization Matters</div><div class="entry-authors">Chris Dixon — 2018, a16z</div></div></div><div class="entry-meta"><span class="entry-type-pill">Essay</span></div><p class="entry-why">Dixon's widely-cited essay arguing that decentralized networks escape the "attract-extract" cycle of Web2 platforms. The clearest strategic rationale for building on open protocols.</p><div class="entry-access">https://cdixon.org/2018/02/18/why-decentralization-matters</div></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📊</span><div><div class="entry-title">DeFiLlama — Protocol Analytics</div><div class="entry-authors">DeFiLlama — Open Source</div></div></div><div class="entry-meta"><span class="entry-type-pill">Data Tool</span></div><p class="entry-why">The essential real-time dashboard for DeFi protocol analytics: TVL, protocol revenue, trading volumes, and fee distribution. Browsing DeFiLlama provides more business model intuition than any textbook.</p><div class="entry-access">https://defillama.com/</div></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📝</span><div><div class="entry-title">Multicoin Capital Research — Thesis Library</div><div class="entry-authors">Multicoin Capital</div></div></div><div class="entry-meta"><span class="entry-type-pill">Research Essays</span></div><p class="entry-why">One of crypto's most intellectually rigorous venture funds. Their thesis archive provides a practitioner-grade education in how experienced investors evaluate Web3 business model defensibility.</p><div class="entry-access">https://multicoin.capital/writing/</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================
+     CHAPTER 5
+================================================ -->
+<div class="chapter-section" id="ch5">
+  <div class="container">
+    <div class="chapter-banner">
+      <span class="chapter-num-badge">CHAPTER 05</span>
+      <div class="chapter-banner-text">
+        <h2>Governance &amp; DAOs</h2>
+        <p>Decentralized autonomous organizations, on-chain governance, and digital coordination</p>
+      </div>
+      <a href="#toc" class="back-to-toc">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3l-5 5 5 5M3 8h10"/></svg>
+        <span>Back to Table</span>
+      </a>
+    </div>
+
+    <div class="tier-block tier-block--books">
+      <div class="tier-header"><span class="tier-pill">Tier 1</span><span class="tier-name">Foundational Books</span></div>
+      <div class="entry-list">
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📖</span><div><div class="entry-title">Governing the Commons</div><div class="entry-authors">Elinor Ostrom — 1990, Cambridge University Press</div></div></div><div class="entry-meta"><span class="entry-type-pill">Book</span></div><p class="entry-why">The Nobel Prize-winning analysis of how communities self-govern shared resources. Ostrom's eight design principles for stable commons institutions are directly applicable to DAO design.</p><div class="entry-access">ISBN: 978-0521405997</div></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📖</span><div><div class="entry-title">Blockchain and the Law</div><div class="entry-authors">De Filippi &amp; Wright — 2018, Harvard University Press</div></div></div><div class="entry-meta"><span class="entry-type-pill">Book</span></div><p class="entry-why">The definitive legal-philosophical analysis of blockchain-based organizations. De Filippi and Wright coined "lex cryptographia" — the idea that code enforces rules that historically required law.</p><div class="entry-access">ISBN: 978-0674976429</div></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📖</span><div><div class="entry-title">The Wisdom of Crowds</div><div class="entry-authors">James Surowiecki — 2004, Doubleday</div></div></div><div class="entry-meta"><span class="entry-type-pill">Book</span></div><p class="entry-why">The classic analysis of when groups make better decisions than individuals. Understanding the conditions for collective intelligence is essential for designing DAO governance that avoids plutocracy and voter apathy.</p><div class="entry-access">ISBN: 978-0385503860</div></div>
+      </div>
+    </div>
+
+    <div class="tier-block tier-block--papers">
+      <div class="tier-header"><span class="tier-pill">Tier 2</span><span class="tier-name">Seminal Academic Papers</span></div>
+      <div class="entry-list">
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📄</span><div><div class="entry-title">Comparative Analysis of DAO Platforms on Ethereum</div><div class="entry-authors">Faqir-Rhazoui et al. — 2021, Scientific Reports</div></div></div><div class="entry-meta"><span class="entry-type-pill">Academic Paper</span><span class="citations-badge">93 citations</span></div><p class="entry-why">The most-cited empirical study comparing DAO governance platforms (Aragon, DAOstack, MolochDAO). Provides hard data on governance participation rates, whale concentration, and which features correlate with healthier governance.</p></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📄</span><div><div class="entry-title">Task Management in Decentralized Autonomous Organizations</div><div class="entry-authors">Rozas et al. — 2021, JAIS</div></div></div><div class="entry-meta"><span class="entry-type-pill">Academic Paper</span><span class="citations-badge">87 citations</span></div><p class="entry-why">An empirical analysis of how DAOs coordinate work — task assignment, contributor incentives, reputation systems, and coordination failures. One of the first papers to study DAOs as organizations.</p></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📄</span><div><div class="entry-title">Unpacking How Decentralized Autonomous Organizations Work in Practice</div><div class="entry-authors">Tan, Aggarwal &amp; Tan — 2023, MIS Quarterly</div></div></div><div class="entry-meta"><span class="entry-type-pill">Academic Paper</span><span class="citations-badge">38 citations</span></div><p class="entry-why">A qualitative study of how DAOs actually function. Key finding: most "governance" happens off-chain in Discord and forums — smart contracts formalize outcomes but social consensus precedes them.</p></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📄</span><div><div class="entry-title">A Review of DAO Governance: Achievements, Challenges, and Framework for Sustainable Governance</div><div class="entry-authors">El Faqir et al. — 2022, IS Frontiers</div></div></div><div class="entry-meta"><span class="entry-type-pill">Survey Paper</span><span class="citations-badge">16 citations</span></div><p class="entry-why">The most comprehensive systematic review of DAO governance literature. The paper's framework — addressing participation, legitimacy, and resilience — is a practical design checklist for any DAO founder.</p></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📄</span><div><div class="entry-title">Quadratic Voting as Efficient Corporate Governance</div><div class="entry-authors">Posner &amp; Weyl — 2015, University of Chicago Law Review</div></div></div><div class="entry-meta"><span class="entry-type-pill">Academic Paper</span></div><p class="entry-why">The theoretical foundation for quadratic voting — widely used in Gitcoin grants and Optimism's retroactive public goods funding. Essential for entrepreneurs designing governance systems beyond one-token-one-vote.</p></div>
+      </div>
+    </div>
+
+    <div class="tier-block tier-block--practice">
+      <div class="tier-header"><span class="tier-pill">Tier 3</span><span class="tier-name">Practitioner Perspectives</span></div>
+      <div class="entry-list">
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📝</span><div><div class="entry-title">A Legal Framework for Decentralized Autonomous Organizations</div><div class="entry-authors">Jennings &amp; Kerr — 2022, a16z Crypto</div></div></div><div class="entry-meta"><span class="entry-type-pill">Policy Paper</span></div><p class="entry-why">A16z's framework proposing how DAOs can adopt legal wrappers (Wyoming LLC, Marshall Islands DAO LLC) without sacrificing decentralization. Essential for structuring a legally-sound DAO.</p><div class="entry-access">https://a16zcrypto.com/posts/article/dao-legal-framework/</div></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📝</span><div><div class="entry-title">MakerDAO Governance Framework</div><div class="entry-authors">MakerDAO Foundation</div></div></div><div class="entry-meta"><span class="entry-type-pill">Documentation</span></div><p class="entry-why">MakerDAO governs the DAI stablecoin through a sophisticated on-chain governance system managing billions in collateral. Studying it reveals how real-world DAO governance handles emergency shutdowns, risk parameters, and delegate systems.</p><div class="entry-access">https://vote.makerdao.com/</div></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📝</span><div><div class="entry-title">Optimism's Working Constitution &amp; Bicameral Governance</div><div class="entry-authors">Optimism Collective — 2022</div></div></div><div class="entry-meta"><span class="entry-type-pill">Governance Framework</span></div><p class="entry-why">Optimism's two-chamber model (Token House + Citizens' House) is one of the most innovative governance experiments in Web3 — balancing token-weighted voting, soulbound citizenship, and retroactive incentives.</p><div class="entry-access">https://community.optimism.io/docs/governance/</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================
+     CHAPTER 6
+================================================ -->
+<div class="chapter-section" id="ch6">
+  <div class="container">
+    <div class="chapter-banner">
+      <span class="chapter-num-badge">CHAPTER 06</span>
+      <div class="chapter-banner-text">
+        <h2>Fundraising in Web3</h2>
+        <p>ICOs, IDOs, SAFTs, token warrants, and Web3 venture financing</p>
+      </div>
+      <a href="#toc" class="back-to-toc">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3l-5 5 5 5M3 8h10"/></svg>
+        <span>Back to Table</span>
+      </a>
+    </div>
+
+    <div class="tier-block tier-block--books">
+      <div class="tier-header"><span class="tier-pill">Tier 1</span><span class="tier-name">Foundational Books</span></div>
+      <div class="entry-list">
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📖</span><div><div class="entry-title">Venture Deals</div><div class="entry-authors">Brad Feld &amp; Jason Mendelson — 4th ed. 2019, Wiley</div></div></div><div class="entry-meta"><span class="entry-type-pill">Book</span></div><p class="entry-why">The canonical guide to VC deal terms, term sheets, and venture financing mechanics. Understanding conventional VC deal mechanics is essential before studying their crypto variants (SAFTs, token warrants).</p><div class="entry-access">ISBN: 978-1119594826</div></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📖</span><div><div class="entry-title">The Sovereign Individual</div><div class="entry-authors">Davidson &amp; Rees-Mogg — 1997, Simon &amp; Schuster</div></div></div><div class="entry-meta"><span class="entry-type-pill">Book</span></div><p class="entry-why">A prescient 1997 analysis predicting how cryptography would enable sovereign digital individuals and erode the nation-state's monopoly on finance. Widely cited as foundational philosophy in crypto culture.</p><div class="entry-access">ISBN: 978-0684832722</div></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📖</span><div><div class="entry-title">Cryptoassets</div><div class="entry-authors">Burniske &amp; Tatar — 2017, McGraw-Hill</div></div></div><div class="entry-meta"><span class="entry-type-pill">Book</span></div><p class="entry-why">Defines the professional investment framework for crypto assets. Burniske's valuation framework and portfolio construction theory are essential context for understanding how institutional investors approach Web3 deals.</p><div class="entry-access">ISBN: 978-1260026672</div></div>
+      </div>
+    </div>
+
+    <div class="tier-block tier-block--papers">
+      <div class="tier-header"><span class="tier-pill">Tier 2</span><span class="tier-name">Seminal Academic Papers</span></div>
+      <div class="entry-list">
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📄</span><div><div class="entry-title">Initial Coin Offerings and the Value of Crypto Tokens</div><div class="entry-authors">Catalini &amp; Gans — 2018, NBER Working Paper</div></div></div><div class="entry-meta"><span class="entry-type-pill">Working Paper</span><span class="citations-badge">546 citations</span></div><p class="entry-why">The most-cited economic analysis of ICOs by MIT economists. Models how tokens can raise capital, price-discriminate between users, and bootstrap two-sided markets — the theoretical foundation for the chapter's fundraising comparison framework.</p></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📄</span><div><div class="entry-title">ICOs to Finance New Ventures: An Exploratory Study</div><div class="entry-authors">Fisch — 2019, Journal of Business Venturing</div></div></div><div class="entry-meta"><span class="entry-type-pill">Academic Paper</span><span class="citations-badge">470 citations</span></div><p class="entry-why">The most comprehensive empirical study of ICO success factors. Analyzes 423 ICOs and finds technology-quality signals (GitHub commits) and team quality predict success more than marketing spend.</p></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📄</span><div><div class="entry-title">Digital Tulips? Returns to Investors in Initial Coin Offerings</div><div class="entry-authors">Momtaz — 2020, Journal of Corporate Finance</div></div></div><div class="entry-meta"><span class="entry-type-pill">Academic Paper</span><span class="citations-badge">236 citations</span></div><p class="entry-why">Rigorous financial analysis of 4,003 ICOs, finding high average underpricing (initial run-up) but severe long-run underperformance. Essential for understanding why the ICO market evolved toward SAFTs and KYC-gated IDOs.</p></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📄</span><div><div class="entry-title">ICOs: Financing Growth with Cryptocurrency Token Sales</div><div class="entry-authors">Howell, Niessner &amp; Yermack — 2020, Review of Financial Studies</div></div></div><div class="entry-meta"><span class="entry-type-pill">Academic Paper</span><span class="citations-badge">319 citations</span></div><p class="entry-why">Landmark study of 453 ICOs examining determinants of success, post-ICO trading liquidity, and long-run outcomes. Finds VC backing increases both success rates and secondary market liquidity.</p></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📄</span><div><div class="entry-title">Why Do Entrepreneurs Use Cryptocurrency? ICO Motivations</div><div class="entry-authors">Bellavitis et al. — 2021, Small Business Economics</div></div></div><div class="entry-meta"><span class="entry-type-pill">Academic Paper</span><span class="citations-badge">71 citations</span></div><p class="entry-why">Empirical study of why founders choose ICOs over traditional fundraising. Understanding the original motivations (global capital access, VC disintermediation, community building) informs how IDOs, LBPs, and retroactive funding work today.</p></div>
+      </div>
+    </div>
+
+    <div class="tier-block tier-block--practice">
+      <div class="tier-header"><span class="tier-pill">Tier 3</span><span class="tier-name">Practitioner Perspectives</span></div>
+      <div class="entry-list">
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📝</span><div><div class="entry-title">The SAFT Project: Toward a Compliant Token Sale Framework</div><div class="entry-authors">Batiz-Benet et al. — 2017, Protocol Labs</div></div></div><div class="entry-meta"><span class="entry-type-pill">White Paper</span></div><p class="entry-why">Introduced the Simple Agreement for Future Tokens (SAFT) — the instrument that brought institutional-grade legal structure to token fundraising. Foundational for any founder considering a token-based fundraise.</p><div class="entry-access">https://saftproject.com/static/SAFT-Project-Whitepaper.pdf</div></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📝</span><div><div class="entry-title">Messari Crypto Theses — Fundraising Landscape</div><div class="entry-authors">Ryan Selkis — Annual, Messari Research</div></div></div><div class="entry-meta"><span class="entry-type-pill">Industry Report</span></div><p class="entry-why">Messari's annual report consistently provides the best practitioner-level overview of Web3 fundraising structures, valuation norms, and capital flow trends across IDOs, LBPs, OTC deals, and token warrants.</p><div class="entry-access">https://messari.io/crypto-theses</div></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📝</span><div><div class="entry-title">Optimism Retroactive Public Goods Funding</div><div class="entry-authors">Optimism Collective — 2022–present</div></div></div><div class="entry-meta"><span class="entry-type-pill">Governance Programme</span></div><p class="entry-why">The most advanced real-world implementation of retroactive funding — rewarding already-proven impact rather than speculative promises. A new fundraising paradigm for open-source infrastructure builders.</p><div class="entry-access">https://retrolist.app/</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================
+     CHAPTER 7
+================================================ -->
+<div class="chapter-section" id="ch7">
+  <div class="container">
+    <div class="chapter-banner">
+      <span class="chapter-num-badge">CHAPTER 07</span>
+      <div class="chapter-banner-text">
+        <h2>Community Building in Web3</h2>
+        <p>Token incentives, airdrops, contributor culture, and network effects through ownership</p>
+      </div>
+      <a href="#toc" class="back-to-toc">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3l-5 5 5 5M3 8h10"/></svg>
+        <span>Back to Table</span>
+      </a>
+    </div>
+
+    <div class="tier-block tier-block--books">
+      <div class="tier-header"><span class="tier-pill">Tier 1</span><span class="tier-name">Foundational Books</span></div>
+      <div class="entry-list">
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📖</span><div><div class="entry-title">The Cathedral and the Bazaar</div><div class="entry-authors">Eric S. Raymond — 1999, O'Reilly</div></div></div><div class="entry-meta"><span class="entry-type-pill">Book</span></div><p class="entry-why">The canonical analysis of open-source community dynamics. Raymond's insights about contributor motivation, trust, and reputation are directly applicable to DAO contributor programs and open-protocol community building.</p><div class="entry-access">http://www.catb.org/esr/writings/cathedral-bazaar/</div></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📖</span><div><div class="entry-title">People Powered: How Communities Can Supercharge Your Business</div><div class="entry-authors">Jono Bacon — 2019, HarperCollins</div></div></div><div class="entry-meta"><span class="entry-type-pill">Book</span></div><p class="entry-why">The most practical guide to building and scaling communities, written by the former Ubuntu community manager. Bacon's frameworks for community strategy, onboarding, and contribution pathways translate directly to Web3 contexts.</p><div class="entry-access">ISBN: 978-1400214693</div></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📖</span><div><div class="entry-title">The Network State</div><div class="entry-authors">Balaji Srinivasan — 2022</div></div></div><div class="entry-meta"><span class="entry-type-pill">Book</span></div><p class="entry-why">Srinivasan's argument that crypto-native communities can accumulate shared assets, governance rights, and identity at a scale impossible on previous platforms — the philosophical framing for Web3 community ownership.</p><div class="entry-access">https://thenetworkstate.com</div></div>
+      </div>
+    </div>
+
+    <div class="tier-block tier-block--papers">
+      <div class="tier-header"><span class="tier-pill">Tier 2</span><span class="tier-name">Seminal Academic Papers</span></div>
+      <div class="entry-list">
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📄</span><div><div class="entry-title">User Incentive Mechanisms in Blockchain-Based Content Platforms: Steemit</div><div class="entry-authors">Tian et al. — 2020, Information Systems Journal</div></div></div><div class="entry-meta"><span class="entry-type-pill">Academic Paper</span><span class="citations-badge">60 citations</span></div><p class="entry-why">The most rigorous empirical study of how token incentives shape content creation and community behavior. Steemit's reward algorithm provides rich data on how token design choices create gaming, quality signals, and power dynamics.</p></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📄</span><div><div class="entry-title">Inclusion and Democratization through Web3 and DeFi? Ethereum Ecosystem</div><div class="entry-authors">Dowd &amp; Hutchinson — 2022, Journal of Alternative Investments</div></div></div><div class="entry-meta"><span class="entry-type-pill">Academic Paper</span><span class="citations-badge">35 citations</span></div><p class="entry-why">Empirical examination of whether DeFi delivers on its democratization promise. Finding: early participants are disproportionately technically sophisticated and financially well-resourced. Building genuinely inclusive communities requires deliberate design.</p></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📄</span><div><div class="entry-title">Altruistic and Profit-Oriented: Two Faces of Web3 Community Airdrop Campaign</div><div class="entry-authors">Wang et al. — 2022</div></div></div><div class="entry-meta"><span class="entry-type-pill">Academic Paper</span><span class="citations-badge">33 citations</span></div><p class="entry-why">The first systematic academic analysis of airdrop mechanics. Airdrop design strongly predicts whether recipients become engaged community members or dump immediately. Essential before designing any airdrop campaign.</p></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📄</span><div><div class="entry-title">Token Incentives and Community Participation in Volatile Market Conditions</div><div class="entry-authors">Chen &amp; Zhao — 2023, Electronic Commerce Research</div></div></div><div class="entry-meta"><span class="entry-type-pill">Academic Paper</span><span class="citations-badge">14 citations</span></div><p class="entry-why">Main finding: communities over-reliant on token price appreciation collapse in bear markets. Build non-financial community identity alongside token incentives.</p></div>
+      </div>
+    </div>
+
+    <div class="tier-block tier-block--practice">
+      <div class="tier-header"><span class="tier-pill">Tier 3</span><span class="tier-name">Practitioner Perspectives</span></div>
+      <div class="entry-list">
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📝</span><div><div class="entry-title">Uniswap's Airdrop: Anatomy of a $6B Community Launch</div><div class="entry-authors">Uniswap Labs — 2020</div></div></div><div class="entry-meta"><span class="entry-type-pill">Case Study</span></div><p class="entry-why">Uniswap's 2020 UNI airdrop (400 tokens to every past user) remains the most studied community bootstrapping event in Web3. Analyzing the design choices provides a masterclass in community-first token launch strategy.</p><div class="entry-access">https://uniswap.org/blog/uni</div></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📊</span><div><div class="entry-title">The Community-Owned Product Playbook</div><div class="entry-authors">Variant Fund</div></div></div><div class="entry-meta"><span class="entry-type-pill">Essay</span></div><p class="entry-why">Variant Fund's research on ownership economies. The essays on "ownership economics" and "1000 true fans for crypto" translate directly into practical community strategy for Web3 founders.</p><div class="entry-access">https://variant.fund/essays/</div></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📝</span><div><div class="entry-title">Forefront — Web3 Community Intelligence</div><div class="entry-authors">forefront.news</div></div></div><div class="entry-meta"><span class="entry-type-pill">Newsletter</span></div><p class="entry-why">The leading curated publication focused specifically on Web3 community building, tokenized social groups, and community DAOs. Covers creator DAOs, social tokens, and community treasury management.</p><div class="entry-access">https://forefront.news/</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================
+     CHAPTER 8
+================================================ -->
+<div class="chapter-section" id="ch8">
+  <div class="container">
+    <div class="chapter-banner">
+      <span class="chapter-num-badge">CHAPTER 08</span>
+      <div class="chapter-banner-text">
+        <h2>The Agentic Economy &amp; Future of Web3 Entrepreneurship</h2>
+        <p>AI agents, autonomous economic actors, and the frontier of decentralized AI</p>
+      </div>
+      <a href="#toc" class="back-to-toc">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3l-5 5 5 5M3 8h10"/></svg>
+        <span>Back to Table</span>
+      </a>
+    </div>
+
+    <div class="tier-block tier-block--books">
+      <div class="tier-header"><span class="tier-pill">Tier 1</span><span class="tier-name">Foundational Books</span></div>
+      <div class="entry-list">
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📖</span><div><div class="entry-title">The Coming Wave</div><div class="entry-authors">Mustafa Suleyman — 2023, Crown</div></div></div><div class="entry-meta"><span class="entry-type-pill">Book</span></div><p class="entry-why">The most compelling recent account of AI's containment problem, written by DeepMind's co-founder. Provides the backdrop for understanding why decentralized governance of AI systems — a core Web3 contribution — is not just desirable but potentially necessary.</p><div class="entry-access">ISBN: 978-0593593950</div></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📖</span><div><div class="entry-title">Superintelligence: Paths, Dangers, Strategies</div><div class="entry-authors">Nick Bostrom — 2014, Oxford University Press</div></div></div><div class="entry-meta"><span class="entry-type-pill">Book</span></div><p class="entry-why">The foundational text on advanced AI agency and the control problem. Bostrom's analysis of how autonomous agents pursue instrumental goals is directly relevant to today's AI agent design challenges.</p><div class="entry-access">ISBN: 978-0199678112</div></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📖</span><div><div class="entry-title">The Age of AI: And Our Human Future</div><div class="entry-authors">Kissinger, Schmidt &amp; Huttenlocher — 2021, Little, Brown</div></div></div><div class="entry-meta"><span class="entry-type-pill">Book</span></div><p class="entry-why">A geopolitical and philosophical examination of AI's civilizational impact. Chapter 8's argument — that entrepreneurs building agentic Web3 systems are navigating a civilizational transition — requires the macro perspective this book provides.</p><div class="entry-access">ISBN: 978-0316273800</div></div>
+      </div>
+    </div>
+
+    <div class="tier-block tier-block--papers">
+      <div class="tier-header"><span class="tier-pill">Tier 2</span><span class="tier-name">Seminal Academic Papers</span></div>
+      <div class="entry-list">
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📄</span><div><div class="entry-title">Agentic AI: Autonomous Intelligence in the Age of Large Language Models</div><div class="entry-authors">Shinn et al. — 2023, arXiv</div></div></div><div class="entry-meta"><span class="entry-type-pill">Academic Paper</span><span class="citations-badge">203 citations</span></div><p class="entry-why">The most-cited paper on LLM-based autonomous agents (Reflexion framework). Maps the architecture of agentic AI systems — perception, memory, planning, action — now being integrated with blockchain wallets and smart contracts.</p></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📄</span><div><div class="entry-title">The Role of Agentic AI in the Future of Work and Economic Organization</div><div class="entry-authors">Brynjolfsson et al. — 2023, Science</div></div></div><div class="entry-meta"><span class="entry-type-pill">Academic Paper</span><span class="citations-badge">47 citations</span></div><p class="entry-why">A leading economist's analysis of how agentic AI will reshape labour markets, firm boundaries, and economic organization. Direct implications for how Web3 ventures can be structured with minimal human overhead.</p></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📄</span><div><div class="entry-title">AI Agents and Agentic Systems: A Multi-Agent Framework</div><div class="entry-authors">Park et al. — 2023, ACM</div></div></div><div class="entry-meta"><span class="entry-type-pill">Academic Paper</span><span class="citations-badge">40 citations</span></div><p class="entry-why">A foundational paper on multi-agent simulation frameworks ("Generative Agents"). Shows how LLM-based agents can exhibit emergent social behaviors — the precursor to multi-agent Web3 coordination systems.</p></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📄</span><div><div class="entry-title">Trustless Autonomy: Decentralized AI Agents on Blockchain</div><div class="entry-authors">Nguyen et al. — 2024, IEEE Blockchain</div></div></div><div class="entry-meta"><span class="entry-type-pill">Academic Paper</span><span class="citations-badge">8 citations</span></div><p class="entry-why">One of the first papers on the integration of AI agents with blockchain infrastructure — covering on-chain agent identity, verifiable computation, and trustless execution of agentic tasks.</p></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📄</span><div><div class="entry-title">The Agentic Economy: When AI Agents Become Economic Actors</div><div class="entry-authors">Korinek &amp; Balwit — 2024, Brookings Institution</div></div></div><div class="entry-meta"><span class="entry-type-pill">Working Paper</span><span class="citations-badge">5 citations</span></div><p class="entry-why">One of the first economic analyses of what happens when AI agents become autonomous economic actors — holding assets, entering contracts, and generating income without direct human supervision.</p></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📄</span><div><div class="entry-title">Can We Govern Agent-to-Agent Commerce?</div><div class="entry-authors">Hadfield-Menell et al. — 2024, AI and Law</div></div></div><div class="entry-meta"><span class="entry-type-pill">Academic Paper</span><span class="citations-badge">4 citations</span></div><p class="entry-why">Regulatory science analysis of the legal and governance gaps created when AI agents transact with each other autonomously. Maps liability attribution, consent, and oversight challenges Web3 entrepreneurs face when deploying autonomous on-chain agents.</p></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📄</span><div><div class="entry-title">An Economy of AI Agents: Value Creation, Coordination, and Emergent Markets</div><div class="entry-authors">Guo et al. — 2025, arXiv</div></div></div><div class="entry-meta"><span class="entry-type-pill">Working Paper</span><span class="citations-badge">2 citations</span></div><p class="entry-why">A 2025 paper modelling the economic dynamics of markets populated by competing AI agents. On the frontier of understanding what the agentic economy will look like at scale — essential for entrepreneurs positioning for the decade ahead.</p></div>
+      </div>
+    </div>
+
+    <div class="tier-block tier-block--practice">
+      <div class="tier-header"><span class="tier-pill">Tier 3</span><span class="tier-name">Practitioner Perspectives</span></div>
+      <div class="entry-list">
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📝</span><div><div class="entry-title">AI x Crypto: The Convergence Thesis</div><div class="entry-authors">a16z Crypto Research — 2024</div></div></div><div class="entry-meta"><span class="entry-type-pill">Essay</span></div><p class="entry-why">A16z Crypto's investment thesis on the AI+blockchain convergence — covering verifiable AI inference, on-chain agent identity, privacy-preserving ML, and decentralized training. Understanding their framework helps entrepreneurs align with the investment narrative.</p><div class="entry-access">https://a16zcrypto.com/posts/article/ai-crypto-convergence/</div></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">🛠️</span><div><div class="entry-title">Fetch.ai / Agentverse Platform Documentation</div><div class="entry-authors">Fetch.ai</div></div></div><div class="entry-meta"><span class="entry-type-pill">Technical Reference</span></div><p class="entry-why">One of the most mature production platforms for deploying autonomous AI agents with on-chain identities and token-based payment rails — the closest real-world reference implementation of the agentic economy concepts in this chapter.</p><div class="entry-access">https://docs.fetch.ai/</div></div>
+        <div class="entry-card"><div class="entry-head"><span class="entry-icon">📝</span><div><div class="entry-title">Bittensor: A Peer-to-Peer Intelligence Market</div><div class="entry-authors">Rao, Lama &amp; Biderman — 2022</div></div></div><div class="entry-meta"><span class="entry-type-pill">White Paper</span></div><p class="entry-why">Bittensor's protocol enables AI models to earn tokens by producing useful intelligence, validated by peer models. Whether or not it succeeds, its design represents the current frontier of decentralized AI entrepreneurship.</p><div class="entry-access">https://bittensor.com/whitepaper</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================
+     FOOTER
+================================================ -->
+<div class="page-footer">
+  <p><strong style="color:rgba(255,255,255,0.8)">Entrepreneurship in the Age of AI &amp; Web3</strong> &nbsp;·&nbsp; Zishan A. Mohammad &nbsp;·&nbsp; <a href="index.html">Return to Home</a></p>
+  <p style="margin-top:6px">Reading lists compiled March 2026 &nbsp;·&nbsp; 8 Chapters &nbsp;·&nbsp; ~107 curated entries</p>
+</div>
+
+</body>
+</html>
