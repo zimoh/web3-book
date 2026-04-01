@@ -596,7 +596,7 @@
 
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       gap: 0;
       text-align: center;
     }
@@ -959,6 +959,203 @@
       margin-top: 14px;
     }
 
+    /* ================================================
+       HERO EMAIL CAPTURE
+    ================================================ */
+    .hero-email-capture {
+      margin-top: 32px;
+      max-width: 480px;
+    }
+
+    .hero-email-hook {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.72);
+      margin-bottom: 10px;
+      letter-spacing: 0.2px;
+    }
+
+    .hero-email-form {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .hero-email-form input[type="email"] {
+      flex: 1;
+      min-width: 200px;
+      padding: 12px 16px;
+      border: 1.5px solid rgba(255,255,255,0.25);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--white);
+      background: rgba(255,255,255,0.10);
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .hero-email-form input[type="email"]:focus {
+      border-color: var(--golden);
+      background: rgba(255,255,255,0.14);
+    }
+    .hero-email-form input[type="email"]::placeholder { color: rgba(255,255,255,0.45); }
+
+    .hero-email-btn {
+      flex-shrink: 0;
+      padding: 12px 22px;
+      font-size: 13px;
+    }
+
+    .hero-email-note {
+      font-size: 11.5px;
+      color: rgba(255,255,255,0.42);
+      margin-top: 10px;
+    }
+
+    /* ================================================
+       TRAINING SECTION
+    ================================================ */
+    .training-partner-note {
+      font-size: 13px;
+      color: var(--warm-gray);
+      font-style: italic;
+      margin-bottom: 48px;
+    }
+
+    .training-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .training-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 32px 28px;
+      box-shadow: var(--shadow-sm);
+      border: 2px solid transparent;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .training-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+    }
+
+    .training-card--featured {
+      border-color: var(--violet);
+      box-shadow: var(--shadow-md);
+    }
+
+    .training-tier-label {
+      font-family: var(--font-heading);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--violet);
+    }
+    .training-card--featured .training-tier-label { color: var(--violet); }
+
+    .training-name {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--blue-fusion);
+      line-height: 1.2;
+    }
+
+    .training-audience {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--warm-gray);
+    }
+
+    .training-format {
+      font-size: 12.5px;
+      color: var(--warm-gray);
+      font-style: italic;
+    }
+
+    .training-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
+    .training-features li {
+      font-size: 14px;
+      color: var(--slate);
+      padding-left: 18px;
+      position: relative;
+    }
+    .training-features li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--violet);
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    .training-price {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--blue-fusion);
+      margin-top: 4px;
+    }
+
+    .training-cta {
+      width: 100%;
+      justify-content: center;
+      margin-top: 4px;
+    }
+
+    /* ================================================
+       AUTHOR AFFILIATION & PUBLICATIONS
+    ================================================ */
+    .author-affiliation {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--violet);
+      margin-bottom: 4px;
+      letter-spacing: 0.2px;
+    }
+
+    .author-publications {
+      background: var(--cloud);
+      border-left: 3px solid var(--violet);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 14px 18px;
+      margin: 4px 0;
+    }
+    .author-publications strong {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--violet);
+      margin-bottom: 8px;
+    }
+    .author-publications p {
+      font-size: 14px;
+      color: var(--slate);
+      line-height: 1.6;
+    }
+    .author-publications a {
+      color: var(--violet);
+      text-decoration: underline;
+      font-weight: 600;
+    }
+    .author-publications a:hover { color: var(--blue-fusion); }
+
     .contact-options {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1249,9 +1446,13 @@
       .nav-cta { display: none; }
     }
 
+      .training-grid { grid-template-columns: 1fr; }
+      .hero-email-form { flex-direction: column; }
+    }
+
     @media (max-width: 540px) {
       .resources-grid { grid-template-columns: 1fr; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-grid { grid-template-columns: repeat(3, 1fr); }
       .section { padding: 64px 0; }
     }
   </style>
@@ -1288,6 +1489,7 @@
             </div>
           </div>
         </li>
+        <li><a href="#training">Training</a></li>
         <li><a href="#author">About</a></li>
         <li><a href="#contact">Contact</a></li>
         <li><a href="#contact" class="nav-cta">Request Instructor Copy</a></li>
@@ -1307,7 +1509,7 @@
         <div class="hero-content">
           <div class="hero-badge">
             <span class="hero-badge-dot"></span>
-            Forthcoming — Graduate Textbook
+            Publishing 2026 — Graduate Textbook
           </div>
           <h1>
             Entrepreneurship<br>
@@ -1328,6 +1530,14 @@
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
               Request Instructor Copy
             </a>
+          </div>
+          <div class="hero-email-capture">
+            <p class="hero-email-hook">Get the first chapter free — delivered at launch.</p>
+            <form class="hero-email-form" id="heroSignupForm" onsubmit="handleHeroSignup(event)">
+              <input type="email" placeholder="Enter your email address" required id="heroEmailInput">
+              <button type="submit" class="btn btn-primary hero-email-btn">Get Early Access</button>
+            </form>
+            <p class="hero-email-note">No spam. Unsubscribe any time.</p>
           </div>
         </div>
 
@@ -1379,6 +1589,10 @@
         <div class="stat-item">
           <div class="stat-number" style="color: var(--golden-dim);">1<span style="font-size:18px; vertical-align: middle;">st</span></div>
           <div class="stat-label">AI + Web3 Convergence Text</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" style="color: var(--violet);">2026</div>
+          <div class="stat-label">Publication Year</div>
         </div>
       </div>
     </div>
@@ -1628,6 +1842,64 @@
   </section>
 
   <!-- ================================================
+       TRAINING
+  ================================================ -->
+  <section class="section section--alt" id="training">
+    <div class="container">
+      <div class="label">Applied Training Programmes</div>
+      <h2 class="section-heading">From self-paced foundations to live masterclasses and corporate programmes — built around the book's frameworks for AI and Web3 venture building.</h2>
+      <p class="section-sub training-partner-note">Delivered in partnership with a leading business school. Details to be announced.</p>
+
+      <div class="training-grid">
+        <div class="training-card">
+          <div class="training-tier-label">Self-Paced</div>
+          <h3 class="training-name">Foundations</h3>
+          <div class="training-audience">Students · Practitioners · Founders</div>
+          <div class="training-format">On-demand · theaiandweb3book.com</div>
+          <ul class="training-features">
+            <li>Full curriculum based on the book</li>
+            <li>Frameworks workbook</li>
+            <li>Token simulator access</li>
+            <li>Certificate of completion</li>
+          </ul>
+          <div class="training-price">€49 – €149</div>
+          <a href="#contact" class="btn btn-ghost training-cta">Join Waitlist</a>
+        </div>
+
+        <div class="training-card training-card--featured">
+          <div class="training-tier-label">Live Masterclass</div>
+          <h3 class="training-name">AI &amp; Web3 Venture Masterclass</h3>
+          <div class="training-audience">Executives · MBA Alumni · Advanced Practitioners</div>
+          <div class="training-format">Cohort-based · Live · In-person or hybrid</div>
+          <ul class="training-features">
+            <li>4–6 week cohort</li>
+            <li>Live sessions with the author</li>
+            <li>Book frameworks applied to own venture</li>
+            <li>Institutional certificate</li>
+          </ul>
+          <div class="training-price">€599 – €1,500</div>
+          <a href="#contact" class="btn btn-primary training-cta">Join Waitlist</a>
+        </div>
+
+        <div class="training-card">
+          <div class="training-tier-label">Corporate &amp; Institutional</div>
+          <h3 class="training-name">Team &amp; Faculty Training</h3>
+          <div class="training-audience">Innovation Teams · VC Firms · Business Schools</div>
+          <div class="training-format">Custom · On-site or virtual · EN / FR · Worldwide</div>
+          <ul class="training-features">
+            <li>Tailored to organisation's context</li>
+            <li>Group workshop on AI &amp; Web3 venture strategy</li>
+            <li>Faculty development for business schools</li>
+            <li>Institutional textbook licensing option</li>
+          </ul>
+          <div class="training-price">Custom pricing</div>
+          <a href="mailto:theaiandweb3book@gmail.com?subject=Corporate%20Training%20Enquiry" class="btn btn-ghost training-cta">Request a Conversation</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================
        AUTHOR
   ================================================ -->
   <section class="section" id="author">
@@ -1639,13 +1911,18 @@
         <div>
           <div class="label">About the Author</div>
           <div class="author-name">Zishan A. Mohammad</div>
+          <div class="author-affiliation">ReTech Fellow · École des Ponts Business School</div>
           <div class="author-title">Researcher · Entrepreneur · Educator</div>
           <p class="author-bio">
             Zishan A. Mohammad is a researcher and educator at the intersection of entrepreneurship, blockchain, and artificial intelligence. His work spans empirical token economy research, Web3 venture strategy, and the design of decentralized AI governance systems.
           </p>
           <p class="author-bio">
-            With academic roots at École des Ponts ParisTech - Business School and University of Durham and a career spanning research, teaching, and venture consulting, Zishan brings both analytical rigour and practitioner experience to this textbook — bridging the gap between cutting-edge academic research and the realities of building Web3 ventures.
+            With academic roots at <a href="https://pontsbschool.com/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">École des Ponts ParisTech - Business School</a> and University of Durham and a career spanning research, teaching, and venture consulting, Zishan brings both analytical rigour and practitioner experience to this textbook — bridging the gap between cutting-edge academic research and the realities of building Web3 ventures.
           </p>
+          <div class="author-publications">
+            <strong>Peer-Reviewed Research</strong>
+            <p>Co-author of <em>"Token Design Strategies for Entrepreneurial Crypto Projects: A Systematic Literature Review"</em>, published in <em>Frontiers in Blockchain</em> (2026). <a href="https://doi.org/10.3389/fbloc.2026.1741756" target="_blank" rel="noopener">Read the paper →</a></p>
+          </div>
           <div class="author-tags">
             <span class="tag">Blockchain Research</span>
             <span class="tag">Tokenomics</span>
@@ -1666,16 +1943,16 @@
     <div class="container">
       <div class="signup-inner">
         <div class="label">Stay Updated</div>
-        <h2 class="section-heading" style="text-align:center;">Get notified at launch</h2>
+        <h2 class="section-heading" style="text-align:center;">Get the first chapter free</h2>
         <p style="color: var(--warm-gray); font-size: 16px; margin-top: 8px;">
-          Join the mailing list for publication updates, early access to companion materials, and chapter previews.
+          Join the mailing list and receive Chapter 1 as a free PDF the day the book launches — plus early access to companion materials and chapter previews.
         </p>
 
         <form class="signup-form" id="signupForm" onsubmit="handleSignup(event)">
           <input type="email" placeholder="your@email.com" required id="emailInput">
           <button type="submit" class="btn btn-signup">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
-            Subscribe
+            Send Me Chapter 1
           </button>
         </form>
         <p class="signup-note">No spam. Unsubscribe at any time. Your email is never shared.</p>
@@ -1716,6 +1993,7 @@
             <li><a href="#about">About the Book</a></li>
             <li><a href="#chapters">Chapter Overview</a></li>
             <li><a href="#instructors">Instructor Resources</a></li>
+            <li><a href="#training">Training Programmes</a></li>
             <li><a href="#author">About the Author</a></li>
           </ul>
         </div>
@@ -1810,6 +2088,14 @@
       const email = document.getElementById('emailInput').value;
       window.location.href = 'mailto:theaiandweb3book@gmail.com?subject=Mailing%20List%20Signup%20—%20AI%20%26%20Web3%20Book&body=Please%20add%20me%20to%20the%20mailing%20list%3A%20' + encodeURIComponent(email);
       document.getElementById('signupForm').reset();
+      showToast('Opening your email client — we\'ll be in touch!');
+    }
+
+    function handleHeroSignup(e) {
+      e.preventDefault();
+      const email = document.getElementById('heroEmailInput').value;
+      window.location.href = 'mailto:theaiandweb3book@gmail.com?subject=Mailing%20List%20Signup%20—%20AI%20%26%20Web3%20Book&body=Please%20add%20me%20to%20the%20mailing%20list%3A%20' + encodeURIComponent(email);
+      document.getElementById('heroSignupForm').reset();
       showToast('Opening your email client — we\'ll be in touch!');
     }
 
