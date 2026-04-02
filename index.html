@@ -18,7 +18,7 @@
     gtag('js', new Date());
     gtag('config', 'G-Y0L12HDLEE');
   </script>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://*.list-manage.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; frame-src https://token-economy-simulator.streamlit.app; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.list-manage.com; frame-ancestors 'self';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; frame-src https://token-economy-simulator.streamlit.app https://*.list-manage.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; form-action 'self' https://*.list-manage.com; frame-ancestors 'self';">
   <meta http-equiv="X-Frame-Options" content="DENY">
   <link rel="canonical" href="https://theaiandweb3book.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1599,8 +1599,10 @@
           <div class="hero-author">By Zishan A. Mohammad</div>
           <div class="hero-email-capture">
             <p class="hero-email-hook">Get the first chapter free — delivered at launch.</p>
-            <form class="hero-email-form" id="heroSignupForm">
-              <input type="email" placeholder="Enter your email address" required id="heroEmailInput">
+            <form class="hero-email-form" id="heroSignupForm" action="https://theaiandweb3book.us2.list-manage.com/subscribe/post" method="POST" target="mc-hidden-iframe">
+              <input type="hidden" name="u" value="4f794b1ce938d7340504a2f27">
+              <input type="hidden" name="id" value="0ea91e911e">
+              <input type="email" name="EMAIL" placeholder="Enter your email address" required id="heroEmailInput">
               <button type="submit" class="btn btn-primary hero-email-btn">Get Early Access</button>
             </form>
             <p class="hero-email-note">No spam. Unsubscribe any time.</p>
@@ -2014,8 +2016,10 @@
           Join the mailing list and receive Chapter 1 as a free PDF the day the book launches — plus early access to companion materials and chapter previews.
         </p>
 
-        <form class="signup-form" id="signupForm">
-          <input type="email" placeholder="your@email.com" required id="emailInput">
+        <form class="signup-form" id="signupForm" action="https://theaiandweb3book.us2.list-manage.com/subscribe/post" method="POST" target="mc-hidden-iframe">
+          <input type="hidden" name="u" value="4f794b1ce938d7340504a2f27">
+          <input type="hidden" name="id" value="0ea91e911e">
+          <input type="email" name="EMAIL" placeholder="your@email.com" required id="emailInput">
           <button type="submit" class="btn btn-signup">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
             Send Me Chapter 1
@@ -2088,6 +2092,9 @@
     <span class="toast-icon">✓</span>
     <span id="toastMsg">You're on the list!</span>
   </div>
+
+  <!-- Hidden iframe for Mailchimp form submission -->
+  <iframe name="mc-hidden-iframe" style="display:none;" tabindex="-1"></iframe>
 
   <!-- Success modal -->
   <div class="modal-overlay" id="successModal">
@@ -2162,37 +2169,18 @@
     });
 
     // ---- Mailchimp signup ----
-    const MC_URL = 'https://gmail.us2.list-manage.com/subscribe/post-json?u=4f794b1ce938d7340504a2f27&id=0ea91e911e';
-
-    document.getElementById('heroSignupForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      subscribeToMailchimp(document.getElementById('heroEmailInput').value, this);
-    });
-    document.getElementById('signupForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      subscribeToMailchimp(document.getElementById('emailInput').value, this);
-    });
-
-    function subscribeToMailchimp(email, form) {
-      const callbackName = 'mc_callback_' + Date.now();
-      const url = MC_URL + '&EMAIL=' + encodeURIComponent(email) + '&c=' + callbackName;
-
-      window[callbackName] = function(response) {
-        if (response.result === 'success' || response.msg.includes('already subscribed')) {
-          form.reset();
-          showModal();
-        } else {
-          showToast('Something went wrong — please try again.');
-        }
-        document.getElementById(callbackName).remove();
-        delete window[callbackName];
-      };
-
-      const script = document.createElement('script');
-      script.id = callbackName;
-      script.src = url;
-      document.body.appendChild(script);
+    function handleMailchimpSubmit(form) {
+      setTimeout(function() {
+        form.reset();
+        showModal();
+      }, 500);
     }
+    document.getElementById('heroSignupForm').addEventListener('submit', function() {
+      handleMailchimpSubmit(this);
+    });
+    document.getElementById('signupForm').addEventListener('submit', function() {
+      handleMailchimpSubmit(this);
+    });
 
     // ---- Success modal ----
     const modal = document.getElementById('successModal');
