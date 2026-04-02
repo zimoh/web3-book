@@ -18,7 +18,7 @@
     gtag('js', new Date());
     gtag('config', 'G-Y0L12HDLEE');
   </script>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; frame-src https://token-economy-simulator.streamlit.app; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-ancestors 'self';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://*.list-manage.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; frame-src https://token-economy-simulator.streamlit.app; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.list-manage.com; frame-ancestors 'self';">
   <meta http-equiv="X-Frame-Options" content="DENY">
   <link rel="canonical" href="https://theaiandweb3book.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1424,6 +1424,72 @@
     .toast-icon { font-size: 18px; }
 
     /* ================================================
+       SUCCESS MODAL
+    ================================================ */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-box {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 40px 36px;
+      max-width: 460px;
+      width: 90%;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
+    }
+    .modal-overlay.show .modal-box {
+      transform: scale(1);
+    }
+    .modal-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+    .modal-title {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--blue-deep);
+      margin-bottom: 12px;
+    }
+    .modal-text {
+      font-size: 15px;
+      color: var(--warm-gray);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .modal-close {
+      background: var(--golden);
+      color: var(--blue-deep);
+      border: none;
+      padding: 12px 32px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .modal-close:hover {
+      background: var(--golden-dim);
+    }
+
+    /* ================================================
        RESPONSIVE
     ================================================ */
     @media (max-width: 860px) {
@@ -2023,6 +2089,18 @@
     <span id="toastMsg">You're on the list!</span>
   </div>
 
+  <!-- Success modal -->
+  <div class="modal-overlay" id="successModal">
+    <div class="modal-box">
+      <div class="modal-icon">🎉</div>
+      <div class="modal-title">Thank you for your interest!</div>
+      <p class="modal-text">
+        We'll send you Chapter 1 as a free PDF the day the book launches and keep you informed about the release. No spam — ever.
+      </p>
+      <button class="modal-close" id="modalClose">Got it!</button>
+    </div>
+  </div>
+
   <script>
     // ---- Simulator embed ----
     // TODO: Replace SIMULATOR_URL with your actual Streamlit app URL once deployed
@@ -2083,24 +2161,51 @@
       document.querySelectorAll('.nav-dropdown.open').forEach(d => d.classList.remove('open'));
     });
 
-    // ---- Signup form ----
-    document.getElementById('heroSignupForm').addEventListener('submit', handleHeroSignup);
-    document.getElementById('signupForm').addEventListener('submit', handleSignup);
+    // ---- Mailchimp signup ----
+    const MC_URL = 'https://gmail.us2.list-manage.com/subscribe/post-json?u=4f794b1ce938d7340504a2f27&id=0ea91e911e';
 
-    function handleSignup(e) {
+    document.getElementById('heroSignupForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      const email = document.getElementById('emailInput').value;
-      window.location.href = 'mailto:theaiandweb3book@gmail.com?subject=Mailing%20List%20Signup%20—%20AI%20%26%20Web3%20Book&body=Please%20add%20me%20to%20the%20mailing%20list%3A%20' + encodeURIComponent(email);
-      document.getElementById('signupForm').reset();
-      showToast('Opening your email client — we\'ll be in touch!');
+      subscribeToMailchimp(document.getElementById('heroEmailInput').value, this);
+    });
+    document.getElementById('signupForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      subscribeToMailchimp(document.getElementById('emailInput').value, this);
+    });
+
+    function subscribeToMailchimp(email, form) {
+      const callbackName = 'mc_callback_' + Date.now();
+      const url = MC_URL + '&EMAIL=' + encodeURIComponent(email) + '&c=' + callbackName;
+
+      window[callbackName] = function(response) {
+        if (response.result === 'success' || response.msg.includes('already subscribed')) {
+          form.reset();
+          showModal();
+        } else {
+          showToast('Something went wrong — please try again.');
+        }
+        document.getElementById(callbackName).remove();
+        delete window[callbackName];
+      };
+
+      const script = document.createElement('script');
+      script.id = callbackName;
+      script.src = url;
+      document.body.appendChild(script);
     }
 
-    function handleHeroSignup(e) {
-      e.preventDefault();
-      const email = document.getElementById('heroEmailInput').value;
-      window.location.href = 'mailto:theaiandweb3book@gmail.com?subject=Mailing%20List%20Signup%20—%20AI%20%26%20Web3%20Book&body=Please%20add%20me%20to%20the%20mailing%20list%3A%20' + encodeURIComponent(email);
-      document.getElementById('heroSignupForm').reset();
-      showToast('Opening your email client — we\'ll be in touch!');
+    // ---- Success modal ----
+    const modal = document.getElementById('successModal');
+    document.getElementById('modalClose').addEventListener('click', hideModal);
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) hideModal();
+    });
+
+    function showModal() {
+      modal.classList.add('show');
+    }
+    function hideModal() {
+      modal.classList.remove('show');
     }
 
     function showToast(msg) {
