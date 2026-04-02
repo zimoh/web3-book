@@ -10,6 +10,8 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://theaiandweb3book.com">
   <meta property="og:site_name" content="Entrepreneurship in the Age of AI &amp; Web3">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; frame-src https://token-economy-simulator.streamlit.app; img-src 'self' data:; connect-src 'self'; frame-ancestors 'self';">
+  <meta http-equiv="X-Frame-Options" content="DENY">
   <link rel="canonical" href="https://theaiandweb3book.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1523,7 +1525,7 @@
           <div class="hero-author">By Zishan A. Mohammad</div>
           <div class="hero-email-capture">
             <p class="hero-email-hook">Get the first chapter free — delivered at launch.</p>
-            <form class="hero-email-form" id="heroSignupForm" onsubmit="handleHeroSignup(event)">
+            <form class="hero-email-form" id="heroSignupForm">
               <input type="email" placeholder="Enter your email address" required id="heroEmailInput">
               <button type="submit" class="btn btn-primary hero-email-btn">Get Early Access</button>
             </form>
@@ -1938,7 +1940,7 @@
           Join the mailing list and receive Chapter 1 as a free PDF the day the book launches — plus early access to companion materials and chapter previews.
         </p>
 
-        <form class="signup-form" id="signupForm" onsubmit="handleSignup(event)">
+        <form class="signup-form" id="signupForm">
           <input type="email" placeholder="your@email.com" required id="emailInput">
           <button type="submit" class="btn btn-signup">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
@@ -2027,6 +2029,7 @@
         iframe.src              = SIMULATOR_URL + '?embed=true';
         iframe.className        = 'simulator-frame';
         iframe.allow            = 'fullscreen';
+        iframe.sandbox          = 'allow-scripts allow-same-origin allow-popups allow-forms';
         iframe.title            = 'Token Economy Simulator';
         placeholder.parentNode.replaceChild(iframe, placeholder);
       } else {
@@ -2073,6 +2076,9 @@
     });
 
     // ---- Signup form ----
+    document.getElementById('heroSignupForm').addEventListener('submit', handleHeroSignup);
+    document.getElementById('signupForm').addEventListener('submit', handleSignup);
+
     function handleSignup(e) {
       e.preventDefault();
       const email = document.getElementById('emailInput').value;
