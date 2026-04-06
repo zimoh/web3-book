@@ -93,18 +93,30 @@
     }
 
     .nav-logo {
-      font-family: var(--font-heading);
-      font-size: 13px;
-      font-weight: 800;
-      color: var(--white);
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 10px;
+      gap: 0;
+      white-space: nowrap;
+      flex-shrink: 0;
       text-decoration: none;
     }
 
-    .nav-logo-img {
-      height: 36px;
+    .nav-logo-title {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.1;
+    }
+
+    .nav-logo-subtitle {
+      font-family: var(--font-heading);
+      font-size: 9px;
+      font-weight: 800;
+      color: var(--golden);
+      letter-spacing: 4px;
+      line-height: 1.4;
       width: auto;
       display: block;
     }
@@ -535,7 +547,8 @@
 ================================================ -->
 <nav>
   <a href="index.html" class="nav-logo">
-    <img src="assets/images/logo.png" alt="AI &amp; Web3 Book" class="nav-logo-img">
+    <span class="nav-logo-title">AI &amp; Web3</span>
+    <span class="nav-logo-subtitle">BOOK</span>
   </a>
   <a href="index.html" class="nav-back">
     <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

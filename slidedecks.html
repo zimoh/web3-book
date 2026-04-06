@@ -67,11 +67,17 @@
       display: flex; align-items: center; justify-content: space-between;
     }
     .nav-logo {
-      font-family: var(--font-heading); font-size: 12px; font-weight: 800;
-      color: var(--white); display: flex; align-items: center; gap: 8px;
-      white-space: nowrap;
+      display: flex; flex-direction: column; align-items: center; gap: 0;
+      white-space: nowrap; flex-shrink: 0; text-decoration: none;
     }
-    .nav-logo-img { height: 36px; width: auto; display: block; }
+    .nav-logo-title {
+      font-family: var(--font-heading); font-size: 16px; font-weight: 900;
+      color: var(--white); line-height: 1.1;
+    }
+    .nav-logo-subtitle {
+      font-family: var(--font-heading); font-size: 9px; font-weight: 800;
+      color: var(--golden); letter-spacing: 4px; line-height: 1.4;
+    }
     .nav-logo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--golden); flex-shrink: 0; }
     .nav-back {
       font-family: var(--font-heading); font-size: 12px; font-weight: 700;
@@ -259,7 +265,8 @@
 <!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo">
-    <img src="assets/images/logo.png" alt="AI &amp; Web3 Book" class="nav-logo-img">
+    <span class="nav-logo-title">AI &amp; Web3</span>
+    <span class="nav-logo-subtitle">BOOK</span>
   </a>
   <a href="index.html" class="nav-back">
     <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3L5 8l5 5"/></svg>
