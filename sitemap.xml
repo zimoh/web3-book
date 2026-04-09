@@ -17,6 +17,34 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://theaiandweb3book.com/blockchain%20exo/index.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://theaiandweb3book.com/blockchain%20exo/hash.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://theaiandweb3book.com/blockchain%20exo/block.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://theaiandweb3book.com/blockchain%20exo/blockchain.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://theaiandweb3book.com/blockchain%20exo/distributed.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://theaiandweb3book.com/blockchain%20exo/tokens.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://theaiandweb3book.com/blockchain%20exo/coinbase.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://theaiandweb3book.com/infographics/Ch01_Infographic_Web3Fundamentals.html</loc>
     <priority>0.6</priority>
   </url>

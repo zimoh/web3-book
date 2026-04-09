@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interactive block demo with mining. Explore block numbers, nonces, and proof-of-work hashing. Part of the Entrepreneurship in the Age of AI and Web3 textbook exercises.">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
+  <title>Block — Book Exercises | Entrepreneurship in the Age of AI &amp; Web3</title>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y0L12HDLEE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Y0L12HDLEE');
+  </script>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <!-- Bootstrap 3 + Blockchain demo CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="css/bootstrap-horizon.css">
+  <link rel="stylesheet" href="css/ladda-themeless.min.css">
+  <link rel="stylesheet" href="css/blockchain.css">
+  <!-- Blockchain demo JS -->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/spin.min.js"></script>
+  <script src="js/ladda.min.js"></script>
+  <script src="js/sha256.js"></script>
+  <script src="js/blockchain.js"></script>
+  <style>
+    :root {
+      --blue-fusion:  #435070;
+      --blue-deep:    #2E3650;
+      --violet:       #8B6FA0;
+      --violet-light: #A98BBF;
+      --golden:       #E8C547;
+      --golden-dim:   #C9A82E;
+      --coral:        #FF6B6B;
+      --cloud:        #F0EEE9;
+      --cloud-warm:   #FAF8F4;
+      --slate:        #1E293B;
+      --warm-gray:    #6B7280;
+      --white:        #FFFFFF;
+      --radius-sm:  8px;
+      --radius-md:  14px;
+      --shadow-md:  0 6px 24px rgba(67,80,112,0.14);
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body:    'Open Sans', sans-serif;
+    }
+    .site-nav {
+      position: fixed; top: 0; width: 100%; z-index: 1100;
+      background: rgba(46, 54, 80, 0.96);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .site-nav-inner {
+      max-width: 1160px; margin: 0 auto; padding: 0 28px;
+      height: 64px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .site-nav-logo {
+      font-family: var(--font-heading); font-size: 12px; font-weight: 800;
+      color: var(--white); letter-spacing: 0.3px; display: flex;
+      align-items: center; gap: 8px; white-space: nowrap; text-decoration: none;
+    }
+    .site-nav-logo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--golden); }
+    .site-nav-links {
+      display: flex; align-items: center; height: 64px; gap: 0;
+      list-style: none; margin: 0; padding: 0;
+    }
+    .site-nav-links a {
+      display: flex; align-items: center; font-family: var(--font-heading);
+      font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.55);
+      padding: 0 14px; height: 64px; text-decoration: none;
+      transition: color 0.2s, background 0.2s;
+      border-bottom: 3px solid transparent; letter-spacing: 0.3px;
+    }
+    .site-nav-links a:hover { color: rgba(255,255,255,0.9); background: rgba(255,255,255,0.04); }
+    .site-nav-links a.active { color: var(--white); border-bottom-color: var(--golden); }
+    .site-nav-links .back-link { color: var(--golden); font-weight: 800; letter-spacing: 0.5px; }
+    .site-nav-links .back-link:hover { color: var(--golden-dim); }
+    body { padding-top: 64px !important; }
+    .navbar.navbar-inverse.navbar-fixed-top { display: none !important; }
+    .site-footer {
+      background: var(--blue-deep); color: rgba(255,255,255,0.5);
+      text-align: center; padding: 32px 28px; font-size: 13px;
+      font-family: var(--font-heading); margin-top: 48px;
+    }
+    .site-footer a { color: var(--golden); text-decoration: none; }
+    .site-nav-toggle {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; background: none; border: none; padding: 4px;
+    }
+    .site-nav-toggle span { display: block; width: 22px; height: 2px; background: var(--white); border-radius: 2px; }
+    @media (max-width: 768px) {
+      .site-nav-links { display: none; }
+      .site-nav-toggle { display: flex; }
+      .site-nav-links.open {
+        display: flex; flex-direction: column; position: fixed;
+        top: 64px; left: 0; right: 0; background: rgba(46,54,80,0.98);
+        padding: 16px 28px 24px; gap: 0; z-index: 1100;
+      }
+      .site-nav-links.open a { height: auto; padding: 12px 0; font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav">
+    <div class="site-nav-inner">
+      <a href="../index.html" class="site-nav-logo">
+        <span class="site-nav-logo-dot"></span>
+        Entrepreneurship in the Age of AI &amp; Web3
+      </a>
+      <ul class="site-nav-links" id="siteNavLinks">
+        <li><a href="../index.html" class="back-link">&larr; Home</a></li>
+        <li><a href="hash.html">Hash</a></li>
+        <li><a href="block.html" class="active">Block</a></li>
+        <li><a href="blockchain.html">Blockchain</a></li>
+        <li><a href="distributed.html">Distributed</a></li>
+        <li><a href="tokens.html">Tokens</a></li>
+        <li><a href="coinbase.html">Coinbase</a></li>
+      </ul>
+      <button class="site-nav-toggle" id="siteNavToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1>Block</h1>
+    <div class="well" id="block1chain1well">
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="block1chain1number">Block:</label>
+          <div class="col-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon">#</span>
+              <input class="form-control" id="block1chain1number" type="number" value="1">
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="block1chain1nonce">Nonce:</label>
+          <div class="col-sm-10">
+            <input class="form-control" id="block1chain1nonce" type="text" value="72608">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="block1chain1data">Data:</label>
+          <div class="col-sm-10">
+            <textarea class="form-control" id="block1chain1data" rows="10"></textarea>
+          </div>
+        </div>
+        <div class="form-group" id="state">
+          <label class="col-sm-2 control-label" for="block1chain1hash">Hash:</label>
+          <div class="col-sm-10">
+            <input class="form-control" id="block1chain1hash" type="text" disabled>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-2">
+            <i class="icon-spinner icon-spin icon-large"></i>
+          </div>
+          <div class="col-sm-10">
+            <button class="btn btn-primary ladda-button" id="block1chain1mineButton" data-style="expand-right">
+              <span class="ladda-label">Mine</span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+  $(function() {
+    $('#block1chain1number').bind('input propertychange', function() { updateHash(1, 1); });
+    $('#block1chain1nonce').bind('input propertychange', function() { updateHash(1, 1); });
+    $('#block1chain1data').bind('input propertychange', function() { updateHash(1, 1); });
+    mineButtonAnimation(1, 1);
+    updateHash(1, 1);
+  });
+  function getText(block, chain) {
+    return $('#block'+block+'chain'+chain+'number').val() +
+           $('#block'+block+'chain'+chain+'nonce').val() +
+           $('#block'+block+'chain'+chain+'data').val();
+  }
+  function mineButtonAnimation(block, chain) {
+    $('#block'+block+'chain'+chain+'mineButton').click(function(e) {
+        e.preventDefault();
+        var l = Ladda.create(this);
+        l.start();
+        setTimeout(function() {
+            mine(block, chain, false);
+            l.stop();
+          }, 250);
+      });
+  }
+  </script>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 Zishan A. Mohammad &mdash; <a href="../index.html">Entrepreneurship in the Age of AI &amp; Web3</a></p>
+    <p style="margin-top:6px;font-size:11px;opacity:0.6;">Blockchain demo engine by <a href="https://github.com/anders94/blockchain-demo" target="_blank" rel="noopener">Anders Brownworth</a> (MIT License)</p>
+  </footer>
+
+  <script>
+  document.getElementById('siteNavToggle').addEventListener('click', function() {
+    document.getElementById('siteNavLinks').classList.toggle('open');
+  });
+  </script>
+</body>
+</html>

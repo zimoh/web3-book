@@ -1,0 +1,1815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Exercises — Blockchain Interactive Demos | Entrepreneurship in the Age of AI &amp; Web3</title>
+  <meta name="description" content="Interactive blockchain exercises: Hash, Block, Blockchain, Distributed, Tokens, and Coinbase demos.">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y0L12HDLEE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Y0L12HDLEE');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <!-- CryptoJS SHA256 -->
+  <script src="js/sha256.js"></script>
+  <!-- Public/Private Key demo libraries -->
+  <script src="js/BigInteger.min.js"></script>
+  <script src="js/Buffer.js"></script>
+  <script src="js/elliptic.js"></script>
+  <script src="js/js.cookie.min.js"></script>
+  <style>
+    /* ================================================
+       DESIGN TOKENS — Vibrant Fusion palette
+    ================================================ */
+    :root {
+      --blue-fusion:  #435070;
+      --blue-deep:    #2E3650;
+      --violet:       #8B6FA0;
+      --violet-light: #A98BBF;
+      --golden:       #E8C547;
+      --golden-dim:   #C9A82E;
+      --coral:        #FF6B6B;
+      --coral-dim:    #E85555;
+      --cloud:        #F0EEE9;
+      --cloud-warm:   #FAF8F4;
+      --slate:        #1E293B;
+      --warm-gray:    #6B7280;
+      --white:        #FFFFFF;
+      --green:        #22c55e;
+      --green-bg:     rgba(34,197,94,0.08);
+      --red-bg:       rgba(255,107,107,0.08);
+      --radius-sm:  8px;
+      --radius-md:  14px;
+      --radius-lg:  22px;
+      --shadow-sm:  0 2px 8px rgba(67,80,112,0.10);
+      --shadow-md:  0 6px 24px rgba(67,80,112,0.14);
+      --shadow-lg:  0 16px 48px rgba(67,80,112,0.18);
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body:    'Open Sans', sans-serif;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--cloud);
+      color: var(--slate);
+      line-height: 1.65;
+      font-size: 16px;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+
+    /* ================================================
+       NAV
+    ================================================ */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      background: rgba(46, 54, 80, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 28px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--font-heading);
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: 0.3px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+    .nav-logo-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--golden);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      height: 64px;
+      gap: 20px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.72);
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .nav-toggle span {
+      display: block; width: 22px; height: 2px;
+      background: var(--white); border-radius: 2px;
+    }
+
+    /* ================================================
+       HERO
+    ================================================ */
+    .page-hero {
+      background: linear-gradient(135deg, var(--blue-deep) 0%, var(--blue-fusion) 55%, #5a4a7a 100%);
+      padding: 120px 0 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(139,111,160,0.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .page-hero h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 12px;
+      position: relative;
+    }
+    .page-hero p {
+      font-size: 17px;
+      color: rgba(255,255,255,0.72);
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .page-hero .back-link {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--golden);
+      font-family: var(--font-heading);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      transition: opacity 0.2s;
+    }
+    .page-hero .back-link:hover { opacity: 0.8; }
+
+    /* ================================================
+       TABS BAR
+    ================================================ */
+    .tabs-bar {
+      background: var(--white);
+      border-bottom: 1px solid rgba(67,80,112,0.1);
+      position: sticky;
+      top: 64px;
+      z-index: 50;
+    }
+    .tabs-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 28px;
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .tab-btn {
+      font-family: var(--font-heading);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: var(--warm-gray);
+      background: none;
+      border: none;
+      padding: 16px 20px;
+      cursor: pointer;
+      white-space: nowrap;
+      border-bottom: 3px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tab-btn:hover { color: var(--blue-fusion); }
+    .tab-btn.active {
+      color: var(--blue-fusion);
+      border-bottom-color: var(--golden);
+    }
+    .tab-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: var(--cloud);
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--warm-gray);
+      transition: background 0.2s, color 0.2s;
+    }
+    .tab-btn.active .tab-num {
+      background: var(--golden);
+      color: var(--blue-deep);
+    }
+
+    /* ================================================
+       EXERCISE PANELS
+    ================================================ */
+    .exercise-panel {
+      display: none;
+      padding: 48px 0 80px;
+      animation: fadeIn 0.3s ease;
+    }
+    .exercise-panel.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .exercise-header {
+      margin-bottom: 32px;
+    }
+    .video-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+      font-family: var(--font-heading);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--violet);
+      letter-spacing: 0.3px;
+      transition: color 0.2s;
+    }
+    .video-link:hover { color: var(--blue-fusion); }
+    .video-link svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .hero-attribution {
+      position: relative;
+      margin-top: 20px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      font-style: italic;
+    }
+    .hero-attribution a {
+      color: var(--golden);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .hero-attribution a:hover { opacity: 0.8; }
+    .exercise-header .label {
+      font-family: var(--font-heading);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--violet);
+      margin-bottom: 8px;
+    }
+    .exercise-header h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(24px, 3.5vw, 36px);
+      font-weight: 800;
+      color: var(--blue-fusion);
+      margin-bottom: 8px;
+    }
+    .exercise-header p {
+      font-size: 15px;
+      color: var(--warm-gray);
+      max-width: 640px;
+    }
+
+    /* ================================================
+       BLOCK CARD
+    ================================================ */
+    .block-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
+      padding: 28px;
+      border-left: 4px solid var(--violet);
+      transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
+    }
+    .block-card.valid {
+      border-left-color: var(--green);
+      background: var(--green-bg);
+    }
+    .block-card.invalid {
+      border-left-color: var(--coral);
+      background: var(--red-bg);
+    }
+
+    .field-group { margin-bottom: 16px; }
+    .field-group:last-child { margin-bottom: 0; }
+
+    .field-label {
+      font-family: var(--font-heading);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .field-input {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid rgba(67,80,112,0.15);
+      border-radius: var(--radius-sm);
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      color: var(--slate);
+      background: var(--cloud-warm);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    .field-input:focus {
+      border-color: var(--violet-light);
+      box-shadow: 0 0 0 3px rgba(139,111,160,0.12);
+    }
+    .field-input[disabled] {
+      background: rgba(67,80,112,0.06);
+      color: var(--warm-gray);
+      cursor: default;
+    }
+    textarea.field-input { resize: vertical; min-height: 100px; }
+
+    .hash-output {
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      word-break: break-all;
+      padding: 12px 14px;
+      background: var(--slate);
+      color: #a5f3fc;
+      border-radius: var(--radius-sm);
+      letter-spacing: 0.5px;
+      line-height: 1.6;
+      min-height: 40px;
+    }
+
+    .mine-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--blue-fusion), var(--violet));
+      color: var(--white);
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 12px 28px;
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.2s;
+    }
+    .mine-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .mine-btn:active { transform: translateY(0); }
+    .mine-btn.mining { opacity: 0.7; cursor: wait; }
+    .mine-btn svg { width: 16px; height: 16px; }
+
+    /* ================================================
+       CHAIN / PEER LAYOUTS
+    ================================================ */
+    .single-block { max-width: 600px; }
+
+    .chain-row {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .chain-row .block-card { min-width: 320px; flex-shrink: 0; }
+
+    .chain-connector {
+      display: flex;
+      align-items: center;
+      color: var(--violet-light);
+      font-size: 24px;
+      flex-shrink: 0;
+      user-select: none;
+    }
+
+    .peer-section { margin-bottom: 36px; }
+
+    .peer-label {
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--blue-fusion);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .peer-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--violet), var(--violet-light));
+      color: var(--white);
+      font-size: 14px; font-weight: 800;
+    }
+
+    /* ================================================
+       TRANSACTION ROWS
+    ================================================ */
+    .tx-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+    }
+    .tx-row .field-input { width: auto; flex: 1; min-width: 60px; }
+    .tx-arrow {
+      color: var(--violet);
+      font-weight: 700;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    .tx-label-inline {
+      font-family: var(--font-heading);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+      flex-shrink: 0;
+    }
+    .coinbase-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      padding: 10px 14px;
+      background: rgba(232,197,71,0.08);
+      border: 1px solid rgba(232,197,71,0.25);
+      border-radius: var(--radius-sm);
+      margin-bottom: 8px;
+    }
+    .coinbase-row .field-input { background: var(--white); }
+    .coinbase-tag {
+      font-family: var(--font-heading);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--golden-dim);
+      flex-shrink: 0;
+    }
+
+    /* ================================================
+       SIGN/VERIFY SUB-TABS
+    ================================================ */
+    .subtabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 20px;
+      border-bottom: 2px solid rgba(67,80,112,0.1);
+    }
+    .subtab-btn {
+      font-family: var(--font-heading);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--warm-gray);
+      background: none;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .subtab-btn:hover { color: var(--blue-fusion); }
+    .subtab-btn.active {
+      color: var(--violet);
+      border-bottom-color: var(--violet);
+    }
+    .subtab-panel { display: none; }
+    .subtab-panel.active { display: block; }
+
+    .verify-success {
+      border-left-color: var(--green) !important;
+      background: var(--green-bg) !important;
+    }
+    .verify-fail {
+      border-left-color: var(--coral) !important;
+      background: var(--red-bg) !important;
+    }
+
+    .btn-action {
+      display: block;
+      width: 100%;
+      background: linear-gradient(135deg, var(--blue-fusion), var(--violet));
+      color: var(--white);
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 12px 28px;
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.2s;
+      text-align: center;
+    }
+    .btn-action:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-secondary-action {
+      background: var(--golden);
+      color: var(--blue-deep);
+    }
+
+    .sig-invalid { color: var(--coral) !important; }
+
+    /* ================================================
+       FOOTER
+    ================================================ */
+    .site-footer {
+      background: var(--blue-deep);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 32px 28px;
+      font-size: 13px;
+      font-family: var(--font-heading);
+    }
+    .site-footer a { color: var(--golden); text-decoration: none; }
+
+    /* ================================================
+       RESPONSIVE
+    ================================================ */
+    @media (max-width: 860px) {
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 64px; left: 0; right: 0;
+        background: rgba(46,54,80,0.98);
+        padding: 20px 28px 28px;
+        gap: 20px;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+      }
+      .tabs-inner { padding: 0 12px; }
+      .tab-btn { padding: 14px 12px; font-size: 11px; }
+      .chain-row .block-card { min-width: 280px; }
+    }
+    @media (max-width: 540px) {
+      .tx-row { flex-direction: column; align-items: stretch; gap: 4px; }
+      .tx-row .field-input { width: 100%; }
+      .coinbase-row { flex-direction: column; align-items: stretch; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">
+        <span class="nav-logo-dot"></span>
+        Entrepreneurship in the Age of AI &amp; Web3
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="../index.html">&larr; Home</a></li>
+        <li><a href="../index.html#chapters">Chapters</a></li>
+        <li><a href="../reading-list.html">Reading Lists</a></li>
+        <li><a href="../infographics.html">Infographics</a></li>
+        <li><a href="../index.html#author">About</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <a href="../index.html" class="back-link">&larr; Back to Home</a>
+      <h1>Book Exercises</h1>
+      <p>Interactive blockchain demos to accompany the textbook. Explore hashing, blocks, chains, distributed consensus, tokens, and coinbase transactions hands-on.</p>
+      <p class="hero-attribution">This section has been forked and inspired from work from Professor Anders Brownworth, check his work at <a href="https://andersbrownworth.com/" target="_blank" rel="noopener">andersbrownworth.com</a></p>
+    </div>
+  </section>
+
+  <!-- TABS -->
+  <div class="tabs-bar">
+    <div class="tabs-inner">
+      <button class="tab-btn active" onclick="switchTab(0)"><span class="tab-num">1</span> Hash</button>
+      <button class="tab-btn" onclick="switchTab(1)"><span class="tab-num">2</span> Block</button>
+      <button class="tab-btn" onclick="switchTab(2)"><span class="tab-num">3</span> Blockchain</button>
+      <button class="tab-btn" onclick="switchTab(3)"><span class="tab-num">4</span> Distributed</button>
+      <button class="tab-btn" onclick="switchTab(4)"><span class="tab-num">5</span> Tokens</button>
+      <button class="tab-btn" onclick="switchTab(5)"><span class="tab-num">6</span> Coinbase</button>
+      <button class="tab-btn" onclick="switchTab(6)"><span class="tab-num">7</span> Keys</button>
+      <button class="tab-btn" onclick="switchTab(7)"><span class="tab-num">8</span> Signatures</button>
+      <button class="tab-btn" onclick="switchTab(8)"><span class="tab-num">9</span> Transaction</button>
+      <button class="tab-btn" onclick="switchTab(9)"><span class="tab-num">10</span> Signed Blockchain</button>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       PANEL 1: HASH
+  ============================================================ -->
+  <div class="exercise-panel active" id="panel-0">
+    <div class="container">
+      <div class="exercise-header">
+        <div class="label">Exercise 1</div>
+        <h2>SHA-256 Hash</h2>
+        <p>Type anything below and watch the SHA-256 hash update in real time. Notice how even a tiny change produces a completely different hash.</p>
+        <a class="video-link" href="https://youtu.be/_160oMzblY8?si=3g-4fa4kzi8xtiBz&t=15s" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.87.55 9.38.55 9.38.55s7.5 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg> Watch video explainer</a>
+      </div>
+      <div class="single-block">
+        <div class="block-card">
+          <div class="field-group">
+            <label class="field-label">Data</label>
+            <textarea class="field-input" id="hashData" rows="6" placeholder="Type something here..."></textarea>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Hash</label>
+            <div class="hash-output" id="hashOutput"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       PANEL 2: BLOCK
+  ============================================================ -->
+  <div class="exercise-panel" id="panel-1">
+    <div class="container">
+      <div class="exercise-header">
+        <div class="label">Exercise 2</div>
+        <h2>Block</h2>
+        <p>A block bundles a block number, nonce, and data. The hash must start with "0000" to be valid. Click <strong>Mine</strong> to find a valid nonce.</p>
+        <a class="video-link" href="https://youtu.be/_160oMzblY8?si=3g-4fa4kzi8xtiBz&t=136s" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.87.55 9.38.55 9.38.55s7.5 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg> Watch video explainer</a>
+      </div>
+      <div class="single-block">
+        <div class="block-card" id="blk_well">
+          <div class="field-group">
+            <label class="field-label">Block #</label>
+            <input class="field-input" type="number" id="blk_number" value="1">
+          </div>
+          <div class="field-group">
+            <label class="field-label">Nonce</label>
+            <input class="field-input" type="text" id="blk_nonce" value="72608">
+          </div>
+          <div class="field-group">
+            <label class="field-label">Data</label>
+            <textarea class="field-input" id="blk_data" rows="5" placeholder="Enter some data..."></textarea>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Hash</label>
+            <div class="hash-output" id="blk_hash"></div>
+          </div>
+          <div class="field-group">
+            <button class="mine-btn" id="blk_mine" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+              Mine
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       PANEL 3: BLOCKCHAIN
+  ============================================================ -->
+  <div class="exercise-panel" id="panel-2">
+    <div class="container">
+      <div class="exercise-header">
+        <div class="label">Exercise 3</div>
+        <h2>Blockchain</h2>
+        <p>Each block's "Prev" field contains the previous block's hash, chaining them together. Tampering with any block invalidates all subsequent blocks.</p>
+        <a class="video-link" href="https://youtu.be/_160oMzblY8?si=3g-4fa4kzi8xtiBz&t=316s" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.87.55 9.38.55 9.38.55s7.5 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg> Watch video explainer</a>
+      </div>
+      <div class="chain-row" id="chainRow"></div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       PANEL 4: DISTRIBUTED
+  ============================================================ -->
+  <div class="exercise-panel" id="panel-3">
+    <div class="container">
+      <div class="exercise-header">
+        <div class="label">Exercise 4</div>
+        <h2>Distributed Blockchain</h2>
+        <p>Three peers each hold an identical copy of the blockchain. Modify a block on one peer and see how it diverges from the others.</p>
+        <a class="video-link" href="https://youtu.be/_160oMzblY8?si=3g-4fa4kzi8xtiBz&t=562s" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.87.55 9.38.55 9.38.55s7.5 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg> Watch video explainer</a>
+      </div>
+      <div id="distributedContainer"></div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       PANEL 5: TOKENS
+  ============================================================ -->
+  <div class="exercise-panel" id="panel-4">
+    <div class="container">
+      <div class="exercise-header">
+        <div class="label">Exercise 5</div>
+        <h2>Tokens</h2>
+        <p>Instead of free-form data, blocks now contain financial transactions (value, sender, recipient). Altering any transaction breaks the chain.</p>
+        <a class="video-link" href="https://youtu.be/_160oMzblY8?si=3g-4fa4kzi8xtiBz&t=740s" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.87.55 9.38.55 9.38.55s7.5 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg> Watch video explainer</a>
+      </div>
+      <div id="tokensContainer"></div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       PANEL 6: COINBASE
+  ============================================================ -->
+  <div class="exercise-panel" id="panel-5">
+    <div class="container">
+      <div class="exercise-header">
+        <div class="label">Exercise 6</div>
+        <h2>Coinbase Transactions</h2>
+        <p>Miners earn a coinbase reward for each block. This is how new currency enters the system. Observe how coinbase transactions differ from regular transfers.</p>
+        <a class="video-link" href="https://youtu.be/_160oMzblY8?si=3g-4fa4kzi8xtiBz&t=877s" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.87.55 9.38.55 9.38.55s7.5 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg> Watch video explainer</a>
+      </div>
+      <div id="coinbaseContainer"></div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       PANEL 7: KEYS
+  ============================================================ -->
+  <div class="exercise-panel" id="panel-6">
+    <div class="container">
+      <div class="exercise-header">
+        <div class="label">Exercise 7</div>
+        <h2>Public / Private Key Pairs</h2>
+        <p>Generate a private key and see the corresponding public key derived from the secp256k1 elliptic curve. The private key is a large number; the public key is a point on the curve.</p>
+        <a class="video-link" href="https://youtu.be/xIDL_akeras?si=WPfmFrc3gwg7yJfP&t=54s" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.87.55 9.38.55 9.38.55s7.5 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg> Watch video explainer</a>
+      </div>
+      <div class="single-block">
+        <div class="block-card">
+          <div class="field-group">
+            <label class="field-label">Private Key</label>
+            <div style="display:flex;gap:8px">
+              <input class="field-input" type="text" id="keys_privateKey" style="flex:1">
+              <button class="btn-action btn-secondary-action" id="keys_random" type="button" style="width:auto;padding:10px 20px;flex-shrink:0">Random</button>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Public Key</label>
+            <div class="hash-output" id="keys_publicKey" style="word-break:break-all"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       PANEL 8: SIGNATURES
+  ============================================================ -->
+  <div class="exercise-panel" id="panel-7">
+    <div class="container">
+      <div class="exercise-header">
+        <div class="label">Exercise 8</div>
+        <h2>Digital Signatures</h2>
+        <p>Sign a message with your private key, then verify it with the public key. This proves authorship without revealing the private key.</p>
+        <a class="video-link" href="https://youtu.be/xIDL_akeras?si=WPfmFrc3gwg7yJfP&t=154s" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.87.55 9.38.55 9.38.55s7.5 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg> Watch video explainer</a>
+      </div>
+      <div class="single-block" style="max-width:700px">
+        <div class="block-card" id="sig_card">
+          <div class="subtabs">
+            <button class="subtab-btn active" onclick="switchSubtab('sig', 0)">Sign</button>
+            <button class="subtab-btn" onclick="switchSubtab('sig', 1)">Verify</button>
+          </div>
+          <div class="subtab-panel active" id="sig_sign">
+            <div class="field-group">
+              <label class="field-label">Message</label>
+              <textarea class="field-input" id="sig_sign_message" rows="4" placeholder="Enter a message to sign..."></textarea>
+            </div>
+            <div class="field-group">
+              <label class="field-label">Private Key</label>
+              <input class="field-input" type="text" id="sig_privateKey">
+            </div>
+            <div class="field-group">
+              <button class="btn-action" id="sig_sign_btn" type="button">Sign</button>
+            </div>
+            <div class="field-group">
+              <label class="field-label">Message Signature</label>
+              <div class="hash-output" id="sig_sign_signature" style="min-height:36px;word-break:break-all"></div>
+            </div>
+          </div>
+          <div class="subtab-panel" id="sig_verify">
+            <div class="field-group">
+              <label class="field-label">Message</label>
+              <textarea class="field-input" id="sig_verify_message" rows="4" placeholder="Paste the original message..."></textarea>
+            </div>
+            <div class="field-group">
+              <label class="field-label">Public Key</label>
+              <input class="field-input" type="text" id="sig_publicKey">
+            </div>
+            <div class="field-group">
+              <label class="field-label">Signature</label>
+              <input class="field-input" type="text" id="sig_verify_signature">
+            </div>
+            <div class="field-group">
+              <button class="btn-action" id="sig_verify_btn" type="button">Verify</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       PANEL 9: TRANSACTION
+  ============================================================ -->
+  <div class="exercise-panel" id="panel-8">
+    <div class="container">
+      <div class="exercise-header">
+        <div class="label">Exercise 9</div>
+        <h2>Signed Transaction</h2>
+        <p>Sign a financial transaction (amount, from, to) with your private key. The "from" field is your public key. Anyone can verify the signature without your private key.</p>
+        <a class="video-link" href="https://youtu.be/xIDL_akeras?si=WPfmFrc3gwg7yJfP&t=253s" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.87.55 9.38.55 9.38.55s7.5 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg> Watch video explainer</a>
+      </div>
+      <div class="single-block" style="max-width:700px">
+        <div class="block-card" id="tx_card">
+          <div class="subtabs">
+            <button class="subtab-btn active" onclick="switchSubtab('tx', 0)">Sign</button>
+            <button class="subtab-btn" onclick="switchSubtab('tx', 1)">Verify</button>
+          </div>
+          <div class="subtab-panel active" id="tx_sign">
+            <div class="field-group">
+              <label class="field-label">Transaction</label>
+              <div class="tx-row">
+                <span class="tx-label-inline">$</span>
+                <input class="field-input" type="text" id="tx_sign_amount" value="20.00" style="max-width:80px">
+                <span class="tx-label-inline">From</span>
+                <input class="field-input" type="text" id="tx_sign_from" disabled>
+                <span class="tx-arrow">&rarr;</span>
+                <input class="field-input" type="text" id="tx_sign_to" value="04cc955bf8e359cc7ebbb66f4c2dc616a93e8ba08e93d27996e20299ba92cba9cbd73c2ff46ed27a3727ba09486ba32b5ac35dd20c0adec020536996ca4d9f3d74">
+              </div>
+            </div>
+            <div class="field-group">
+              <label class="field-label">Private Key</label>
+              <input class="field-input" type="text" id="tx_privateKey">
+            </div>
+            <div class="field-group">
+              <button class="btn-action" id="tx_sign_btn" type="button">Sign</button>
+            </div>
+            <div class="field-group">
+              <label class="field-label">Transaction Signature</label>
+              <div class="hash-output" id="tx_sign_signature" style="min-height:36px;word-break:break-all"></div>
+            </div>
+          </div>
+          <div class="subtab-panel" id="tx_verify">
+            <div class="field-group">
+              <label class="field-label">Transaction</label>
+              <div class="tx-row">
+                <span class="tx-label-inline">$</span>
+                <input class="field-input" type="text" id="tx_verify_amount" value="20.00" style="max-width:80px">
+                <span class="tx-label-inline">From</span>
+                <input class="field-input" type="text" id="tx_verify_from">
+                <span class="tx-arrow">&rarr;</span>
+                <input class="field-input" type="text" id="tx_verify_to" value="04cc955bf8e359cc7ebbb66f4c2dc616a93e8ba08e93d27996e20299ba92cba9cbd73c2ff46ed27a3727ba09486ba32b5ac35dd20c0adec020536996ca4d9f3d74">
+              </div>
+            </div>
+            <div class="field-group">
+              <label class="field-label">Signature</label>
+              <input class="field-input" type="text" id="tx_verify_signature">
+            </div>
+            <div class="field-group">
+              <button class="btn-action" id="tx_verify_btn" type="button">Verify</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       PANEL 10: SIGNED BLOCKCHAIN
+  ============================================================ -->
+  <div class="exercise-panel" id="panel-9">
+    <div class="container">
+      <div class="exercise-header">
+        <div class="label">Exercise 10</div>
+        <h2>Signed Blockchain</h2>
+        <p>A full blockchain where every transaction is cryptographically signed. Each transaction includes a sequence number and signature that can be independently verified.</p>
+        <a class="video-link" href="https://youtu.be/xIDL_akeras?si=WPfmFrc3gwg7yJfP&t=340s" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.87.55 9.38.55 9.38.55s7.5 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg> Watch video explainer</a>
+      </div>
+      <div id="signedBcContainer"></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p>&copy; 2025 Zishan A. Mohammad &mdash; <a href="../index.html">Entrepreneurship in the Age of AI &amp; Web3</a></p>
+    <p style="margin-top:6px;font-size:11px;opacity:0.6;">Blockchain demo engine adapted from <a href="https://github.com/anders94/blockchain-demo" target="_blank" rel="noopener">Anders Brownworth's Blockchain Demo</a> (MIT License)</p>
+  </footer>
+
+  <!-- ============================================================
+       SCRIPTS
+  ============================================================ -->
+  <script>
+  // ============================================================
+  // CORE ENGINE — mirrors blockchain.js exactly
+  // ============================================================
+  var DIFFICULTY_MAJOR = 4;
+  var DIFFICULTY_MINOR = 15;
+  var MAX_NONCE = 524288; // 8 * 16^4
+  var PATTERN = '0000f';
+  var PATTERN_LEN = 5;
+
+  function sha256(text) {
+    return CryptoJS.SHA256(text).toString();
+  }
+
+  function isValid(hash) {
+    return hash.substr(0, PATTERN_LEN) <= PATTERN;
+  }
+
+  // ============================================================
+  // TAB SWITCHING
+  // ============================================================
+  function switchTab(idx) {
+    var btns = document.querySelectorAll('.tab-btn');
+    var panels = document.querySelectorAll('.exercise-panel');
+    btns.forEach(function(b, i) { b.classList.toggle('active', i === idx); });
+    panels.forEach(function(p, i) { p.classList.toggle('active', i === idx); });
+    btns[idx].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+  }
+
+  // ============================================================
+  // PANEL 1: HASH
+  // ============================================================
+  (function() {
+    var dataEl = document.getElementById('hashData');
+    var outEl = document.getElementById('hashOutput');
+    function update() {
+      outEl.textContent = sha256(dataEl.value);
+    }
+    dataEl.addEventListener('input', update);
+    update();
+  })();
+
+  // ============================================================
+  // PANEL 2: SINGLE BLOCK
+  // ============================================================
+  (function() {
+    var numEl = document.getElementById('blk_number');
+    var nonceEl = document.getElementById('blk_nonce');
+    var dataEl = document.getElementById('blk_data');
+    var hashEl = document.getElementById('blk_hash');
+    var wellEl = document.getElementById('blk_well');
+    var mineBtn = document.getElementById('blk_mine');
+
+    function getText() {
+      return numEl.value + nonceEl.value + dataEl.value;
+    }
+
+    function update() {
+      var h = sha256(getText());
+      hashEl.textContent = h;
+      wellEl.classList.remove('valid', 'invalid');
+      wellEl.classList.add(isValid(h) ? 'valid' : 'invalid');
+    }
+
+    numEl.addEventListener('input', update);
+    nonceEl.addEventListener('input', update);
+    dataEl.addEventListener('input', update);
+
+    mineBtn.addEventListener('click', function() {
+      mineBtn.classList.add('mining');
+      mineBtn.textContent = 'Mining\u2026';
+      setTimeout(function() {
+        for (var x = 0; x <= MAX_NONCE; x++) {
+          nonceEl.value = x;
+          var h = sha256(getText());
+          if (isValid(h)) break;
+        }
+        update();
+        mineBtn.classList.remove('mining');
+        mineBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> Mine';
+      }, 50);
+    });
+
+    update();
+  })();
+
+  // ============================================================
+  // BUILDER HELPERS (for panels 3-6)
+  // ============================================================
+  function buildBlockHTML(prefix, blockNum, opts) {
+    opts = opts || {};
+    var html = '<div class="block-card" id="' + prefix + '_well">';
+
+    html += '<div class="field-group"><label class="field-label">Block #</label>';
+    html += '<input class="field-input" type="number" id="' + prefix + '_num" value="' + blockNum + '"></div>';
+
+    html += '<div class="field-group"><label class="field-label">Nonce</label>';
+    html += '<input class="field-input" type="text" id="' + prefix + '_nonce" value="' + (opts.nonce || 0) + '"></div>';
+
+    if (opts.coinbase) {
+      html += '<div class="field-group"><label class="field-label">Coinbase</label>';
+      html += '<div class="coinbase-row">';
+      html += '<span class="coinbase-tag">$</span>';
+      html += '<input class="field-input" type="text" id="' + prefix + '_cbval" value="' + opts.coinbaseValue + '" style="max-width:80px">';
+      html += '<span class="tx-arrow">&rarr;</span>';
+      html += '<input class="field-input" type="text" id="' + prefix + '_cbto" value="' + opts.coinbaseTo + '">';
+      html += '</div></div>';
+    }
+
+    if (opts.txs && opts.txs.length > 0) {
+      html += '<div class="field-group"><label class="field-label">Transactions</label>';
+      for (var i = 0; i < opts.txs.length; i++) {
+        var tx = opts.txs[i];
+        html += '<div class="tx-row">';
+        html += '<span class="tx-label-inline">$</span>';
+        html += '<input class="field-input" type="text" id="' + prefix + '_tx' + i + 'val" value="' + tx.value + '" style="max-width:80px">';
+        html += '<span class="tx-label-inline">From</span>';
+        html += '<input class="field-input" type="text" id="' + prefix + '_tx' + i + 'from" value="' + tx.from + '">';
+        html += '<span class="tx-arrow">&rarr;</span>';
+        html += '<input class="field-input" type="text" id="' + prefix + '_tx' + i + 'to" value="' + tx.to + '">';
+        html += '</div>';
+      }
+      html += '</div>';
+    }
+
+    if (opts.showData) {
+      html += '<div class="field-group"><label class="field-label">Data</label>';
+      html += '<textarea class="field-input" id="' + prefix + '_data" rows="4" placeholder="Enter data\u2026"></textarea></div>';
+    }
+
+    if (opts.showPrev) {
+      html += '<div class="field-group"><label class="field-label">Prev</label>';
+      html += '<input class="field-input" type="text" id="' + prefix + '_prev" value="' + (opts.previous || '') + '" disabled></div>';
+    }
+
+    html += '<div class="field-group"><label class="field-label">Hash</label>';
+    html += '<div class="hash-output" id="' + prefix + '_hash"></div></div>';
+
+    html += '<div class="field-group"><button class="mine-btn" id="' + prefix + '_mine" type="button">';
+    html += '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> Mine</button></div>';
+
+    html += '</div>';
+    return html;
+  }
+
+  function getBlockText(prefix, mode) {
+    var s = document.getElementById(prefix + '_num').value +
+            document.getElementById(prefix + '_nonce').value;
+
+    if (mode === 'coinbase') {
+      var cbV = document.getElementById(prefix + '_cbval');
+      var cbT = document.getElementById(prefix + '_cbto');
+      if (cbV) s += cbV.value;
+      if (cbT) s += cbT.value;
+    }
+
+    if (mode === 'token' || mode === 'coinbase') {
+      for (var x = 0; ; x++) {
+        var el = document.getElementById(prefix + '_tx' + x + 'val');
+        if (!el) break;
+        s += el.value +
+             document.getElementById(prefix + '_tx' + x + 'from').value +
+             document.getElementById(prefix + '_tx' + x + 'to').value;
+      }
+    }
+
+    if (mode === 'basic') {
+      var d = document.getElementById(prefix + '_data');
+      if (d) s += d.value;
+    }
+
+    var prev = document.getElementById(prefix + '_prev');
+    if (prev) s += prev.value;
+
+    return s;
+  }
+
+  function updateBlock(prefix, mode) {
+    var h = sha256(getBlockText(prefix, mode));
+    document.getElementById(prefix + '_hash').textContent = h;
+    var well = document.getElementById(prefix + '_well');
+    well.classList.remove('valid', 'invalid');
+    well.classList.add(isValid(h) ? 'valid' : 'invalid');
+    return h;
+  }
+
+  function updateChainFrom(prefixes, startIdx, mode) {
+    for (var i = startIdx; i < prefixes.length; i++) {
+      if (i > 0) {
+        document.getElementById(prefixes[i] + '_prev').value =
+          document.getElementById(prefixes[i - 1] + '_hash').textContent;
+      }
+      updateBlock(prefixes[i], mode);
+    }
+  }
+
+  function mineBlock(prefixes, idx, mode) {
+    var prefix = prefixes[idx];
+    var nonceEl = document.getElementById(prefix + '_nonce');
+    var btn = document.getElementById(prefix + '_mine');
+    btn.classList.add('mining');
+    btn.textContent = 'Mining\u2026';
+    setTimeout(function() {
+      for (var x = 0; x <= MAX_NONCE; x++) {
+        nonceEl.value = x;
+        var h = sha256(getBlockText(prefix, mode));
+        if (isValid(h)) break;
+      }
+      updateChainFrom(prefixes, idx, mode);
+      btn.classList.remove('mining');
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> Mine';
+    }, 50);
+  }
+
+  function setupChain(prefixes, mode) {
+    prefixes.forEach(function(prefix, idx) {
+      // Collect all input IDs for this block
+      var inputIds = [prefix + '_num', prefix + '_nonce'];
+      if (mode === 'basic') inputIds.push(prefix + '_data');
+      if (mode === 'coinbase') {
+        inputIds.push(prefix + '_cbval');
+        inputIds.push(prefix + '_cbto');
+      }
+      if (mode === 'token' || mode === 'coinbase') {
+        for (var x = 0; ; x++) {
+          var el = document.getElementById(prefix + '_tx' + x + 'val');
+          if (!el) break;
+          inputIds.push(prefix + '_tx' + x + 'val');
+          inputIds.push(prefix + '_tx' + x + 'from');
+          inputIds.push(prefix + '_tx' + x + 'to');
+        }
+      }
+      inputIds.forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el) el.addEventListener('input', function() {
+          updateChainFrom(prefixes, idx, mode);
+        });
+      });
+      document.getElementById(prefix + '_mine').addEventListener('click', function() {
+        mineBlock(prefixes, idx, mode);
+      });
+      updateBlock(prefix, mode);
+    });
+  }
+
+  // ============================================================
+  // PANEL 3: BLOCKCHAIN (5 blocks, 1 chain)
+  // ============================================================
+  (function() {
+    var ZERO = '0000000000000000000000000000000000000000000000000000000000000000';
+    var nonces = [11316, 35230, 12937, 35990, 56265];
+    var prevs = [ZERO,
+      '000015783b764259d382017d91a36d206d0600e2cbb3567748f46a33fe9297cf',
+      '000012fa9b916eb9078f8d98a7864e697ae83ed54f5146bd84452cdafd043c19',
+      '0000b9015ce2a08b61216ba5a0778545bf4ddd7ceb7bbd85dd8062b29a9140bf',
+      '0000ae8bbc96cf89c68be6e10a865cc47c6c48a9ebec3c6cad729646cefaef83'
+    ];
+    var container = document.getElementById('chainRow');
+    var html = '';
+    var prefixes = [];
+    for (var i = 0; i < 5; i++) {
+      var p = 'bc' + (i + 1);
+      prefixes.push(p);
+      if (i > 0) html += '<div class="chain-connector">&rarr;</div>';
+      html += buildBlockHTML(p, i + 1, { nonce: nonces[i], showData: true, showPrev: true, previous: prevs[i] });
+    }
+    container.innerHTML = html;
+    setupChain(prefixes, 'basic');
+  })();
+
+  // ============================================================
+  // PANEL 4: DISTRIBUTED (3 peers x 5 blocks)
+  // ============================================================
+  (function() {
+    var ZERO = '0000000000000000000000000000000000000000000000000000000000000000';
+    var nonces = [11316, 35230, 12937, 35990, 56265];
+    var prevs = [ZERO,
+      '000015783b764259d382017d91a36d206d0600e2cbb3567748f46a33fe9297cf',
+      '000012fa9b916eb9078f8d98a7864e697ae83ed54f5146bd84452cdafd043c19',
+      '0000b9015ce2a08b61216ba5a0778545bf4ddd7ceb7bbd85dd8062b29a9140bf',
+      '0000ae8bbc96cf89c68be6e10a865cc47c6c48a9ebec3c6cad729646cefaef83'
+    ];
+    var peers = ['A', 'B', 'C'];
+    var container = document.getElementById('distributedContainer');
+    var html = '';
+    for (var p = 0; p < 3; p++) {
+      var peerPrefixes = [];
+      html += '<div class="peer-section">';
+      html += '<div class="peer-label"><span class="peer-badge">' + peers[p] + '</span> Peer ' + peers[p] + '</div>';
+      html += '<div class="chain-row">';
+      for (var i = 0; i < 5; i++) {
+        var prefix = 'dist' + peers[p] + (i + 1);
+        peerPrefixes.push(prefix);
+        if (i > 0) html += '<div class="chain-connector">&rarr;</div>';
+        html += buildBlockHTML(prefix, i + 1, { nonce: nonces[i], showData: true, showPrev: true, previous: prevs[i] });
+      }
+      html += '</div></div>';
+      // Store prefixes for later setup
+      container.setAttribute('data-peer' + p, peerPrefixes.join(','));
+    }
+    container.innerHTML = html;
+    for (var p = 0; p < 3; p++) {
+      var peerPrefixes = [];
+      for (var i = 0; i < 5; i++) {
+        peerPrefixes.push('dist' + peers[p] + (i + 1));
+      }
+      setupChain(peerPrefixes, 'basic');
+    }
+  })();
+
+  // ============================================================
+  // PANEL 5: TOKENS (3 peers x 5 blocks with transactions)
+  // ============================================================
+  (function() {
+    var ZERO = '0000000000000000000000000000000000000000000000000000000000000000';
+    var blocks = [
+      { nonce: 139358, txs: [{value:'25.00',from:'Darcy',to:'Bingley'},{value:'4.27',from:'Elizabeth',to:'Jane'},{value:'19.22',from:'Wickham',to:'Lydia'},{value:'106.44',from:'Lady Catherine de Bourgh',to:'Collins'},{value:'6.42',from:'Charlotte',to:'Elizabeth'}], prev: ZERO },
+      { nonce: 39207, txs: [{value:'97.67',from:'Ripley',to:'Lambert'},{value:'48.61',from:'Kane',to:'Ash'},{value:'6.15',from:'Parker',to:'Dallas'},{value:'10.44',from:'Hicks',to:'Newt'},{value:'88.32',from:'Bishop',to:'Burke'},{value:'45.00',from:'Hudson',to:'Gorman'},{value:'92.00',from:'Vasquez',to:'Apone'}], prev: '00000c52990ee86de55ec4b9b32beefd745d71675dc0eddfbc7b88336e2e296b' },
+      { nonce: 13804, txs: [{value:'10.00',from:'Emily',to:'Jackson'},{value:'5.00',from:'Madison',to:'Jackson'},{value:'20.00',from:'Lucas',to:'Grace'}], prev: '000078be183417844c14a9251ca246fb15df1074019873f5d85c1a6f4311d4e0' },
+      { nonce: 20688, txs: [{value:'62.19',from:'Rick',to:'Ilsa'},{value:'867.96',from:'Captain Louis Renault',to:'Strasser'},{value:'276.15',from:'Victor Laszlo',to:'Ilsa'},{value:'97.13',from:'Rick',to:'Sam'},{value:'119.63',from:'Captain Louis Renault',to:'Jan Brandel'}], prev: '0000c2c95f54a49b4f2bee7056a7dc3b7c1a408706c848b520e20eac75aaceb0' },
+      { nonce: 33083, txs: [{value:'14.12',from:'Denise Lovett',to:'Edmund Lovett'},{value:'2,760.29',from:'Lord Glendenning',to:'John Moray'},{value:'413.78',from:'Katherine Glendenning',to:'Miss Audrey'}], prev: '0000c03019ed59586405750968888fb65256e82492480d9fe0a6bd2f5e86b5ca' }
+    ];
+    var peers = ['A', 'B', 'C'];
+    var container = document.getElementById('tokensContainer');
+    var html = '';
+    for (var p = 0; p < 3; p++) {
+      html += '<div class="peer-section">';
+      html += '<div class="peer-label"><span class="peer-badge">' + peers[p] + '</span> Peer ' + peers[p] + '</div>';
+      html += '<div class="chain-row">';
+      for (var i = 0; i < 5; i++) {
+        var prefix = 'tok' + peers[p] + (i + 1);
+        if (i > 0) html += '<div class="chain-connector">&rarr;</div>';
+        html += buildBlockHTML(prefix, i + 1, { nonce: blocks[i].nonce, txs: blocks[i].txs, showPrev: true, previous: blocks[i].prev });
+      }
+      html += '</div></div>';
+    }
+    container.innerHTML = html;
+    for (var p = 0; p < 3; p++) {
+      var peerPrefixes = [];
+      for (var i = 0; i < 5; i++) {
+        peerPrefixes.push('tok' + peers[p] + (i + 1));
+      }
+      setupChain(peerPrefixes, 'token');
+    }
+  })();
+
+  // ============================================================
+  // PANEL 6: COINBASE (3 peers x 5 blocks)
+  // ============================================================
+  (function() {
+    var ZERO = '0000000000000000000000000000000000000000000000000000000000000000';
+    var blocks = [
+      { nonce: 16651, cbVal: '100.00', cbTo: 'Anders', txs: [], prev: ZERO },
+      { nonce: 215458, cbVal: '100.00', cbTo: 'Anders', txs: [{value:'10.00',from:'Anders',to:'Sophia'},{value:'20.00',from:'Anders',to:'Lucas'},{value:'15.00',from:'Anders',to:'Emily'},{value:'15.00',from:'Anders',to:'Madison'}], prev: '0000438d7625b86a6f366545b1929975a0d3ff1f8847e56cc587cadddb0ab781' },
+      { nonce: 146, cbVal: '100.00', cbTo: 'Anders', txs: [{value:'10.00',from:'Emily',to:'Jackson'},{value:'5.00',from:'Madison',to:'Jackson'},{value:'20.00',from:'Lucas',to:'Grace'}], prev: '0000baeab68c2a60f9a6fa56355438d97c672a15494fcea617064d9314f9ff63' },
+      { nonce: 18292, cbVal: '100.00', cbTo: 'Anders', txs: [{value:'15.00',from:'Jackson',to:'Ryan'},{value:'5.00',from:'Emily',to:'Madison'},{value:'8.00',from:'Sophia',to:'Jackson'}], prev: '0000df1d632b734f5a5fc126a0f0e8894fb4c8314ba7086b62980559af6771b9' },
+      { nonce: 108899, cbVal: '100.00', cbTo: 'Sophia', txs: [{value:'2.00',from:'Jackson',to:'Alexander'},{value:'6.00',from:'Ryan',to:'Carter'},{value:'4.00',from:'Ryan',to:'Riley'},{value:'9.95',from:'Grace',to:'Katherine'}], prev: '0000c694336f88129f3685bd3ba5d67c445dfd8d18bd22f5d87301dd560eb30e' }
+    ];
+    var peers = ['A', 'B', 'C'];
+    var container = document.getElementById('coinbaseContainer');
+    var html = '';
+    for (var p = 0; p < 3; p++) {
+      html += '<div class="peer-section">';
+      html += '<div class="peer-label"><span class="peer-badge">' + peers[p] + '</span> Peer ' + peers[p] + '</div>';
+      html += '<div class="chain-row">';
+      for (var i = 0; i < 5; i++) {
+        var prefix = 'cb' + peers[p] + (i + 1);
+        if (i > 0) html += '<div class="chain-connector">&rarr;</div>';
+        html += buildBlockHTML(prefix, i + 1, {
+          nonce: blocks[i].nonce,
+          coinbase: true,
+          coinbaseValue: blocks[i].cbVal,
+          coinbaseTo: blocks[i].cbTo,
+          txs: blocks[i].txs,
+          showPrev: true,
+          previous: blocks[i].prev
+        });
+      }
+      html += '</div></div>';
+    }
+    container.innerHTML = html;
+    for (var p = 0; p < 3; p++) {
+      var peerPrefixes = [];
+      for (var i = 0; i < 5; i++) {
+        peerPrefixes.push('cb' + peers[p] + (i + 1));
+      }
+      setupChain(peerPrefixes, 'coinbase');
+    }
+  })();
+
+  // ============================================================
+  // SUBTAB SWITCHING (for Sign/Verify panels)
+  // ============================================================
+  function switchSubtab(group, idx) {
+    var card = document.getElementById(group + '_card');
+    if (card) {
+      card.classList.remove('verify-success', 'verify-fail');
+    }
+    var btns = document.querySelectorAll('#panel-' + getParentPanel(group) + ' .subtab-btn');
+    // Find subtabs within the correct block-card
+    var container = document.getElementById(group + '_card') ||
+                    document.getElementById(group + '_sign').parentElement;
+    btns = container.querySelectorAll('.subtab-btn');
+    var panels = container.querySelectorAll('.subtab-panel');
+    btns.forEach(function(b, i) { b.classList.toggle('active', i === idx); });
+    panels.forEach(function(p, i) { p.classList.toggle('active', i === idx); });
+  }
+  function getParentPanel(group) {
+    if (group === 'sig') return 7;
+    if (group === 'tx') return 8;
+    return 7;
+  }
+
+  // ============================================================
+  // PANEL 7: PUBLIC/PRIVATE KEY PAIRS
+  // ============================================================
+  (function() {
+    var EC = elliptic.elliptic().ec;
+    var ec = new EC('secp256k1');
+    var keypair = ec.genKeyPair();
+
+    var prvEl = document.getElementById('keys_privateKey');
+    var pubEl = document.getElementById('keys_publicKey');
+    var randBtn = document.getElementById('keys_random');
+
+    function update() {
+      var prv = keypair.getPrivate('hex');
+      var pub = keypair.getPublic('hex');
+      prvEl.value = bigInt(prv, 16).toString();
+      pubEl.textContent = pub;
+      // Share with other panels
+      window._demoKeypair = keypair;
+      window._demoPub = pub;
+      // Sync to signature and transaction panels
+      var sigPrv = document.getElementById('sig_privateKey');
+      if (sigPrv) sigPrv.value = prvEl.value;
+      var sigPub = document.getElementById('sig_publicKey');
+      if (sigPub) sigPub.value = pub;
+      var txPrv = document.getElementById('tx_privateKey');
+      if (txPrv) txPrv.value = prvEl.value;
+      var txFrom = document.getElementById('tx_sign_from');
+      if (txFrom) txFrom.value = pub;
+      var txVFrom = document.getElementById('tx_verify_from');
+      if (txVFrom) txVFrom.value = pub;
+    }
+
+    randBtn.addEventListener('click', function() {
+      keypair = ec.genKeyPair();
+      update();
+    });
+
+    prvEl.addEventListener('input', function() {
+      prvEl.value = prvEl.value.replace(/\D/g, '');
+      if (prvEl.value.length > 0) {
+        try {
+          keypair = ec.keyFromPrivate(bigInt(prvEl.value).toString(16));
+          update();
+        } catch(e) {}
+      }
+    });
+
+    update();
+  })();
+
+  // ============================================================
+  // PANEL 8: DIGITAL SIGNATURES
+  // ============================================================
+  (function() {
+    var EC = elliptic.elliptic().ec;
+    var ec = new EC('secp256k1');
+
+    var signBtn = document.getElementById('sig_sign_btn');
+    var verifyBtn = document.getElementById('sig_verify_btn');
+    var card = document.getElementById('sig_card');
+
+    function resetVerifier() {
+      card.classList.remove('verify-success', 'verify-fail');
+    }
+
+    signBtn.addEventListener('click', function() {
+      var privKeyEl = document.getElementById('sig_privateKey');
+      privKeyEl.value = privKeyEl.value.replace(/\D/g, '');
+      try {
+        var kp = ec.keyFromPrivate(bigInt(privKeyEl.value).toString(16));
+        var msg = document.getElementById('sig_sign_message').value;
+        var binaryMessage = buffer.Buffer.from(CryptoJS.SHA256(msg).toString(CryptoJS.enc.Hex));
+        var hexSig = buffer.Buffer.from(kp.sign(binaryMessage).toDER()).toString('hex');
+        document.getElementById('sig_sign_signature').textContent = hexSig;
+        document.getElementById('sig_verify_signature').value = hexSig;
+        // Sync message
+        document.getElementById('sig_verify_message').value = msg;
+        // Update public key
+        document.getElementById('sig_publicKey').value = kp.getPublic('hex');
+        resetVerifier();
+      } catch(e) {
+        document.getElementById('sig_sign_signature').textContent = 'Error: invalid private key';
+      }
+    });
+
+    verifyBtn.addEventListener('click', function() {
+      try {
+        var pubHex = document.getElementById('sig_publicKey').value.replace(/[^0-9a-fA-F]/g, '');
+        var tmpKey = ec.keyFromPublic(pubHex, 'hex');
+        var msg = document.getElementById('sig_verify_message').value;
+        var binaryMessage = buffer.Buffer.from(CryptoJS.SHA256(msg).toString(CryptoJS.enc.Hex));
+        var sig = document.getElementById('sig_verify_signature').value;
+        if (tmpKey.verify(binaryMessage, sig)) {
+          card.classList.remove('verify-fail');
+          card.classList.add('verify-success');
+        } else {
+          card.classList.remove('verify-success');
+          card.classList.add('verify-fail');
+        }
+      } catch(e) {
+        card.classList.remove('verify-success');
+        card.classList.add('verify-fail');
+      }
+    });
+
+    // Reset on any input change
+    ['sig_sign_message', 'sig_verify_message', 'sig_publicKey', 'sig_verify_signature', 'sig_privateKey'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.addEventListener('input', resetVerifier);
+    });
+
+    document.getElementById('sig_privateKey').addEventListener('input', function() {
+      var el = document.getElementById('sig_privateKey');
+      el.value = el.value.replace(/\D/g, '');
+      try {
+        var kp = ec.keyFromPrivate(bigInt(el.value).toString(16));
+        document.getElementById('sig_publicKey').value = kp.getPublic('hex');
+      } catch(e) {}
+    });
+  })();
+
+  // ============================================================
+  // PANEL 9: SIGNED TRANSACTION
+  // ============================================================
+  (function() {
+    var EC = elliptic.elliptic().ec;
+    var ec = new EC('secp256k1');
+
+    var signBtn = document.getElementById('tx_sign_btn');
+    var verifyBtn = document.getElementById('tx_verify_btn');
+    var card = document.getElementById('tx_card');
+
+    function resetVerifier() {
+      card.classList.remove('verify-success', 'verify-fail');
+    }
+
+    signBtn.addEventListener('click', function() {
+      var privKeyEl = document.getElementById('tx_privateKey');
+      privKeyEl.value = privKeyEl.value.replace(/\D/g, '');
+      try {
+        var kp = ec.keyFromPrivate(bigInt(privKeyEl.value).toString(16));
+        var pub = kp.getPublic('hex');
+        document.getElementById('tx_sign_from').value = pub;
+        document.getElementById('tx_verify_from').value = pub;
+        var message = document.getElementById('tx_sign_amount').value +
+                      pub +
+                      document.getElementById('tx_sign_to').value;
+        var binaryMessage = buffer.Buffer.from(CryptoJS.SHA256(message).toString(CryptoJS.enc.Hex));
+        var hexSig = buffer.Buffer.from(kp.sign(binaryMessage).toDER()).toString('hex');
+        document.getElementById('tx_sign_signature').textContent = hexSig;
+        document.getElementById('tx_verify_signature').value = hexSig;
+        // Sync amounts
+        document.getElementById('tx_verify_amount').value = document.getElementById('tx_sign_amount').value;
+        document.getElementById('tx_verify_to').value = document.getElementById('tx_sign_to').value;
+        resetVerifier();
+      } catch(e) {
+        document.getElementById('tx_sign_signature').textContent = 'Error: invalid private key';
+      }
+    });
+
+    verifyBtn.addEventListener('click', function() {
+      try {
+        var fromHex = document.getElementById('tx_verify_from').value.replace(/[^0-9a-fA-F]/g, '');
+        var tmpKey = ec.keyFromPublic(fromHex, 'hex');
+        var message = document.getElementById('tx_verify_amount').value +
+                      fromHex +
+                      document.getElementById('tx_verify_to').value;
+        var binaryMessage = buffer.Buffer.from(CryptoJS.SHA256(message).toString(CryptoJS.enc.Hex));
+        var sig = document.getElementById('tx_verify_signature').value;
+        if (tmpKey.verify(binaryMessage, sig)) {
+          card.classList.remove('verify-fail');
+          card.classList.add('verify-success');
+        } else {
+          card.classList.remove('verify-success');
+          card.classList.add('verify-fail');
+        }
+      } catch(e) {
+        card.classList.remove('verify-success');
+        card.classList.add('verify-fail');
+      }
+    });
+
+    ['tx_sign_amount', 'tx_sign_from', 'tx_sign_to', 'tx_verify_amount', 'tx_verify_from', 'tx_verify_to', 'tx_verify_signature', 'tx_privateKey'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.addEventListener('input', resetVerifier);
+    });
+
+    document.getElementById('tx_privateKey').addEventListener('input', function() {
+      var el = document.getElementById('tx_privateKey');
+      el.value = el.value.replace(/\D/g, '');
+      try {
+        var kp = ec.keyFromPrivate(bigInt(el.value).toString(16));
+        document.getElementById('tx_sign_from').value = kp.getPublic('hex');
+        document.getElementById('tx_verify_from').value = kp.getPublic('hex');
+      } catch(e) {}
+    });
+  })();
+
+  // ============================================================
+  // PANEL 10: SIGNED BLOCKCHAIN (3 peers x 5 blocks w/ signed txs)
+  // ============================================================
+  (function() {
+    var EC = elliptic.elliptic().ec;
+    var ec = new EC('secp256k1');
+    var ZERO = '0000000000000000000000000000000000000000000000000000000000000000';
+
+    // Shortened key aliases for readability
+    var K = {
+      anders: '04fe1be031bc7a54d900ff062911bc4f7ba0edb39e4280268e490b79e347e3b8b0019c252aad7536ef7caeb061d558cac2eaec43ff670d76a521bec77c35751310',
+      sophia: '04cc17dc129331c1cbb9c32cf4dc2dde4a5144e26c09b7430685c227176aeed05c74cf9d581da9d872cff53e67a8b28c53dfcf197dc4148e476eff4c3abfb3eebd',
+      lucas:  '04997ac426a5c3c0ec9b51732435f90ebb4cf06aca4bfdb778865af0110f3931660d8b85297d59382c81eb6c7ae7c100af55800f15dad1fc72122139ba02e5d740',
+      emily:  '042222d7af343abd780add9dd7a0f554a1d6b127bc6f7ec28c5eef97d25af83028e89011559daa71dfcc7e2175433a1a6ef605715eba07a8a942c7088f8050a714',
+      madison:'041c377677bb697329b8dbeb5811b026d532730ad90ad7357fd812183ec01b766d7a4ee33c6a85b84d44fa1c3c59377c660f0076c39c563d9a19005a56ee1d1336',
+      jackson:'04d4080959e3795bc74a50fe606c1418a0a2a1c2c16e39f5c4a08b363a9c0611fa732be61f13b3f270cc534d3815dacced5d344b86a9aa302390c3399b5238bce6',
+      grace:  '040b4c84f02bfec488a8a861267f8221646e1b6f6701504ad39d4ee82248fa7b5152536ea36bf47ee0812186a13311a2c0cfc24f557dfa38b2048139be45d7ac4c',
+      ryan:   '0451d4a9c44a2dec79ad3e26ab25223b78d9c9e5150cefe53e79f3fefed4f23b36f02cf51a74c2f44916c571560b5e3f555ee1bb339a64ef707825340e3ed37090'
+    };
+
+    var blocksData = [
+      { nonce: 16119, cbVal:'100.00', cbTo: K.anders, txs:[], prev: ZERO },
+      { nonce: 25205, cbVal:'100.00', cbTo: K.anders, txs:[
+        {value:'10.00',from:K.anders,to:K.sophia,seq:'1',sig:'3046022100cf33ee8c696edd0b0c291a259e0a03ea2491f8febd396244e309d175bc8b6b7c022100a85b8b15e037ac42d9f2545e568d2433ede51e59f4bbfd4179f285fac1a10f66'},
+        {value:'20.00',from:K.anders,to:K.lucas,seq:'1',sig:'30460221008aa13eb403bbaecbbefe36d3df2f3fc04fbee6c930f689eef1e54438957b476a0221008e72503ffaeb7f2d146a7f213b6974de03965c45d56b222f1b7a22640ce87cd9'},
+        {value:'15.00',from:K.anders,to:K.emily,seq:'1',sig:'304402201d97c65bafaf61ae46717c87757772860cd1b130e5786085f82bef5b98293c2a02200d230c4c690af60c76ed57fd23c92d45d758f5c2325ee3e326d1c98fe0b769f4'},
+        {value:'15.00',from:K.anders,to:K.madison,seq:'1',sig:'3046022100c583bd79baf55bd5580761a236a7e2f65b80ae3e4ebb4eb620e6a472156b95d1022100b65511d1eaa63f3cda18b78301e4945772fbddee08903acd65e4a97f57e85c55'}
+      ], prev:'00006908f507a101e89544498978e9bd2e35462b91d86ef13510685227912e77' },
+      { nonce: 29164, cbVal:'100.00', cbTo: K.anders, txs:[
+        {value:'10.00',from:K.emily,to:K.jackson,seq:'1',sig:'30450220485a5a1c317d5a1b33af90201999909b49e09dc5f0b261048bbee1d09ed1735f02210081eb6d39ab4db5d9f95ec5b103b7a6268bc936c738cb05293e167220fbc3b71e'},
+        {value:'5.00',from:K.madison,to:K.jackson,seq:'1',sig:'3044022002cc3c61bb7cd4573b192d1b61f125545ebc84c5b47dd9ea096b896bf9b335a702204c3252e5f27c8732d4ce52f58efb3493fa733200aba01270f779a3b7fed2e53c'},
+        {value:'20.00',from:K.lucas,to:K.grace,seq:'1',sig:'3045022100ee33bb3764f5f85f694d1033a66131bc818c188dba4e6392e89c03c06537885202201d92064c5e8804df8864baa30ccbcaca45caac345686768125d0c9a10fad94f4'}
+      ], prev:'00008ccb2fccac084b800a2878d317e14fe88fddb1e91d131d1fc3d523d67125' },
+      { nonce: 51263, cbVal:'100.00', cbTo: K.anders, txs:[
+        {value:'7.00',from:K.jackson,to:K.ryan,seq:'1',sig:'30450221009231b78416d222dd7e73e42b5bd7613b89ad4d093f33ba799d0867304861e5100220028b3ffe5a80bab482c31464fb0db1609f674f8f03e8a137e15593bdc97e7725'},
+        {value:'5.00',from:K.emily,to:K.madison,seq:'1',sig:'30460221008060d62c9e36fb464b792e4d3b9a08783877259cc56ea87b20d798d0f3f450b202210083d082cc7222d5834f4b71be9b23ee6943f44bda5ef549c698e382b800c59bec'},
+        {value:'8.00',from:K.sophia,to:K.jackson,seq:'1',sig:'3044022013a30405cc52560bcfa5348955303bad54e235f1504d65e356403f41e60867d50220539fc0bcd0ec869f08ed10987188f3333c9d7050af7ac5cf239c3cab38a4e46f'}
+      ], prev:'000029942f0286f943ac7e877d7f10c3902aecbb2eebc72a758ab40833b0b8f9' },
+      { nonce: 172517, cbVal:'100.00', cbTo: K.sophia, txs:[
+        {value:'7.00',from:K.jackson,to:K.ryan,seq:'2',sig:'304502203b00e4d2c7d85dc96a3ede37c287237ba8a6a857defcc285ac2daff92109e75f022100ace660bb266104fd111e7d9ea7ee6a629dc45dfed4ce97b0fe7475e0968ff7d0'},
+        {value:'6.00',from:K.ryan,to:'043e17e5095e878b0fbf63f4c7de037ed0e098d13ac7b8891c5d7238edc9dea474ce7df69a643edf2cccb7b9cf71701e1825e5ceb840764efb3fc7b6e7f433be41',seq:'1',sig:'304502207765bb9ac24975ff9b4194b95b7ce87b1a7435f983d839efa2b2c5e5aa258b02022100ccc33565490a7cdc738c6e75451eadb53b66dd72f3ce67d13cd3dd905265269b'},
+        {value:'4.00',from:K.ryan,to:'04020d6fe7aeabd3a00d725f542c35d8b345fe1c884f3af420987ca51c73580e4b4c42f9838f254d142d7024f556d167ce2d0ddf7e9576ebd9136368542f8ac5a2',seq:'1',sig:'304602210090ca7d92de041fd0e7fd7b4638ca1ee85a25e0bdaa3deff87a32eac7f1a0f6e9022100a3fd097026ce01eb105c969d0a460475e655845dd3973ee9f69ca9c2e4f05483'},
+        {value:'9.95',from:K.grace,to:'04148850d1edbd665a7a797c69f8015aa84e92f84f68285cc561397d4120c6e6a0f331e6a40bf9e4066ca1719666d201585564d4e11449e22cec9c6eec3d20bfbf',seq:'1',sig:'3045022100d980efbdcc9efc5e54ca5ed5a300df6cb103da49ac7ac88ccfce333adb8c33a402201469bb5a211fb9b4ae845accc0fb9f3fd75ea68ce41a1cb37cecb318df357a57'}
+      ], prev:'0000f79349c800b2ef5ed40ba485e4abb75158f60f0fe7a962b5bd0fa6ccf1a0' }
+    ];
+
+    function buildSignedBlock(prefix, blockNum, opts) {
+      var html = '<div class="block-card" id="' + prefix + '_well">';
+      html += '<div class="field-group"><label class="field-label">Block #</label>';
+      html += '<input class="field-input" type="text" id="' + prefix + '_num" value="' + blockNum + '"></div>';
+      html += '<div class="field-group"><label class="field-label">Nonce</label>';
+      html += '<input class="field-input" type="text" id="' + prefix + '_nonce" value="' + opts.nonce + '"></div>';
+      // Coinbase
+      html += '<div class="field-group"><label class="field-label">Coinbase</label>';
+      html += '<div class="coinbase-row">';
+      html += '<span class="coinbase-tag">$</span>';
+      html += '<input class="field-input" type="text" id="' + prefix + '_cbval" value="' + opts.cbVal + '" style="max-width:80px">';
+      html += '<span class="tx-arrow">&rarr;</span>';
+      html += '<input class="field-input" type="text" id="' + prefix + '_cbto" value="' + opts.cbTo + '" style="font-size:9px">';
+      html += '</div></div>';
+      // Transactions
+      if (opts.txs.length > 0) {
+        html += '<div class="field-group"><label class="field-label">Transactions</label>';
+        for (var i = 0; i < opts.txs.length; i++) {
+          var tx = opts.txs[i];
+          html += '<div style="margin-bottom:8px;padding:8px;background:rgba(67,80,112,0.03);border-radius:6px">';
+          html += '<div class="tx-row" style="margin-bottom:4px">';
+          html += '<span class="tx-label-inline">$</span>';
+          html += '<input class="field-input" type="text" id="' + prefix + '_tx' + i + 'val" value="' + tx.value + '" style="max-width:70px">';
+          html += '<span class="tx-label-inline">From</span>';
+          html += '<input class="field-input" type="text" id="' + prefix + '_tx' + i + 'from" value="' + tx.from + '" style="font-size:9px">';
+          html += '<span class="tx-arrow">&rarr;</span>';
+          html += '<input class="field-input" type="text" id="' + prefix + '_tx' + i + 'to" value="' + tx.to + '" style="font-size:9px">';
+          html += '</div>';
+          html += '<div class="tx-row">';
+          html += '<span class="tx-label-inline">Seq</span>';
+          html += '<input class="field-input" type="text" id="' + prefix + '_tx' + i + 'seq" value="' + tx.seq + '" style="max-width:50px">';
+          html += '<span class="tx-label-inline">Sig</span>';
+          html += '<input class="field-input" type="text" id="' + prefix + '_tx' + i + 'sig" value="' + tx.sig + '" style="font-size:9px">';
+          html += '</div></div>';
+        }
+        html += '</div>';
+      }
+      // Prev
+      html += '<div class="field-group"><label class="field-label">Prev</label>';
+      html += '<input class="field-input" type="text" id="' + prefix + '_prev" value="' + opts.prev + '" disabled></div>';
+      // Hash
+      html += '<div class="field-group"><label class="field-label">Hash</label>';
+      html += '<div class="hash-output" id="' + prefix + '_hash"></div></div>';
+      // Mine
+      html += '<div class="field-group"><button class="mine-btn" id="' + prefix + '_mine" type="button">';
+      html += '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> Mine</button></div>';
+      html += '</div>';
+      return html;
+    }
+
+    function getSignedBlockText(prefix) {
+      var s = document.getElementById(prefix + '_num').value +
+              document.getElementById(prefix + '_nonce').value +
+              document.getElementById(prefix + '_cbval').value +
+              document.getElementById(prefix + '_cbto').value;
+      for (var x = 0; ; x++) {
+        var el = document.getElementById(prefix + '_tx' + x + 'val');
+        if (!el) break;
+        s += el.value +
+             document.getElementById(prefix + '_tx' + x + 'from').value +
+             document.getElementById(prefix + '_tx' + x + 'to').value +
+             document.getElementById(prefix + '_tx' + x + 'seq').value +
+             document.getElementById(prefix + '_tx' + x + 'sig').value;
+      }
+      s += document.getElementById(prefix + '_prev').value;
+      return s;
+    }
+
+    function verifyTxSig(prefix, txIdx) {
+      try {
+        var val = document.getElementById(prefix + '_tx' + txIdx + 'val').value;
+        var from = document.getElementById(prefix + '_tx' + txIdx + 'from').value;
+        var to = document.getElementById(prefix + '_tx' + txIdx + 'to').value;
+        var seq = document.getElementById(prefix + '_tx' + txIdx + 'seq').value;
+        var sig = document.getElementById(prefix + '_tx' + txIdx + 'sig');
+        var message = val + from + to + seq;
+        var binaryMessage = buffer.Buffer.from(CryptoJS.SHA256(message).toString(CryptoJS.enc.Hex));
+        var pubKey = ec.keyFromPublic(from, 'hex');
+        if (pubKey.verify(binaryMessage, sig.value)) {
+          sig.classList.remove('sig-invalid');
+        } else {
+          sig.classList.add('sig-invalid');
+        }
+      } catch(e) {
+        var sigEl = document.getElementById(prefix + '_tx' + txIdx + 'sig');
+        if (sigEl) sigEl.classList.add('sig-invalid');
+      }
+    }
+
+    function updateSignedBlock(prefix) {
+      var h = sha256(getSignedBlockText(prefix));
+      document.getElementById(prefix + '_hash').textContent = h;
+      var well = document.getElementById(prefix + '_well');
+      well.classList.remove('valid', 'invalid');
+      well.classList.add(isValid(h) ? 'valid' : 'invalid');
+      return h;
+    }
+
+    function updateSignedChainFrom(prefixes, startIdx, txCounts) {
+      for (var i = startIdx; i < prefixes.length; i++) {
+        if (i > 0) {
+          document.getElementById(prefixes[i] + '_prev').value =
+            document.getElementById(prefixes[i - 1] + '_hash').textContent;
+        }
+        updateSignedBlock(prefixes[i]);
+        for (var t = 0; t < txCounts[i]; t++) {
+          verifyTxSig(prefixes[i], t);
+        }
+      }
+    }
+
+    var peers = ['A', 'B', 'C'];
+    var container = document.getElementById('signedBcContainer');
+    var html = '';
+    for (var p = 0; p < 3; p++) {
+      html += '<div class="peer-section">';
+      html += '<div class="peer-label"><span class="peer-badge">' + peers[p] + '</span> Peer ' + peers[p] + '</div>';
+      html += '<div class="chain-row">';
+      for (var i = 0; i < 5; i++) {
+        var prefix = 'sbc' + peers[p] + (i + 1);
+        if (i > 0) html += '<div class="chain-connector">&rarr;</div>';
+        html += buildSignedBlock(prefix, i + 1, {
+          nonce: blocksData[i].nonce,
+          cbVal: blocksData[i].cbVal,
+          cbTo: blocksData[i].cbTo,
+          txs: blocksData[i].txs,
+          prev: blocksData[i].prev
+        });
+      }
+      html += '</div></div>';
+    }
+    container.innerHTML = html;
+
+    // Setup bindings for each peer
+    for (var p = 0; p < 3; p++) {
+      (function(peerIdx) {
+        var prefixes = [];
+        var txCounts = [];
+        for (var i = 0; i < 5; i++) {
+          prefixes.push('sbc' + peers[peerIdx] + (i + 1));
+          txCounts.push(blocksData[i].txs.length);
+        }
+        prefixes.forEach(function(prefix, idx) {
+          var inputIds = [prefix + '_num', prefix + '_nonce', prefix + '_cbval', prefix + '_cbto'];
+          for (var x = 0; ; x++) {
+            var el = document.getElementById(prefix + '_tx' + x + 'val');
+            if (!el) break;
+            inputIds.push(prefix + '_tx' + x + 'val');
+            inputIds.push(prefix + '_tx' + x + 'from');
+            inputIds.push(prefix + '_tx' + x + 'to');
+            inputIds.push(prefix + '_tx' + x + 'seq');
+            inputIds.push(prefix + '_tx' + x + 'sig');
+          }
+          inputIds.forEach(function(id) {
+            var el = document.getElementById(id);
+            if (el) el.addEventListener('input', function() {
+              updateSignedChainFrom(prefixes, idx, txCounts);
+            });
+          });
+          document.getElementById(prefix + '_mine').addEventListener('click', function() {
+            var nonceEl = document.getElementById(prefix + '_nonce');
+            var btn = document.getElementById(prefix + '_mine');
+            btn.classList.add('mining');
+            btn.textContent = 'Mining\u2026';
+            setTimeout(function() {
+              for (var x = 0; x <= MAX_NONCE; x++) {
+                nonceEl.value = x;
+                var h = sha256(getSignedBlockText(prefix));
+                if (isValid(h)) break;
+              }
+              updateSignedChainFrom(prefixes, idx, txCounts);
+              btn.classList.remove('mining');
+              btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> Mine';
+            }, 50);
+          });
+        });
+        // Initial render
+        updateSignedChainFrom(prefixes, 0, txCounts);
+      })(p);
+    }
+  })();
+
+  // ============================================================
+  // NAV: Mobile toggle
+  // ============================================================
+  document.getElementById('navToggle').addEventListener('click', function() {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+
+  // ============================================================
+  // HASH ROUTING: allow linking to #hash, #block, etc.
+  // ============================================================
+  var tabMap = { hash: 0, block: 1, blockchain: 2, distributed: 3, tokens: 4, coinbase: 5, keys: 6, signatures: 7, transaction: 8, 'signed-blockchain': 9 };
+  function checkHash() {
+    var h = window.location.hash.replace('#', '');
+    if (tabMap.hasOwnProperty(h)) switchTab(tabMap[h]);
+  }
+  checkHash();
+  window.addEventListener('hashchange', checkHash);
+  </script>
+</body>
+</html>
