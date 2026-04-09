@@ -78,22 +78,28 @@
       justify-content: space-between;
     }
     .site-nav-logo {
-      font-family: var(--font-heading);
-      font-size: 12px;
-      font-weight: 800;
-      color: var(--white);
-      letter-spacing: 0.3px;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 8px;
+      gap: 0;
       white-space: nowrap;
+      flex-shrink: 0;
       text-decoration: none;
     }
-    .site-nav-logo-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--golden);
+    .site-nav-logo-title {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.1;
+    }
+    .site-nav-logo-subtitle {
+      font-family: var(--font-heading);
+      font-size: 9px;
+      font-weight: 800;
+      color: var(--golden);
+      letter-spacing: 4px;
+      line-height: 1.4;
     }
     .site-nav-links {
       display: flex;
@@ -203,8 +209,8 @@
   <nav class="site-nav">
     <div class="site-nav-inner">
       <a href="../index.html" class="site-nav-logo">
-        <span class="site-nav-logo-dot"></span>
-        Entrepreneurship in the Age of AI &amp; Web3
+        <span class="site-nav-logo-title">AI &amp; Web3</span>
+        <span class="site-nav-logo-subtitle">BOOK</span>
       </a>
       <ul class="site-nav-links" id="siteNavLinks">
         <li><a href="../index.html" class="back-link">&larr; Home</a></li>

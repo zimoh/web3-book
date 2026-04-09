@@ -33,8 +33,9 @@
     :root{--blue-fusion:#435070;--blue-deep:#2E3650;--violet:#8B6FA0;--violet-light:#A98BBF;--golden:#E8C547;--golden-dim:#C9A82E;--coral:#FF6B6B;--cloud:#F0EEE9;--cloud-warm:#FAF8F4;--slate:#1E293B;--warm-gray:#6B7280;--white:#FFFFFF;--radius-sm:8px;--radius-md:14px;--shadow-md:0 6px 24px rgba(67,80,112,0.14);--font-heading:'Montserrat',sans-serif;--font-body:'Open Sans',sans-serif}
     .site-nav{position:fixed;top:0;width:100%;z-index:1100;background:rgba(46,54,80,0.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.08)}
     .site-nav-inner{max-width:1160px;margin:0 auto;padding:0 28px;height:64px;display:flex;align-items:center;justify-content:space-between}
-    .site-nav-logo{font-family:var(--font-heading);font-size:12px;font-weight:800;color:var(--white);letter-spacing:0.3px;display:flex;align-items:center;gap:8px;white-space:nowrap;text-decoration:none}
-    .site-nav-logo-dot{width:8px;height:8px;border-radius:50%;background:var(--golden)}
+    .site-nav-logo{display:flex;flex-direction:column;align-items:center;gap:0;white-space:nowrap;flex-shrink:0;text-decoration:none}
+    .site-nav-logo-title{font-family:var(--font-heading);font-size:16px;font-weight:900;color:var(--white);line-height:1.1}
+    .site-nav-logo-subtitle{font-family:var(--font-heading);font-size:9px;font-weight:800;color:var(--golden);letter-spacing:4px;line-height:1.4}
     .site-nav-links{display:flex;align-items:center;height:64px;gap:0;list-style:none;margin:0;padding:0}
     .site-nav-links a{display:flex;align-items:center;font-family:var(--font-heading);font-size:11px;font-weight:700;color:rgba(255,255,255,0.55);padding:0 14px;height:64px;text-decoration:none;transition:color 0.2s,background 0.2s;border-bottom:3px solid transparent;letter-spacing:0.3px}
     .site-nav-links a:hover{color:rgba(255,255,255,0.9);background:rgba(255,255,255,0.04)}
@@ -54,8 +55,8 @@
   <nav class="site-nav">
     <div class="site-nav-inner">
       <a href="../index.html" class="site-nav-logo">
-        <span class="site-nav-logo-dot"></span>
-        Entrepreneurship in the Age of AI &amp; Web3
+        <span class="site-nav-logo-title">AI &amp; Web3</span>
+        <span class="site-nav-logo-subtitle">BOOK</span>
       </a>
       <ul class="site-nav-links" id="siteNavLinks">
         <li><a href="../index.html" class="back-link">&larr; Home</a></li>
