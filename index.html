@@ -26,12 +26,13 @@
     gtag('js', new Date());
     gtag('config', 'G-Y0L12HDLEE');
   </script>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; frame-src https://token-economy-simulator.streamlit.app https://*.list-manage.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; form-action 'self' https://*.list-manage.com; frame-ancestors 'self';">
-  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; frame-src https://token-economy-simulator.streamlit.app https://*.list-manage.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; form-action 'self' https://*.list-manage.com;">
   <link rel="canonical" href="https://theaiandweb3book.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://token-economy-simulator.streamlit.app">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap"></noscript>
   <style>
     /* ================================================
        DESIGN TOKENS — Vibrant Fusion palette
@@ -39,7 +40,7 @@
     :root {
       --blue-fusion:  #435070;
       --blue-deep:    #2E3650;
-      --violet:       #8B6FA0;
+      --violet:       #6B4F84;
       --violet-light: #A98BBF;
       --golden:       #E8C547;
       --golden-dim:   #C9A82E;
@@ -48,7 +49,7 @@
       --cloud:        #F0EEE9;
       --cloud-warm:   #FAF8F4;
       --slate:        #1E293B;
-      --warm-gray:    #6B7280;
+      --warm-gray:    #475569;
       --white:        #FFFFFF;
 
       --radius-sm:  8px;
@@ -1259,7 +1260,7 @@
       border-radius: 6px;
       padding: 5px 12px;
       font-size: 12px;
-      color: rgba(255,255,255,0.55);
+      color: rgba(255,255,255,0.80);
       font-family: monospace;
       margin-left: 8px;
       white-space: nowrap;
@@ -1326,7 +1327,7 @@
       margin-bottom: 10px;
     }
 
-    .sim-feature h4 {
+    .sim-feature h3 {
       font-family: var(--font-heading);
       font-size: 13px;
       font-weight: 800;
@@ -1393,7 +1394,7 @@
 
     .footer-links a {
       font-size: 13px;
-      color: rgba(255,255,255,0.50);
+      color: rgba(255,255,255,0.75);
       transition: color 0.2s;
     }
     .footer-links a:hover { color: var(--white); }
@@ -1541,10 +1542,16 @@
       }
       .nav-links.open a { font-size: 15px; }
       .nav-cta { display: none; }
-    }
-
       .training-grid { grid-template-columns: 1fr; }
       .hero-email-form { flex-direction: column; }
+
+      /* Mobile-readable sizes for accent labels (GSC: "text too small to read") */
+      .nav-logo-subtitle { font-size: 11px; letter-spacing: 3px; }
+      .label { font-size: 12px; letter-spacing: 2.5px; }
+      .resource-badge, .resource-badge--coming { font-size: 12px; }
+      .training-tier-label { font-size: 12px; letter-spacing: 2.5px; }
+      .footer-col h4 { font-size: 12px; letter-spacing: 2px; }
+      .author-publications strong { font-size: 12px; }
     }
 
     @media (max-width: 540px) {
@@ -1613,6 +1620,8 @@
       </button>
     </div>
   </nav>
+
+  <main>
 
   <!-- ================================================
        HERO
@@ -1689,11 +1698,11 @@
           <div class="stat-label">Original Frameworks</div>
         </div>
         <div class="stat-item">
-          <div class="stat-number" style="color: var(--coral);">100<span class="stat-accent">+</span></div>
+          <div class="stat-number" style="color: #B83E3E;">100<span class="stat-accent">+</span></div>
           <div class="stat-label">Case Studies &amp; Examples</div>
         </div>
         <div class="stat-item">
-          <div class="stat-number" style="color: var(--golden-dim);">1<span style="font-size:18px; vertical-align: middle;">st</span></div>
+          <div class="stat-number" style="color: #8B6F1C;">1<span style="font-size:18px; vertical-align: middle;">st</span></div>
           <div class="stat-label">AI + Web3 Convergence Text</div>
         </div>
         <div class="stat-item">
@@ -1854,22 +1863,22 @@
       <div class="sim-features">
         <div class="sim-feature">
           <div class="sim-feature-icon">📊</div>
-          <h4>Supply Simulation</h4>
+          <h3>Supply Simulation</h3>
           <p>Visualise total, circulating, staked, and locked supply over 60 months.</p>
         </div>
         <div class="sim-feature">
           <div class="sim-feature-icon">🥧</div>
-          <h4>Stakeholder Allocation</h4>
+          <h3>Stakeholder Allocation</h3>
           <p>Dynamic pie chart showing token distribution across founders, investors, community, and treasury.</p>
         </div>
         <div class="sim-feature">
           <div class="sim-feature-icon">🔗</div>
-          <h4>TBMC Mapping</h4>
+          <h3>TBMC Mapping</h3>
           <p>Every parameter linked to the Token Business Model Canvas — see which canvas section each choice affects.</p>
         </div>
         <div class="sim-feature">
           <div class="sim-feature-icon">⚖️</div>
-          <h4>Scenario Comparison</h4>
+          <h3>Scenario Comparison</h3>
           <p>Run Bitcoin, Ethereum, utility token, and governance token models side by side.</p>
         </div>
       </div>
@@ -2083,6 +2092,8 @@
       </div>
     </div>
   </section>
+
+  </main>
 
   <!-- ================================================
        FOOTER
